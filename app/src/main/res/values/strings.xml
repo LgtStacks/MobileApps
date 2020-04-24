@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Main Project App</string>
+    <string name="app_name">Registration</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -21,7 +21,7 @@
     <string name="action_next">Next</string>
     <string name="action_settings">Settings</string>
     <string name="action_link">Full Post</string>
-
-
-
+    <string name="hint_first_name">First Name</string>
+    <string name="hint_last_name">Last Name</string>
+    <string name="hint_nickname">Nickname</string>
 </resources>
