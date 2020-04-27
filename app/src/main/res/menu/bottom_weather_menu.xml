@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_current"
+        android:title="@string/action_current" />
+
+    <item
+        android:id="@+id/navigation_forecast"
+        android:title="@string/action_forecast" />
+
+    <item
+        android:id="@+id/navigation_action"
+        android:title="@string/action_location" />
+</menu>
