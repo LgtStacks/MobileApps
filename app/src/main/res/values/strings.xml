@@ -22,7 +22,7 @@
     <string name="title_blogs">Blogs</string>
     <string name="title_connection">Connection</string>
     <string name="title_weather">Weather</string>
-
+    <string name="title_chat">Chat</string>
 
     <string name="hint_email">Enter your email address</string>
     <string name="action_signin">Sign In</string>
