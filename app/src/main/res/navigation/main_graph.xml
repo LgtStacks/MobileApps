@@ -26,4 +26,9 @@
             android:name="blog"
             app:argType="edu.uw.main.ui.blog.BlogPost" />
     </fragment>
+    <fragment
+        android:id="@+id/navigation_chat"
+        android:name="edu.uw.main.ui.chat.ChatFragment"
+        android:label="@string/title_chat"
+        tools:layout="@layout/fragment_chat" />
 </navigation>
