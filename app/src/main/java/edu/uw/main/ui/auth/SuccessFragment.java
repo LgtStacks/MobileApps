@@ -45,7 +45,7 @@ public class SuccessFragment extends Fragment {
 
       //  SuccessFragmentArgs args = SuccessFragmentArgs.fromBundle(getArguments());
 
-        binding.textMessage.setText(model.getEmail());
+        binding.textMessage.setText("Hello " + model.getEmail());
 
     }
 }

@@ -9,6 +9,6 @@
         android:title="@string/action_forecast" />
 
     <item
-        android:id="@+id/navigation_action"
+        android:id="@+id/navigation_location"
         android:title="@string/action_location" />
 </menu>

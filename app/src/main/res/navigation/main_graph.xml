@@ -11,24 +11,55 @@
         android:label="@string/app_name"
         tools:layout="@layout/fragment_success" />
     <fragment
-        android:id="@+id/navigation_blogs"
-        android:name="edu.uw.main.ui.blog.BlogListFragment"
-        android:label="@string/title_blogs" >
-        <action
-            android:id="@+id/action_navigation_blogs_to_blogPostFragment"
-            app:destination="@id/blogPostFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/blogPostFragment"
-        android:name="edu.uw.main.ui.blog.BlogPostFragment"
-        android:label="BlogPostFragment" >
-        <argument
-            android:name="blog"
-            app:argType="edu.uw.main.ui.blog.BlogPost" />
-    </fragment>
-    <fragment
         android:id="@+id/navigation_chat"
         android:name="edu.uw.main.ui.chat.ChatFragment"
         android:label="@string/title_chat"
         tools:layout="@layout/fragment_chat" />
+    <fragment
+        android:id="@+id/navigation_connection"
+        android:name="edu.uw.main.ui.connection.ConnectionFragment"
+        android:label="@string/title_connection"
+        tools:layout="@layout/fragment_connection">
+        <action
+            android:id="@+id/action_connectionFragment_to_friendFragment"
+            app:destination="@id/friendFragment" />
+        <action
+            android:id="@+id/action_connectionFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/friendFragment"
+        android:name="edu.uw.main.ui.connection.FriendFragment"
+        android:label="fragment_friend"
+        tools:layout="@layout/fragment_friend" />
+    <fragment
+        android:id="@+id/WeatherActivity"
+        android:name="edu.uw.main.ui.weather.WeatherFragment"
+        android:label="fragment_weather"
+        tools:layout="@layout/fragment_weather" >
+        <action
+            android:id="@+id/action_weatherFragment2_to_forecastFragment"
+            app:destination="@id/forecastFragment" />
+        <action
+            android:id="@+id/action_WeatherActivity_to_locationFragment"
+            app:destination="@id/locationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/forecastFragment"
+        android:name="edu.uw.main.ui.weather.ForecastFragment"
+        android:label="fragment_forecast"
+        tools:layout="@layout/fragment_forecast" >
+        <action
+            android:id="@+id/action_forecastFragment_to_WeatherActivity"
+            app:destination="@id/WeatherActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/locationFragment"
+        android:name="edu.uw.main.ui.weather.LocationFragment"
+        android:label="fragment_location"
+        tools:layout="@layout/fragment_location" >
+        <action
+            android:id="@+id/action_locationFragment_to_WeatherActivity"
+            app:destination="@id/WeatherActivity" />
+    </fragment>
 </navigation>
