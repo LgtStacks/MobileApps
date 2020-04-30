@@ -5,4 +5,24 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="colorOffWhite">#E9E9E9</color>
 
+
+
+    <!-- Tropical -->
+    <color name="colorPrimaryDark_tropical">#FFA000</color>
+    <color name="colorPrimaryLight_tropical">#FFECB3</color>
+    <color name="colorPrimary_tropical">#FFC107</color>
+    <color name="colorAccent_tropical">#FF5252</color>
+
+    <!-- Muted -->
+    <color name="colorPrimaryDark_muted">#455A64</color>
+    <color name="colorPrimaryLight_muted">#CFD8DC</color>
+    <color name="colorPrimary_muted">#607D8B</color>
+    <color name="colorAccent_muted">#00BCD4</color>
+
+    <!-- Dark/Blue -->
+    <color name="colorPrimaryDark_db">#303F9F</color>
+    <color name="colorPrimaryLight_db">#C5CAE9</color>
+    <color name="colorPrimary_db">#3F51B5</color>
+    <color name="colorAccent_db">#7C4DFF</color>
+
 </resources>
