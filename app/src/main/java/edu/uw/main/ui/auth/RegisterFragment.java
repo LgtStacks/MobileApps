@@ -120,13 +120,7 @@ public class RegisterFragment extends Fragment {
     }
 
     private void navigateToLogin() {
-        RegisterFragmentDirections.ActionRegisterFragmentToLoginFragment directions =
-                RegisterFragmentDirections.actionRegisterFragmentToLoginFragment();
-        directions.setEmail(binding.textEmail.getText().toString());
-        directions.setPassword(binding.textPassword.getText().toString());
-
-        Navigation.findNavController(getView()).navigate(directions);
-
+        Navigation.findNavController(getView()).navigate(RegisterFragmentDirections.actionRegisterFragmentToVerificationFragment());
     }
 
     /**

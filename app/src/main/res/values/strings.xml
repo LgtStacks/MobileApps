@@ -44,4 +44,7 @@
     <string name="hint_first_name">First Name</string>
     <string name="hint_last_name">Last Name</string>
     <string name="hint_nickname">Nickname</string>
+
+    <string name="text_verification">A link has been sent to your email to verify your account.</string>
+    <string name="button_continue">Continue</string>
 </resources>
