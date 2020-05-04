@@ -120,6 +120,7 @@ public class RegisterFragment extends Fragment {
     }
 
     private void navigateToLogin() {
+        Log.d("Got here", "Got here");
         Navigation.findNavController(getView()).navigate(RegisterFragmentDirections.actionRegisterFragmentToVerificationFragment());
     }
 
