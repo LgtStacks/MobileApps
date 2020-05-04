@@ -85,8 +85,6 @@ public class LoginFragment extends Fragment {
                     this::processPassword,
                     this::handleEmailError);
 
-
-
     }
 
     private void handleEmailError(ValidationResult result) {
@@ -139,6 +137,7 @@ public class LoginFragment extends Fragment {
      * @param response the Response from the server
      */
     private void observeResponse(final JSONObject response) {
+
         if (response.length() > 0) {
             if (response.has("code")) {
                 try {
