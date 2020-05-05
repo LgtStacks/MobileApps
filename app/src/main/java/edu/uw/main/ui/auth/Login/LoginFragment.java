@@ -30,11 +30,18 @@ import static edu.uw.main.PasswordValidator.checkPwdSpecialChar;
  * A simple {@link Fragment} subclass.
  */
 public class LoginFragment extends Fragment {
+    /** Our login view model. */
     private LoginViewModel mLoginModel;
+
+    /** Our binding for this fragment. */
     private FragmentLoginBinding binding;
+
+    /** Validates email field on the login fragment. Requirements: Special char (@), no white space, length > 0*/
     private PasswordValidator validate = checkPwdSpecialChar()
                                         .and(checkExcludeWhiteSpace())
                                         .and(checkPwdLength(0));
+
+    /** Validates the password field on the login fragment. Requirements: NOt empty, length > 0 */
     private PasswordValidator pwdValidate = checkExcludeWhiteSpace()
                                             .and(checkPwdLength(0));
 
@@ -70,6 +77,10 @@ public class LoginFragment extends Fragment {
                 getViewLifecycleOwner(),
                 this::observeResponse);
     }
+
+    /**
+     * Navigates to the register page when the register button is clicked.
+     */
     public void processRegister(){
 
         Navigation.findNavController(getView()).navigate(
@@ -77,8 +88,10 @@ public class LoginFragment extends Fragment {
         );
     }
 
+    /**
+     * Method to validate the email field. Calls the password validation method after email is validated.
+     */
     public void processSuccess(){
-
         validate.processResult(validate
                     .apply(binding.textEmail.getText().toString())
                     .filter(result -> result != ValidationResult.SUCCESS),
@@ -87,10 +100,15 @@ public class LoginFragment extends Fragment {
 
     }
 
+    /** Error thrown if email field is wrong. */
     private void handleEmailError(ValidationResult result) {
         String report = errorCode(result);
          binding.textEmail.setError(report);
     }
+
+    /**
+     * Validates password field and then calls a method to authenticate to the server.
+     */
     private void processPassword(){
         pwdValidate.processResult(pwdValidate
                         .apply(binding.textPassword.getText().toString())
@@ -98,10 +116,19 @@ public class LoginFragment extends Fragment {
                 this::verifyAuthWithServer,
                 this::handleSuccessError);
     }
+
+    /**
+     * Error thrown if password field is wrong.
+     * @param result - Error thrown.
+     */
     private void handleSuccessError(ValidationResult result) {
        String report = errorCode(result);
         binding.textPassword.setError(report);
     }
+
+    /**
+     * Navigates to the success fragment with email and json web token params passed.
+     */
     private void success() {
 
         String message = binding.textPassword.getText().toString();
@@ -112,6 +139,12 @@ public class LoginFragment extends Fragment {
                 )
         );
     }
+
+    /**
+     * Returns error code based off of what fields failed the validation check.
+     * @param result - result from our validation
+     * @return - The error returned.
+     */
     private String errorCode(ValidationResult result){
         switch(result){
             case PWD_MISSING_SPECIAL :
@@ -124,6 +157,9 @@ public class LoginFragment extends Fragment {
         return null;
     }
 
+    /**
+     * Method to connect to our webservice. Checks email and password in database.
+     */
     private void verifyAuthWithServer() {
         mLoginModel.connect(
                 binding.textEmail.getText().toString(),

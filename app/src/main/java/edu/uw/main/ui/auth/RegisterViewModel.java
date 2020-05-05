@@ -36,6 +36,10 @@ public class RegisterViewModel extends AndroidViewModel {
         mResponse.observe(owner, observer);
     }
 
+    /**
+     * Handles any errors returned from our webservice after the user tries to register.
+     * @param error - The error returned from our webservice.
+     */
     private void handleError(final VolleyError error) {
         if (Objects.isNull(error.networkResponse)) {
             try {
@@ -59,6 +63,14 @@ public class RegisterViewModel extends AndroidViewModel {
             }
         }
     }
+
+    /**
+     * Sends Full name, email, and password to our webservice. Registers the user and stores information into database.
+     * @param first - User entered First name.
+     * @param last - User entered Last name.
+     * @param email - User entered email.
+     * @param password - User entered password.
+     */
     public void connect(final String first,
                         final String last,
                         final String email,

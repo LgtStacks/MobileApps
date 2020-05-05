@@ -31,17 +31,20 @@ import static edu.uw.main.PasswordValidator.checkPwdUpperCase;
  * A simple {@link Fragment} subclass.
  */
 public class RegisterFragment extends Fragment {
-
+    /** Our binding for this fragment. */
     private FragmentRegisterBinding binding;
 
     private RegisterViewModel mRegisterModel;
 
+    /** Name validator for our name fields. Requirements: Name length > 1 */
     private PasswordValidator mNameValidator = checkPwdLength(1);
 
+    /** Email validator for our email field. Requirements: Length > 2, No white space, contains a @ sign. */
     private PasswordValidator mEmailValidator = checkPwdLength(2)
             .and(checkExcludeWhiteSpace())
             .and(checkPwdSpecialChar("@"));
 
+    /** Password validator for our pw field. Requirements: Pw's are the same, length > 6, special char, no white space, contains digit and letter. */
     private PasswordValidator mPassWordValidator =
             checkClientPredicate(pwd -> pwd.equals(binding.textRepaswd.getText().toString()))
                     .and(checkPwdLength(7))
@@ -77,10 +80,17 @@ public class RegisterFragment extends Fragment {
                 this::observeResponse);
     }
 
+    /**
+     * Attempts to register the user. Goes through all the checks.
+     * @param button - Method reference variable.
+     */
     private void attemptRegister(final View button) {
         validateFirst();
     }
 
+    /**
+     * Validates first name field and then calls last name validation method.
+     */
     private void validateFirst() {
         mNameValidator.processResult(
                 mNameValidator.apply(binding.textFirstName.getText().toString().trim()),
@@ -88,6 +98,9 @@ public class RegisterFragment extends Fragment {
                 result -> binding.textEmail.setError("Please enter a valid Email address."));
     }
 
+    /**
+     * Validates last name field and calls for email validation.
+     */
     private void validateLast() {
         mNameValidator.processResult(
                 mNameValidator.apply(binding.textLastName.getText().toString().trim()),
@@ -95,6 +108,9 @@ public class RegisterFragment extends Fragment {
                 result -> binding.textEmail.setError("Please enter a valid Email address."));
     }
 
+    /**
+     * Validates email and calls for password validation.
+     */
     private void validateEmail() {
         mEmailValidator.processResult(
                 mEmailValidator.apply(binding.textEmail.getText().toString().trim()),
@@ -102,6 +118,9 @@ public class RegisterFragment extends Fragment {
                 result -> binding.textEmail.setError("Please enter a valid Email address."));
     }
 
+    /**
+     * Validates password and calls for server authentication validation.
+     */
     private void validatePassword() {
         mPassWordValidator.processResult(
                 mPassWordValidator.apply(binding.textPassword.getText().toString()),
@@ -109,6 +128,9 @@ public class RegisterFragment extends Fragment {
                 result -> binding.textPassword.setError("Please enter a valid Password."));
     }
 
+    /**
+     * Sends in Full name, email, and password to the server.
+     */
     private void verifyAuthWithServer() {
         mRegisterModel.connect(
                 binding.textFirstName.getText().toString(),
@@ -119,8 +141,10 @@ public class RegisterFragment extends Fragment {
         //result of connect()
     }
 
+    /**
+     * Naviagtes to the verify fragment page.
+     */
     private void navigateToLogin() {
-        Log.d("Got here", "Got here");
         Navigation.findNavController(getView()).navigate(RegisterFragmentDirections.actionRegisterFragmentToVerificationFragment());
     }
 

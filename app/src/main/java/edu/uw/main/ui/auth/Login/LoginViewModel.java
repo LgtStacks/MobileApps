@@ -39,6 +39,11 @@ public class LoginViewModel extends AndroidViewModel {
         mResponse.observe(owner, observer);
     }
 
+    /**
+     * Sends email and password to our webservice. Authenticates the credentials.
+     * @param email - Email user entered.
+     * @param password - Password user entered.
+     */
     public void connect(final String email, final String password) {
         //String url = "https://cfb3-lab4-backend-2020sp.herokuapp.com/auth";
 

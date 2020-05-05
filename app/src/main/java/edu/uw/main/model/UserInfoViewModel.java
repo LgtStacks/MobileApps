@@ -5,18 +5,37 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 public class UserInfoViewModel extends ViewModel {
-    public String getEmail() {
-        return mEmail;
-    }
-    public String getJwt() {return mJwt; }
+    /** The user email. */
+    private String mEmail;
+
+    /** The Json web token. */
+    private String mJwt;
+    /**
+     * Constructor for the user info view model.
+     * @param email - Email user entered.
+     * @param jwt -  Json web token returned from web service.
+     */
     private UserInfoViewModel(String email, String jwt) {
         mEmail = email;
         mJwt = jwt;
     }
-   // private UserInfoViewModel(String jwt) { mJwt = jwt;}
+    /**
+     * Gets user email.
+     * @return - The Email the user entered.
+     */
+    public String getEmail() {
+        return mEmail;
+    }
 
-    private String mEmail;
-    private String mJwt;
+    /**
+     * Gets the JSON WEB TOKEN that is returned when signing in.
+     * @return - The JSON WEB TOKEN
+     */
+    public String getJwt() {return mJwt; }
+
+    /**
+     * Inner class to create our user info view model.
+     */
     public static class UserInfoViewModelFactory implements ViewModelProvider.Factory {
         private final String email;
         private final String jwt;

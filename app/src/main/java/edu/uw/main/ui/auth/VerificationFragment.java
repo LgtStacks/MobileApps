@@ -40,6 +40,9 @@ public class VerificationFragment extends Fragment {
 
     }
 
+    /**
+     * Navigate to the login page after verification notification is given.
+     */
     private void navigateToLogin() {
         Navigation.findNavController(getView()).navigate(VerificationFragmentDirections.actionVerificationFragmentToLoginFragment());
     }
