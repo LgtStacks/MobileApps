@@ -37,6 +37,7 @@ public class RegisterFragment extends Fragment {
     /** Our binding for this fragment. */
     private FragmentRegisterBinding binding;
 
+
     private RegisterViewModel mRegisterModel;
 
     /** Name validator for our name fields. Requirements: Name length > 1 */

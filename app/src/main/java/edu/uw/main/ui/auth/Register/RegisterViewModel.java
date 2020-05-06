@@ -28,6 +28,7 @@ import java.util.Objects;
  */
 public class RegisterViewModel extends AndroidViewModel {
 
+    
     private MutableLiveData<JSONObject> mResponse;
 
     /**

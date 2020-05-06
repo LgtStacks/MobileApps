@@ -7,6 +7,8 @@
     android:layout_height="match_parent"
     tools:context=".ui.weather.WeatherFragment">
 
+
+
     <TextView
         android:id="@+id/text_weather"
         android:layout_width="233dp"
