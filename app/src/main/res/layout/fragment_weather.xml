@@ -8,7 +8,7 @@
     tools:context=".ui.weather.WeatherFragment">
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/text_weather"
         android:layout_width="233dp"
         android:layout_height="40dp"
         android:layout_marginTop="200dp"
@@ -18,23 +18,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button_forecast"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginBottom="196dp"
-        android:text="View Forecast"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/button_location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="36dp"
-        android:layout_marginBottom="196dp"
-        android:text="View By Location"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
