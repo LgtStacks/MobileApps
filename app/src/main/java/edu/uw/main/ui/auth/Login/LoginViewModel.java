@@ -24,16 +24,30 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * Model to handle the interaction between the login services of the app and server.
+ * @author Group 3
+ * @version 5/5
+ */
 public class LoginViewModel extends AndroidViewModel {
 
     private MutableLiveData<JSONObject> mResponse;
 
+    /**
+     * Standard constructor with parameters.
+     * @param application new application for live data.
+     */
     public LoginViewModel(@NonNull Application application) {
         super(application);
         mResponse = new MutableLiveData<>();
         mResponse.setValue(new JSONObject());
     }
 
+    /**
+     * This method will add a response observer for interacting with the server.
+     * @param owner Owner of the data.
+     * @param observer JSON Object to report the result.
+     */
     public void addResponseObserver(@NonNull LifecycleOwner owner,
                                     @NonNull Observer<? super JSONObject> observer) {
         mResponse.observe(owner, observer);
@@ -45,7 +59,6 @@ public class LoginViewModel extends AndroidViewModel {
      * @param password - Password user entered.
      */
     public void connect(final String email, final String password) {
-        //String url = "https://cfb3-lab4-backend-2020sp.herokuapp.com/auth";
 
         String url = "https://app-backend-server.herokuapp.com/auth";
         Request request = new JsonObjectRequest(
@@ -75,6 +88,10 @@ public class LoginViewModel extends AndroidViewModel {
                 .addToRequestQueue(request);
     }
 
+    /**
+     * This method will handle any error from the server.
+     * @param error report from server.
+     */
     private void handleError(final VolleyError error) {
         if (Objects.isNull(error.networkResponse)) {
             try {

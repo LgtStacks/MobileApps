@@ -11,7 +11,11 @@ import java.util.function.Function;
 import java.util.function.IntPredicate;
 import java.util.function.Predicate;
 
-
+/**
+ * A password validator interface to handle if the password registered is valid.
+ * @author Charles F Bryan
+ * @version 5/5
+ */
 public interface PasswordValidator
         extends  Function<String, Optional<ValidationResult>>{
 

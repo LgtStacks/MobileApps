@@ -4,6 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+/**
+ * This class will act as a middle ground between the app and the server.
+ * @author Group 3
+ * @version 5/5
+ */
 public class UserInfoViewModel extends ViewModel {
     /** The user email. */
     private String mEmail;

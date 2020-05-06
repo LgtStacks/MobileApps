@@ -27,7 +27,9 @@ import static edu.uw.main.PasswordValidator.checkPwdSpecialChar;
 
 
 /**
- * A simple {@link Fragment} subclass.
+ * A fragment to handle the user login page.
+ * @author Group 3
+ * @version 5/5
  */
 public class LoginFragment extends Fragment {
     /** Our login view model. */
@@ -45,6 +47,9 @@ public class LoginFragment extends Fragment {
     private PasswordValidator pwdValidate = checkExcludeWhiteSpace()
                                             .and(checkPwdLength(0));
 
+    /**
+     * Default Constructor
+     */
     public LoginFragment() {
         // Required empty public constructor
     }

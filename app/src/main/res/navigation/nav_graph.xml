@@ -26,24 +26,12 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="edu.uw.main.ui.auth.RegisterFragment"
+        android:name="edu.uw.main.ui.auth.Register.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" >
         <action
             android:id="@+id/action_registerFragment_to_verificationFragment"
             app:destination="@id/verificationFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/successFragment"
-        android:name="edu.uw.main.ui.auth.SuccessFragment"
-        android:label="fragment_success"
-        tools:layout="@layout/fragment_success" >
-        <argument
-            android:name="email"
-            app:argType="string" />
-        <argument
-            android:name="jwt"
-            app:argType="string" />
     </fragment>
     <activity
         android:id="@+id/mainActivity"

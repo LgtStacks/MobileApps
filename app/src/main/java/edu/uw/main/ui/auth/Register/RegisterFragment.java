@@ -1,4 +1,4 @@
-package edu.uw.main.ui.auth;
+package edu.uw.main.ui.auth.Register;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +17,7 @@ import org.json.JSONObject;
 
 import edu.uw.main.PasswordValidator;
 import edu.uw.main.databinding.FragmentRegisterBinding;
+import edu.uw.main.ui.auth.Register.RegisterFragmentDirections;
 
 import static edu.uw.main.PasswordValidator.checkClientPredicate;
 import static edu.uw.main.PasswordValidator.checkExcludeWhiteSpace;
@@ -28,7 +29,9 @@ import static edu.uw.main.PasswordValidator.checkPwdUpperCase;
 
 
 /**
- * A simple {@link Fragment} subclass.
+ * A fragment to handle the register page.
+ * @author Group 3
+ * @version 5/5
  */
 public class RegisterFragment extends Fragment {
     /** Our binding for this fragment. */
@@ -53,6 +56,9 @@ public class RegisterFragment extends Fragment {
                     .and(checkPwdDigit())
                     .and(checkPwdLowerCase().or(checkPwdUpperCase()));
 
+    /**'
+     * Default constructor
+     */
     public RegisterFragment() {
         // Required empty public constructor
     }

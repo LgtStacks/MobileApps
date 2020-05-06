@@ -14,12 +14,17 @@ import androidx.navigation.Navigation;
 import edu.uw.main.databinding.FragmentVerificationBinding;
 
 /**
- * A simple {@link Fragment} subclass.
+ * A verification page to ensure that tells the user to check their email.
+ * @author Group 3
+ * @version 5/5
  */
 public class VerificationFragment extends Fragment {
 
     private FragmentVerificationBinding binding;
 
+    /**
+     * Default constructor.
+     */
     public VerificationFragment() {
         // Required empty public constructor
     }

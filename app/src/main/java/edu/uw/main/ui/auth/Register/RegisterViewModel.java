@@ -1,4 +1,4 @@
-package edu.uw.main.ui.auth;
+package edu.uw.main.ui.auth.Register;
 
 import android.app.Application;
 import android.util.Log;
@@ -21,16 +21,30 @@ import org.json.JSONObject;
 import java.nio.charset.Charset;
 import java.util.Objects;
 
+/**
+ * Model to handle the interaction between the register services of the app and server.
+ * @author Group 3
+ * @version 5/5
+ */
 public class RegisterViewModel extends AndroidViewModel {
 
     private MutableLiveData<JSONObject> mResponse;
 
+    /**
+     * Constructor for the register view model.
+     * @param application live data.
+     */
     public RegisterViewModel(@NonNull Application application) {
         super(application);
         mResponse = new MutableLiveData<>();
         mResponse.setValue(new JSONObject());
     }
 
+    /**
+     * This method will add a response observer for interacting with the server.
+     * @param owner Owner of the data.
+     * @param observer JSON Object to report the result.
+     */
     public void addResponseObserver(@NonNull LifecycleOwner owner,
                                     @NonNull Observer<? super JSONObject> observer) {
         mResponse.observe(owner, observer);

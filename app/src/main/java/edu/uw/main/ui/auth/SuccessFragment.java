@@ -16,12 +16,20 @@ import edu.uw.main.model.UserInfoViewModel;
 
 
 /**
- * A simple {@link Fragment} subclass.
+ * A framgent to handle the home page.
+ * The user has successfully logged into the app.
+ * @author Group 3
+ * @version 5/5
  */
 public class SuccessFragment extends Fragment {
 
     private FragmentSuccessBinding binding;
 
+    /**
+     * Default constructor.
+     * @author Group 3
+     * @version 5/5
+     */
     public SuccessFragment() {
         // Required empty public constructor
     }

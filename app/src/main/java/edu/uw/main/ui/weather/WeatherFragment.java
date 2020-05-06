@@ -15,12 +15,16 @@ import edu.uw.main.R;
 import edu.uw.main.databinding.FragmentWeatherBinding;
 
 /**
- * A simple {@link Fragment} subclass.
- *
+ * The main fragment to handle the weather.
+ * @author Group 3
+ * @version 5/5
  */
 public class WeatherFragment extends Fragment {
     private FragmentWeatherBinding binding;
 
+    /**
+     * Default constructor for the weather fragment.
+     */
     public WeatherFragment() {
         // Required empty public constructor
     }
@@ -35,19 +39,7 @@ public class WeatherFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
-        binding.buttonForecast.setOnClickListener(button ->
-                processForecast());
-        binding.buttonLocation.setOnClickListener(button ->
-                processLocation());
+
     }
-    public void processForecast(){
-        Navigation.findNavController(getView()).navigate(
-                WeatherFragmentDirections.actionWeatherFragment2ToForecastFragment()
-        );
-    }
-    public void processLocation(){
-        Navigation.findNavController(getView()).navigate(
-                WeatherFragmentDirections.actionWeatherActivityToLocationFragment()
-        );
-    }
+
 }

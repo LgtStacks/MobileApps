@@ -11,10 +11,14 @@ import android.view.ViewGroup;
 import edu.uw.main.R;
 
 /**
- * A simple {@link Fragment} subclass.
+ * A fragment showing a mock friends profile view.
+ * @author Group 3
+ * @version 5/5
  */
 public class FriendFragment extends Fragment {
-
+    /**
+     * Default constructor
+     */
     public FriendFragment() {
         // Required empty public constructor
     }

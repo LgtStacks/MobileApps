@@ -16,10 +16,16 @@ import edu.uw.main.databinding.FragmentChatBinding;
 
 
 /**
- * A simple {@link Fragment} subclass.
+ * The main chat fragment page.
+ * @author Group 3
+ * @version 5/5
  */
 public class ChatFragment extends Fragment {
     private FragmentChatBinding binding;
+
+    /**
+     * Default constructor
+     */
     public ChatFragment() {
         // Required empty public constructor
     }

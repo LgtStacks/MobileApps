@@ -13,6 +13,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import edu.uw.main.model.UserInfoViewModel;
 
+/**
+ * The main activity to handle the chat, connections, weather and home
+ * services.
+ * @author Group 3
+ * @version 5/5
+ */
 public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     @Override

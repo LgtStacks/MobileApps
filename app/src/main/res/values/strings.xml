@@ -16,6 +16,8 @@
     <string name="text_weather_currentForecast">Current Weather</string>
     <string name="text_weather_futureForecast">Future Forecast</string>
     <string name="text_weather_locationWeather">Weather by Location</string>
+    <string name="text_register_passwordHint1">Make sure Passwords are at least 8 characters</string>
+    <string name="text_register_passwordHint2">with at least one Uppercase Letter and Special Character.</string>
 
     <string name="button_second_register">REGISTER</string>
     <string name="button_friend_Remove">Remove Friend</string>

@@ -11,10 +11,14 @@ import android.view.ViewGroup;
 import edu.uw.main.R;
 
 /**
- * A simple {@link Fragment} subclass.
+ * A mock fragment showing how to interact in a group chat.
+ * @author Group 3
+ * @version 5/5
  */
 public class GroupFragment extends Fragment {
-
+    /**
+     * Default constructor
+     */
     public GroupFragment() {
         // Required empty public constructor
     }

@@ -15,11 +15,15 @@ import edu.uw.main.R;
 import edu.uw.main.databinding.FragmentConnectionBinding;
 
 /**
- * A simple {@link Fragment} subclass.
+ * The fragment showing the list of connections/friends.
+ * @author Group 3
+ *  @version 5/5
  */
 public class ConnectionFragment extends Fragment {
     private FragmentConnectionBinding binding;
-
+    /**
+     * Default constructor
+     */
     public ConnectionFragment() {
         // Required empty public constructor
     }
@@ -38,6 +42,10 @@ public class ConnectionFragment extends Fragment {
         binding.friendA.setOnClickListener(button ->
                 processFriend());
     }
+
+    /**
+     * Transition to a friend fragment.
+     */
     public void processFriend(){
         Navigation.findNavController(getView()).navigate(
                 ConnectionFragmentDirections.actionConnectionFragmentToFriendFragment()
