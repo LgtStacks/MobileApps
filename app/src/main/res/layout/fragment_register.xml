@@ -110,8 +110,8 @@
 
     <TextView
         android:id="@+id/text_password_hint_1"
-        android:layout_width="315dp"
-        android:layout_height="23dp"
+        android:layout_width="wrap_content"
+        android:layout_height="18dp"
         android:layout_marginTop="16dp"
         android:text="@string/text_register_passwordHint1"
         app:layout_constraintEnd_toEndOf="parent"
