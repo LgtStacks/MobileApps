@@ -171,6 +171,15 @@ public class LoginFragment extends Fragment {
                 binding.textPassword.getText().toString());
     }
 
+     /**
+     * Method to inform user that they still need to validate their email account.
+     */
+    private void processToast() {
+        Toast toast = Toast.makeText(getActivity(), "Please Validate Your Email" , Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.TOP|Gravity.LEFT, 250, 900);
+        toast.show();
+    }
+    
     /**
      * An observer on the HTTP Response from the web server. This observer should be
      * attached to SignInViewModel.
@@ -187,6 +196,7 @@ public class LoginFragment extends Fragment {
                                     response.getJSONObject("data").getString("message"));
                 } catch (JSONException e) {
                     Log.e("JSON Parse Error", e.getMessage());
+                    processToast();
                 }
             } else {
                 success();
