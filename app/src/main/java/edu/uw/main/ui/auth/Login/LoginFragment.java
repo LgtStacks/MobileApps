@@ -176,7 +176,7 @@ public class LoginFragment extends Fragment {
      */
     private void processToast() {
         Toast toast = Toast.makeText(getActivity(), "Please Validate Your Email" , Toast.LENGTH_LONG);
-        toast.setGravity(Gravity.TOP|Gravity.LEFT, 250, 900);
+        toast.setGravity(Gravity.BOTTOM, 0, 0);
         toast.show();
     }
     
