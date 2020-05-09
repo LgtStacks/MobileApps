@@ -54,4 +54,8 @@
             android:id="@+id/action_verificationFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/connectionFragment"
+        android:name="edu.uw.main.ui.connection.ConnectionListFragment"
+        android:label="fragment_connection" />
 </navigation>

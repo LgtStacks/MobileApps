@@ -39,16 +39,8 @@ public class ConnectionFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
-        binding.friendA.setOnClickListener(button ->
-                processFriend());
+
     }
 
-    /**
-     * Transition to a friend fragment.
-     */
-    public void processFriend(){
-        Navigation.findNavController(getView()).navigate(
-                ConnectionFragmentDirections.actionConnectionFragmentToFriendFragment()
-        );
-    }
+
 }

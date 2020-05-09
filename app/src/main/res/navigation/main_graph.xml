@@ -14,28 +14,11 @@
         android:id="@+id/navigation_chat"
         android:name="edu.uw.main.ui.chat.ChatFragment"
         android:label="@string/title_chat"
-        tools:layout="@layout/fragment_chat" >
+        tools:layout="@layout/fragment_chat">
         <action
             android:id="@+id/action_navigation_chat_to_groupFragment"
             app:destination="@id/groupFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/navigation_connection"
-        android:name="edu.uw.main.ui.connection.ConnectionFragment"
-        android:label="@string/title_connection"
-        tools:layout="@layout/fragment_connection">
-        <action
-            android:id="@+id/action_connectionFragment_to_friendFragment"
-            app:destination="@id/friendFragment" />
-        <action
-            android:id="@+id/action_connectionFragment_to_navigation_home"
-            app:destination="@id/navigation_home" />
-    </fragment>
-    <fragment
-        android:id="@+id/friendFragment"
-        android:name="edu.uw.main.ui.connection.FriendFragment"
-        android:label="fragment_friend"
-        tools:layout="@layout/fragment_friend" />
     <fragment
         android:id="@+id/WeatherActivity"
         android:name="edu.uw.main.ui.weather.WeatherFragment"
@@ -46,4 +29,21 @@
         android:name="edu.uw.main.ui.chat.GroupFragment"
         android:label="fragment_group"
         tools:layout="@layout/fragment_group" />
+    <fragment
+        android:id="@+id/navigation_connection"
+        android:name="edu.uw.main.ui.connection.ConnectionListFragment"
+        android:label="ConnectionListFragment" >
+        <action
+            android:id="@+id/action_navigation_connection_to_connectionPostFragment"
+            app:destination="@id/connectionPostFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/connectionPostFragment"
+        android:name="edu.uw.main.ui.connection.ConnectionPostFragment"
+        android:label="fragment_connection_post"
+        tools:layout="@layout/fragment_connection_post" >
+        <argument
+            android:name="friend"
+            app:argType="edu.uw.main.ui.connection.ConnectionPost" />
+    </fragment>
 </navigation>
