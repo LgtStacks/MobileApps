@@ -2,9 +2,11 @@ package edu.uw.main.ui.auth.Login;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -176,7 +178,7 @@ public class LoginFragment extends Fragment {
      */
     private void processToast() {
         Toast toast = Toast.makeText(getActivity(), "Please Validate Your Email" , Toast.LENGTH_LONG);
-        toast.setGravity(Gravity.TOP|Gravity.LEFT, 250, 900);
+        toast.setGravity(Gravity.TOP| Gravity.LEFT, 250, 900);
         toast.show();
     }
     
