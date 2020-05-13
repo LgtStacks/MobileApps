@@ -31,12 +31,14 @@ public class UserInfoViewModel extends ViewModel {
     public String getEmail() {
         return mEmail;
     }
-
     /**
      * Gets the JSON WEB TOKEN that is returned when signing in.
      * @return - The JSON WEB TOKEN
      */
-    public String getJwt() {return mJwt; }
+    public String getmJwt() {
+        return mJwt;
+    }
+
 
     /**
      * Inner class to create our user info view model.

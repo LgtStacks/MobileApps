@@ -26,6 +26,8 @@
 
     <string name="text_third_message">TEST</string>
 
+    <string name="base_url">https://app-backend-server.herokuapp.com/</string>
+
     <string name="title_home">Home</string>
     <string name="title_blogs">Blogs</string>
     <string name="title_connection">Connection</string>
