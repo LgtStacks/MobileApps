@@ -1,10 +1,14 @@
 package edu.uw.main;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 import edu.uw.main.ui.settings.SettingsActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -15,8 +19,13 @@ import android.view.MenuItem;
  */
 public class AuthActivity extends AppCompatActivity {
 
+    public static int theTheme = R.style.Original;
+
+    public static boolean changed = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(theTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
     }
@@ -37,5 +46,13 @@ public class AuthActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(changed) {
+            changed = false;
+            finish();
+            startActivity(getIntent());
+        }
+    }
 }

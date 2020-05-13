@@ -8,19 +8,19 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="Tropical" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="Tropical" parent="Original">
         <item name="colorPrimary">@color/colorPrimary_tropical</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark_tropical</item>
         <item name="colorAccent">@color/colorAccent_tropical</item>
     </style>
 
-    <style name="db" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="db" parent="Original">
         <item name="colorPrimary">@color/colorPrimary_db</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark_db</item>
         <item name="colorAccent">@color/colorAccent_db</item>
     </style>
 
-    <style name="muted" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="muted" parent="Original">
         <item name="colorPrimary">@color/colorPrimary_muted</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark_muted</item>
         <item name="colorAccent">@color/colorAccent_muted</item>

@@ -7,8 +7,11 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -23,9 +26,12 @@ import edu.uw.main.model.UserInfoViewModel;
  * @version 5/5
  */
 public class MainActivity extends AppCompatActivity {
+
     private AppBarConfiguration mAppBarConfiguration;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(AuthActivity.theTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -75,5 +81,14 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(AuthActivity.changed) {
+            AuthActivity.changed = false;
+            finish();
+            startActivity(getIntent());
+        }
     }
 }
