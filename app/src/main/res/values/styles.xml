@@ -1,30 +1,37 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="Original" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="Theme.MyApp" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-
-    <style name="Tropical" parent="Original">
+    <style name="Widget.App.Button.OutlinedButton.IconOnly" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="iconPadding">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">12dp</item>
+        <item name="android:minWidth">48dp</item>
+        <item name="android:minHeight">48dp</item>
+    </style>
+    <style name="Tropical" parent="Theme.MyApp">
         <item name="colorPrimary">@color/colorPrimary_tropical</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark_tropical</item>
         <item name="colorAccent">@color/colorAccent_tropical</item>
     </style>
 
-    <style name="db" parent="Original">
+    <style name="db" parent="Theme.MyApp">
         <item name="colorPrimary">@color/colorPrimary_db</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark_db</item>
         <item name="colorAccent">@color/colorAccent_db</item>
     </style>
 
-    <style name="muted" parent="Original">
+    <style name="muted" parent="Theme.MyApp">
         <item name="colorPrimary">@color/colorPrimary_muted</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark_muted</item>
         <item name="colorAccent">@color/colorAccent_muted</item>
     </style>
-
 
 </resources>

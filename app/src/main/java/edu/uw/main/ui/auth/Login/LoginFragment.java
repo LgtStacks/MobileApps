@@ -92,6 +92,7 @@ public class LoginFragment extends Fragment {
 
         mPushyTokenViewModel.addTokenObserver(getViewLifecycleOwner(), token ->
                 binding.buttonSuccess.setEnabled(!token.isEmpty()));
+
         mPushyTokenViewModel.addResponseObserver(
                 getViewLifecycleOwner(),
                 this::observePushyPutResponse);
