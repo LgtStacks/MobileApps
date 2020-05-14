@@ -29,6 +29,7 @@ import edu.uw.main.model.UserInfoViewModel;
 import edu.uw.main.services.PushReceiver;
 import edu.uw.main.ui.chat.ChatMessage;
 import edu.uw.main.ui.chat.ChatViewModel;
+import edu.uw.main.ui.settings.SettingsActivity;
 
 /**
  * The main activity to handle the chat, connections, weather and home
@@ -122,7 +123,10 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
-
+            startActivity(new Intent(this, SettingsActivity.class));
+            return true;
+        } else if (id == android.R.id.home) {
+            super.onBackPressed();
             return true;
         }
         return super.onOptionsItemSelected(item);
