@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                 mNewMessageModel.reset();
             }
         });
-/**
+
         mNewMessageModel.addMessageCountObserver(this, count -> {
             BadgeDrawable badge = binding.navView.getOrCreateBadge(R.id.navigation_chat);
             badge.setMaxCharacterCount(2);
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 badge.setVisible(false);
             }
         });
-*/
+
 
     }
     @Override
