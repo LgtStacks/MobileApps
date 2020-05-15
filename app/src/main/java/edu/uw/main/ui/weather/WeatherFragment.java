@@ -118,7 +118,12 @@ public class WeatherFragment extends Fragment {
 
     }
     private void parseHourly(final JSONObject response){
-
+        try {
+            Log.e("Feels Like", response.getJSONArray("hourly").getJSONObject(0).get("feels_like").toString());
+        }
+        catch (JSONException e) {
+            Log.e("JSON1 Parse Error", e.getMessage());
+        }
     }
     private void parseCurrent(final JSONObject response){
 
