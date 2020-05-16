@@ -51,9 +51,9 @@ public class WeatherViewModel extends AndroidViewModel {
 
     public void connectCurrent(String jwt) {
         String url =
-                "https://app-backend-server.herokuapp.com/weather/current";
+                "https://app-backend-server.herokuapp.com/weather/current/?q=98402";
         Request request = new JsonObjectRequest(
-                Request.Method.GET,
+                Request.Method.POST,
                 url,
                 null, //no body for this get request
                 mResponse::setValue,
