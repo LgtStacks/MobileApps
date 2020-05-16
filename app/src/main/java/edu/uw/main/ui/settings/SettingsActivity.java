@@ -53,7 +53,6 @@ public class SettingsActivity extends AppCompatActivity {
 
         @Override
         public boolean onPreferenceTreeClick(Preference preference) {
-            Log.d("Back button pressed", "bb");
             String key = preference.getKey();
             if (key.equals("Tropical")) {
                 AuthActivity.theTheme = R.style.Tropical;

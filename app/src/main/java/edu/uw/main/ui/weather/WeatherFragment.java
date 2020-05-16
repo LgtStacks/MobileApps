@@ -2,17 +2,21 @@ package edu.uw.main.ui.weather;
 
 import android.os.Bundle;
 import java.util.Calendar;
+import java.util.Locale;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -107,7 +111,7 @@ public class WeatherFragment extends Fragment {
                             parseCurrent(response);
                             Log.e("Button Pressed", "Current");
                         }
-                    binding.textWeather.setText(response.toString());
+                    //,binding.textWeather.setText(response.toString());
                     Log.e("Response", response.toString());
             }
         } else {
@@ -118,8 +122,42 @@ public class WeatherFragment extends Fragment {
 
     }
     private void parseHourly(final JSONObject response){
+        String[] weatherInfo = new String[24];
+        String date = "";
+        float temp = 0;
+        float pressure = 0;
+        float humidity = 0;
+        String main = "";
+        String descrip = "";
+        String whole = "";
         try {
-            Log.e("Feels Like", response.getJSONArray("hourly").getJSONObject(0).get("feels_like").toString());
+            for (int i =  0; i < 24; i++) {
+                JSONArray jsTemp = response.getJSONArray("hourly");
+
+                date = getDate(Long.parseLong(jsTemp.getJSONObject(i).get("dt").toString()));
+
+                temp = Float.parseFloat(jsTemp.getJSONObject(i).get("temp").toString());
+
+                pressure = Float.parseFloat(jsTemp.getJSONObject(i).get("pressure").toString());
+
+                humidity = Float.parseFloat(jsTemp.getJSONObject(i).get("humidity").toString());
+
+                main = jsTemp.getJSONObject(i).getJSONArray("weather").getJSONObject(0).get("main").toString();
+
+                descrip = jsTemp.getJSONObject(i).getJSONArray("weather").getJSONObject(0).get("description").toString();
+
+                String theString = date + " - "
+                        + "Temp: " + temp + " - "
+                        + "Pressure: " +  pressure + " - "
+                        +  "Humidity: " + humidity + " - "
+                        + "Weather: " + main + " " + descrip + "\n";
+                weatherInfo[i] = theString;
+            }
+            for (int i = 0; i < 24; i++) {
+                whole += weatherInfo[i];
+            }
+            Log.d("Got here", whole);
+            binding.textWeather.setText(whole);
         }
         catch (JSONException e) {
             Log.e("JSON1 Parse Error", e.getMessage());
@@ -127,5 +165,12 @@ public class WeatherFragment extends Fragment {
     }
     private void parseCurrent(final JSONObject response){
 
+    }
+
+    private String getDate(long time) {
+        Calendar cal = Calendar.getInstance(Locale.ENGLISH);
+        cal.setTimeInMillis(time * 1000);
+        String date = DateFormat.format("dd-MM-yyyy", cal).toString();
+        return date;
     }
 }
