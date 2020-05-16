@@ -1,11 +1,8 @@
 package edu.uw.main.ui.settings;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
+
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.appcompat.app.ActionBar;
@@ -13,7 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
+import androidx.preference.PreferenceScreen;
 import edu.uw.main.AuthActivity;
+import edu.uw.main.MainActivity;
 import edu.uw.main.R;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -49,6 +48,13 @@ public class SettingsActivity extends AppCompatActivity {
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.preference, rootKey);
+            Preference passwordPreference =  findPreference("change_pw");
+            PreferenceScreen preferenceScreen = getPreferenceScreen();
+            if (!AuthActivity.showChangePW) {
+                preferenceScreen.removePreference(passwordPreference);
+            } else {
+                preferenceScreen.addPreference(passwordPreference);
+            }
         }
 
         @Override
@@ -56,15 +62,25 @@ public class SettingsActivity extends AppCompatActivity {
             String key = preference.getKey();
             if (key.equals("Tropical")) {
                 AuthActivity.theTheme = R.style.Tropical;
+                restart();
             } else if (key.equals("Muted")) {
                 AuthActivity.theTheme = R.style.muted;
-            } else {
+                restart();
+            } else if (key.equals("Dark Blue")) {
                 AuthActivity.theTheme = R.style.db;
+                restart();
+            } else if (key.equals("change_pw")) {
+                MainActivity.changePassword = true;
+                getActivity().finish();
             }
+            return true;
+        }
+        private void restart() {
             AuthActivity.changed = true;
             getActivity().finish();
             getActivity().startActivity(getActivity().getIntent());
-            return true;
         }
     }
+
+
 }

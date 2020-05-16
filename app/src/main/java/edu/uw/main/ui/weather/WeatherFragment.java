@@ -156,7 +156,6 @@ public class WeatherFragment extends Fragment {
             for (int i = 0; i < 24; i++) {
                 whole += weatherInfo[i];
             }
-            Log.d("Got here", whole);
             binding.textWeather.setText(whole);
         }
         catch (JSONException e) {

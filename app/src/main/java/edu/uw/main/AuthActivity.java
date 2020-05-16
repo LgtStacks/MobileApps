@@ -33,11 +33,14 @@ public class AuthActivity extends AppCompatActivity {
 
     public static int theTheme = R.style.Theme_MyApp;
 
+    public static boolean showChangePW = false;
+
     public static boolean changed = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(theTheme);
+        showChangePW = false;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
         //If it is not already running, start the Pushy listening service
@@ -110,6 +113,7 @@ public class AuthActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        showChangePW = false;
         if(changed) {
             changed = false;
             finish();

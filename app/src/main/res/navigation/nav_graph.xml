@@ -23,6 +23,9 @@
             android:name="password"
             app:argType="string"
             android:defaultValue="default" />
+        <action
+            android:id="@+id/action_loginFragment_to_recovery"
+            app:destination="@id/recovery" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -58,4 +61,13 @@
         android:id="@+id/connectionFragment"
         android:name="edu.uw.main.ui.connection.ConnectionListFragment"
         android:label="fragment_connection" />
+    <fragment
+        android:id="@+id/recovery"
+        android:name="edu.uw.main.ui.recovery.recovery"
+        android:label="fragment_recovery"
+        tools:layout="@layout/fragment_recovery" >
+        <action
+            android:id="@+id/action_recovery_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
 </navigation>

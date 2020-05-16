@@ -18,12 +18,18 @@
     <string name="text_weather_locationWeather">Weather by Location</string>
     <string name="text_register_passwordHint1">Make sure Passwords are at least 8 characters</string>
     <string name="text_register_passwordHint2">with at least one Uppercase Letter and Special Character.</string>
+    <string name="text_recover">Forget Password?</string>
+    <string name="text_recovery_title">Recover your password</string>
+    <string name="text_change_title">Change Your Password</string>
+    <string name="button_hint_old_pw">Old Password</string>
+    <string name="button_hint_new_pw">New Password</string>
+    <string name="button_hint_new_pw_retype">Retype Password</string>
 
     <string name="button_second_register">REGISTER</string>
     <string name="button_friend_Remove">Remove Friend</string>
     <string name="button_friend_sendMessage">Send Message</string>
     <string name="button_weather_back">Back</string>
-
+    <string name="button_send">Send</string>
     <string name="text_third_message">TEST</string>
 
     <string name="base_url">https://app-backend-server.herokuapp.com/</string>

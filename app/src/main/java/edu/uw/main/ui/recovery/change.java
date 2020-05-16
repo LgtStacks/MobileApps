@@ -15,6 +15,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import edu.uw.main.R;
 import edu.uw.main.databinding.FragmentChangeBinding;
 import edu.uw.main.model.UserInfoViewModel;
@@ -54,9 +55,11 @@ public class change extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
         UserInfoViewModel model = new ViewModelProvider(getActivity()).get(UserInfoViewModel.class);
-        binding.buttonChange.setOnClickListener(button ->
-                mModel.connect(binding.textChangePw.getText().toString(), model.getmJwt()));
+        binding.buttonChange.setOnClickListener(button -> navigateBack(model));
     }
 
-   // private void
+   private void navigateBack(UserInfoViewModel model) {
+       mModel.connect(binding.textChangePw.getText().toString(), model.getmJwt());
+       getActivity().onBackPressed();
+   }
 }

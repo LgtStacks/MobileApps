@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.navigation.Navigation;
+import edu.uw.main.MainActivity;
 import edu.uw.main.databinding.FragmentSuccessBinding;
 import edu.uw.main.model.UserInfoViewModel;
 
@@ -55,5 +57,14 @@ public class SuccessFragment extends Fragment {
 
         binding.textMessage.setText("Hello " + model.getEmail());
 
+    }
+
+    @Override
+    public void onResume() {
+        if (MainActivity.changePassword) {
+            MainActivity.changePassword = false;
+            Navigation.findNavController(getView()).navigate(SuccessFragmentDirections.actionNavigationHomeToChange2());
+        }
+        super.onResume();
     }
 }

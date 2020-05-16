@@ -2,25 +2,33 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+<!--    <PreferenceCategory android:title="Color">-->
+        <Preference
+            android:id="@+id/tropical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:key="Tropical"
+            app:summary="Switch to Tropical Theme."
+            app:title="Tropical Theme" />
 
-    <Preference
-        android:id="@+id/tropical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:key="Tropical"
-        app:summary="Switch to Tropical Theme."
-        app:title="Tropical Theme" />
+        <Preference
+            android:id="@+id/muted"
+            app:key="Muted"
+            app:summary="Switch to Muted Theme."
+            app:title="Muted" />
 
-    <Preference
-        android:id="@+id/muted"
-        app:key="Muted"
-        app:summary="Switch to Muted Theme."
-        app:title="Muted" />
+        <Preference
+            android:id="@+id/db"
+            app:key="Dark Blue"
+            app:summary="Switch to Dark Blue Theme."
+            app:title="Dark Blue" />
+<!--    </PreferenceCategory>-->
 
-    <Preference
-        android:id="@+id/db"
-        app:key="Dark Blue"
-        app:summary="Switch to Dark Blue Theme."
-        app:title="Dark Blue" />
-
+<!--    <PreferenceCategory android:title="Recovery">-->
+        <Preference
+            android:id="@+id/changePW"
+            app:key="change_pw"
+            app:summary="Change your password."
+            app:title="Change Password" />
+<!--    </PreferenceCategory>-->
 </PreferenceScreen>

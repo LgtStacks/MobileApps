@@ -86,6 +86,13 @@ public class LoginFragment extends Fragment {
                 processRegister());
         binding.buttonSuccess.setOnClickListener(button ->
                 processSuccess());
+        binding.textRecover.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navigateToRecovery();
+            }
+        });
+
         mLoginModel.addResponseObserver(
                 getViewLifecycleOwner(),
                 this::observeSignInResponse);
@@ -106,6 +113,10 @@ public class LoginFragment extends Fragment {
         Navigation.findNavController(getView()).navigate(
                 LoginFragmentDirections.actionLoginFragmentToRegisterFragment2()
         );
+    }
+
+    private void navigateToRecovery() {
+        Navigation.findNavController(getView()).navigate(LoginFragmentDirections.actionLoginFragmentToRecovery());
     }
 
     /**

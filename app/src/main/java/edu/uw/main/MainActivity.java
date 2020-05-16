@@ -1,6 +1,7 @@
 package edu.uw.main;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
@@ -29,6 +30,7 @@ import edu.uw.main.model.UserInfoViewModel;
 import edu.uw.main.services.PushReceiver;
 import edu.uw.main.ui.chat.ChatMessage;
 import edu.uw.main.ui.chat.ChatViewModel;
+import edu.uw.main.ui.recovery.change;
 import edu.uw.main.ui.settings.SettingsActivity;
 
 /**
@@ -42,7 +44,10 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
 
     private MainPushMessageReceiver mPushMessageReceiver;
+
     private NewMessageCountViewModel mNewMessageModel;
+
+    public static boolean changePassword = false;
 
     private ActivityMainBinding binding;
 
@@ -52,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        AuthActivity.showChangePW = true;
         MainActivityArgs args = MainActivityArgs.fromBundle(getIntent().getExtras());
         String email = args.getEmail();
         String jwt = args.getJwt();
