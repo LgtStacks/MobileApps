@@ -59,7 +59,7 @@ public class ChangePasswordViewModel extends AndroidViewModel {
      */
     public void connect(final String password, final String jwt) {
 
-        String url = "https://app-backend-server.herokuapp.com/changePass/" + password;
+        String url = "https://app-backend-server.herokuapp.com/changePass/";
         Request request = new JsonObjectRequest(
                 Request.Method.GET,
                 url,
@@ -71,6 +71,7 @@ public class ChangePasswordViewModel extends AndroidViewModel {
                 Map<String, String> headers = new HashMap<>();
                 // add headers <key,value>
                 headers.put("Authorization", jwt);
+                headers.put("password", password);
                 return headers;
             }
         };
