@@ -101,7 +101,8 @@ public class WeatherViewModel extends AndroidViewModel {
     }
     public void connectHourly(String jwt) {
         String url =
-                "https://app-backend-server.herokuapp.com/weather/hourly";
+                "https://app-backend-server.herokuapp.com/weather/hourly/?postal_code=98502&country=US";
+                //"https://app-backend-server.herokuapp.com/weather/hourly";
         Request request = new JsonObjectRequest(
                 Request.Method.GET,
                 url,
