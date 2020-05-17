@@ -60,6 +60,6 @@ public class change extends Fragment {
 
    private void navigateBack(UserInfoViewModel model) {
        mModel.connect(binding.textNewPw.getText().toString(), model.getmJwt());
-       //getActivity().onBackPressed();
+       getActivity().onBackPressed();
    }
 }
