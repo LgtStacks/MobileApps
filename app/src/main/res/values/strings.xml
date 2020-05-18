@@ -77,4 +77,19 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+
+    <!-- Chat Fragment -->
+    <string name="button_chatfragment_groupA">Group A</string>
+    <string name="button_chatfragment_groupB">Group B</string>
+    <string name="button_chatfragment_groupC">Group C</string>
+
+    <!-- GroupA Fragment -->
+    <string name="title_groupfragmentA">Group Chat A</string>
+
+    <!-- GroupB Fragment -->
+    <string name="title_groupfragmentB">Group Chat B</string>
+
+    <!-- GroupC Fragment -->
+    <string name="title_groupfragmentC">Group Chat C</string>
+
 </resources>
