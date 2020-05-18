@@ -15,7 +15,7 @@
     <color name="secondaryTextColor">#000000</color>
 
     <color name="secondaryTextColorFade">#222222</color>
-
+    <color name="colorPrimaryAlpha">#226200EE</color>
 
     <!-- Tropical -->
     <color name="colorPrimaryDark_tropical">#FFA000</color>
