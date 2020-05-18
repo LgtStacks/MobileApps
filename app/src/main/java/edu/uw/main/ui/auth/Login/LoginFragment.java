@@ -46,12 +46,12 @@ public class LoginFragment extends Fragment {
 
     /** Validates email field on the login fragment. Requirements: Special char (@), no white space, length > 0*/
     private PasswordValidator validate = checkPwdSpecialChar()
-                                        .and(checkExcludeWhiteSpace())
-                                        .and(checkPwdLength(0));
+            .and(checkExcludeWhiteSpace())
+            .and(checkPwdLength(0));
 
     /** Validates the password field on the login fragment. Requirements: NOt empty, length > 0 */
     private PasswordValidator pwdValidate = checkExcludeWhiteSpace()
-                                            .and(checkPwdLength(0));
+            .and(checkPwdLength(0));
 
     /**
      * Default Constructor
@@ -76,6 +76,8 @@ public class LoginFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentLoginBinding.inflate(inflater, container, false);
+        
+        binding.layoutWait.setVisibility(View.INVISIBLE);
         return binding.getRoot();
     }
 
@@ -96,6 +98,10 @@ public class LoginFragment extends Fragment {
         mLoginModel.addResponseObserver(
                 getViewLifecycleOwner(),
                 this::observeSignInResponse);
+        
+        mLoginModel.addResponseObserver(getViewLifecycleOwner(), response ->
+                binding.layoutWait.setVisibility(View.GONE));
+
 
         mPushyTokenViewModel.addTokenObserver(getViewLifecycleOwner(), token ->
                 binding.buttonSuccess.setEnabled(!token.isEmpty()));
@@ -122,19 +128,20 @@ public class LoginFragment extends Fragment {
     /**
      * Method to validate the email field. Calls the password validation method after email is validated.
      */
-    public void processSuccess(){
+    public void processSuccess() {
+
         validate.processResult(validate
-                    .apply(binding.textEmail.getText().toString())
-                    .filter(result -> result != ValidationResult.SUCCESS),
-                    this::processPassword,
-                    this::handleEmailError);
+                        .apply(binding.textEmail.getText().toString())
+                        .filter(result -> result != ValidationResult.SUCCESS),
+                this::processPassword,
+                this::handleEmailError);
 
     }
 
     /** Error thrown if email field is wrong. */
     private void handleEmailError(ValidationResult result) {
         String report = errorCode(result);
-         binding.textEmail.setError(report);
+        binding.textEmail.setError(report);
     }
 
     /**
@@ -153,7 +160,7 @@ public class LoginFragment extends Fragment {
      * @param result - Error thrown.
      */
     private void handleSuccessError(ValidationResult result) {
-       String report = errorCode(result);
+        String report = errorCode(result);
         binding.textPassword.setError(report);
     }
 
@@ -161,7 +168,7 @@ public class LoginFragment extends Fragment {
      * Navigates to the success fragment with email and json web token params passed.
      */
     private void success() {
-
+        binding.layoutWait.setVisibility(View.VISIBLE);
         String message = binding.textPassword.getText().toString();
         Log.d("TESTER", String.valueOf(message.length()));
         Navigation.findNavController(getView()).navigate(
@@ -198,7 +205,7 @@ public class LoginFragment extends Fragment {
                 binding.textPassword.getText().toString());
     }
 
-     /**
+    /**
      * Method to inform user that they still need to validate their email account.
      */
     private void processToast() {
@@ -206,6 +213,7 @@ public class LoginFragment extends Fragment {
         toast.setGravity(Gravity.TOP|Gravity.LEFT, 250, 900);
         toast.show();
     }
+
     /**
      * An observer on the HTTP Response from the web server. This observer should be
      * attached to SignInViewModel.
@@ -231,21 +239,24 @@ public class LoginFragment extends Fragment {
                                     response.getString("token")
                             )).get(UserInfoViewModel.class);
                     sendPushyToken();
+
                 } catch (JSONException e) {
                     Log.e("JSON2 Parse Error", e.getMessage());
+
                 }
             }
         } else {
             Log.d("JSON Response", "No Response");
         }
-
     }
+
     /**
      * Helper to abstract the request to send the pushy token to the web service
      */
     private void sendPushyToken() {
         mPushyTokenViewModel.sendTokenToWebservice(mUserViewModel.getmJwt());
     }
+
     /**
      * An observer on the HTTP Response from the web server. This observer should be
      * attached to PushyTokenViewModel.
@@ -263,5 +274,4 @@ public class LoginFragment extends Fragment {
             }
         }
     }
-
 }
