@@ -125,7 +125,6 @@ public class WeatherFragment extends Fragment {
         String[] weatherInfo = new String[24];
         String date = "";
         float temp = 0;
-        float pressure = 0;
         float humidity = 0;
         String main = "";
         String descrip = "";
@@ -138,8 +137,6 @@ public class WeatherFragment extends Fragment {
 
                 temp = Float.parseFloat(jsTemp.getJSONObject(i).get("temp").toString());
 
-                pressure = Float.parseFloat(jsTemp.getJSONObject(i).get("pressure").toString());
-
                 humidity = Float.parseFloat(jsTemp.getJSONObject(i).get("humidity").toString());
 
                 main = jsTemp.getJSONObject(i).getJSONArray("weather").getJSONObject(0).get("main").toString();
@@ -148,7 +145,6 @@ public class WeatherFragment extends Fragment {
 
                 String theString = date + " - "
                         + "Temp: " + temp + " - "
-                        + "Pressure: " +  pressure + " - "
                         +  "Humidity: " + humidity + " - "
                         + "Weather: " + main + " " + descrip + "\n";
                 weatherInfo[i] = theString;

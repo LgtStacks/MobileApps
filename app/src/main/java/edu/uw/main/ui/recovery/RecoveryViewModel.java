@@ -58,25 +58,14 @@ public class RecoveryViewModel extends AndroidViewModel {
      * @param email - Email user entered.
      */
     public void connect(final String email) {
-
-        String url = "https://app-backend-server.herokuapp.com/recover/";
+        Log.d("connecteded", "called");
+        String url = "https://app-backend-server.herokuapp.com/recover/" + email;
         Request request = new JsonObjectRequest(
                 Request.Method.GET,
                 url,
                 null, //no body for this get request
                 mResponse::setValue,
                 this::handleError) {
-            @Override
-            public Map<String, String> getHeaders() {
-                Map<String, String> headers = new HashMap<>();
-                // add headers <key,value>
-                String credentials = email;
-                String auth = "Basic "
-                        + Base64.encodeToString(credentials.getBytes(),
-                        Base64.NO_WRAP);
-                headers.put("Authorization", auth);
-                return headers;
-            }
         };
         request.setRetryPolicy(new DefaultRetryPolicy(
                 10_000,

@@ -51,37 +51,10 @@ public class recovery extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         binding.buttonSend.setOnClickListener(button -> navigateToLogin());
-        mRecoveryModel.addResponseObserver(
-                getViewLifecycleOwner(),
-                this::observeRecoveryResponse);
     }
 
     private void navigateToLogin() {
+        mRecoveryModel.connect(binding.textEmailRecover.getText().toString());
         Navigation.findNavController(getView()).navigate(recoveryDirections.actionRecoveryToLoginFragment());
-    }
-
-    /**
-     * An observer on the HTTP Response from the web server. This observer should be
-     * attached to SignInViewModel.
-     *
-     * @param response the Response from the server
-     */
-    private void observeRecoveryResponse(final JSONObject response) {
-        if (response.length() > 0) {
-            if (response.has("code")) {
-                try {
-                    binding.textEmailRecover.setError(
-                            "Error Authenticating: " +
-                                    response.getJSONObject("data").getString("message"));
-                } catch (JSONException e) {
-                    Log.e("JSON1 Parse Error", e.getMessage());
-                }
-            } else {
-                //put what we should do when this happens
-            }
-        } else {
-            Log.d("JSON Response", "No Response");
-        }
-
     }
 }
