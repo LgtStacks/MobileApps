@@ -40,12 +40,31 @@ public class ChatFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
-        binding.buttonGroup.setOnClickListener(button ->
+        binding.buttonGroupA.setOnClickListener(button ->
                 processFriend());
+        binding.buttonGroupB.setOnClickListener(button ->
+                processFriend2());
+        binding.buttonGroupC.setOnClickListener(button ->
+                processFriend3());
+
+
     }
     public void processFriend(){
         Navigation.findNavController(getView()).navigate(
                 ChatFragmentDirections.actionNavigationChatToGroupFragment()
         );
     }
+
+    public void processFriend2(){
+        Navigation.findNavController(getView()).navigate(
+                ChatFragmentDirections.actionNavigationChatToGroupFragment2()
+        );
+    }
+
+    public void processFriend3(){
+        Navigation.findNavController(getView()).navigate(
+                ChatFragmentDirections.actionNavigationChatToGroupFragment3()
+        );
+    }
+
 }
