@@ -22,6 +22,12 @@
         <action
             android:id="@+id/action_navigation_chat_to_groupFragment"
             app:destination="@id/groupFragment" />
+        <action
+            android:id="@+id/action_navigation_chat_to_groupFragment2"
+            app:destination="@id/groupFragment2" />
+        <action
+            android:id="@+id/action_navigation_chat_to_groupFragment3"
+            app:destination="@id/groupFragment3" />
     </fragment>
     <fragment
         android:id="@+id/WeatherActivity"
@@ -31,7 +37,7 @@
     <fragment
         android:id="@+id/groupFragment"
         android:name="edu.uw.main.ui.chat.GroupFragment"
-        android:label="fragment_group"
+        android:label="@string/title_groupfragmentA"
         tools:layout="@layout/fragment_group" />
     <fragment
         android:id="@+id/navigation_connection"
@@ -59,4 +65,13 @@
             android:id="@+id/action_change_to_navigation_home"
             app:destination="@id/navigation_home" />
     </fragment>
+    <fragment
+        android:id="@+id/groupFragment2"
+        android:name="edu.uw.main.ui.chat.GroupFragment2"
+        android:label="@string/title_groupfragmentB"
+        tools:layout="@layout/fragment_group2" />
+    <fragment
+        android:id="@+id/groupFragment3"
+        android:name="edu.uw.main.ui.chat.GroupFragment3"
+        android:label="@string/title_groupfragmentC" />
 </navigation>
