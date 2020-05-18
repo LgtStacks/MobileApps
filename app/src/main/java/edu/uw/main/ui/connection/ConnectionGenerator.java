@@ -23,11 +23,11 @@ public final class ConnectionGenerator {
 
     }
 
-    public static List<ConnectionPost> getBlogList() {
+    public static List<ConnectionPost> getConnectionsList() {
         return Arrays.asList(FRIEND);
     }
 
-    public static ConnectionPost[] getBLOGS() {
+    public static ConnectionPost[] getConnectionss() {
         return Arrays.copyOf(FRIEND, FRIEND.length);
     }
 

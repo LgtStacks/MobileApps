@@ -34,6 +34,15 @@
 
     <string name="base_url">https://app-backend-server.herokuapp.com/</string>
 
+
+    <string name="keys_json_connection_response">response</string>
+    <string name="keys_json_connection_data">data</string>
+    <string name="keys_json_connection_email">email</string>
+
+
+
+
+
     <string name="title_home">Home</string>
     <string name="title_blogs">Blogs</string>
     <string name="title_connection">Connection</string>

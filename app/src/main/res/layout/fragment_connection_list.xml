@@ -12,3 +12,5 @@
     android:orientation="vertical"
     tools:context="edu.uw.main.ui.connection.ConnectionListFragment"
     tools:listitem="@layout/fragment_connection_card"/>
+
+

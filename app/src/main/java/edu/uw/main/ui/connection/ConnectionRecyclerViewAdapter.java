@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,12 +14,14 @@ import java.util.List;
 
 import edu.uw.main.R;
 import edu.uw.main.databinding.FragmentConnectionCardBinding;
+import edu.uw.main.model.UserInfoViewModel;
 
 
 public class ConnectionRecyclerViewAdapter extends
         RecyclerView.Adapter<ConnectionRecyclerViewAdapter.ConnectionViewHolder> {
 
     private final List<ConnectionPost> mConnection;
+    private UserInfoViewModel mUserModel;
 
     public ConnectionRecyclerViewAdapter(List<ConnectionPost> items) {
         this.mConnection = items;
@@ -58,6 +61,7 @@ public class ConnectionRecyclerViewAdapter extends
                     ConnectionListFragmentDirections
                             .actionNavigationConnectionToConnectionPostFragment(connection))
             );
+
             binding.buttonName.setText(connection.getConnection());
             //Use methods in the HTML class to format the HTML found in the text
 

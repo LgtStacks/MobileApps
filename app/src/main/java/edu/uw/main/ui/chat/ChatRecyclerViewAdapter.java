@@ -135,7 +135,6 @@ public class ChatRecyclerViewAdapter extends RecyclerView.Adapter<ChatRecyclerVi
                                 .setBottomLeftCornerSize(0)
                                 .setTopLeftCornerSize(0)
                                 .build());
-
                 card.requestLayout();
             }
         }

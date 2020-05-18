@@ -57,7 +57,7 @@ public class ConnectionPostFragment extends Fragment {
 // ((LinearLayoutManager)((RecyclerView) view).getLayoutManager())
 // .setOrientation(LinearLayoutManager.HORIZONTAL);
             ((RecyclerView) view).setAdapter(
-                    new ConnectionRecyclerViewAdapter(ConnectionGenerator.getBlogList()));
+                    new ConnectionRecyclerViewAdapter(ConnectionGenerator.getConnectionsList()));
         }
         return view;
     }
