@@ -21,14 +21,14 @@ import edu.uw.main.model.UserInfoViewModel;
  * @author Group 3
  * @version 5/5
  */
-public class GroupFragment extends Fragment {
+public class GroupFragment2 extends Fragment {
     //The chat ID for "global" chat
-    private static final int HARD_CODED_CHAT_ID = 1;
+    private static final int HARD_CODED_CHAT_ID2 = 2;
     private ChatSendViewModel mSendModel;
     private ChatViewModel mChatModel;
     private UserInfoViewModel mUserModel;
 
-    public GroupFragment() {
+    public GroupFragment2() {
         // Required empty public constructor
     }
 
@@ -41,7 +41,7 @@ public class GroupFragment extends Fragment {
         mChatModel = provider.get(ChatViewModel.class);
         mSendModel = provider.get(ChatSendViewModel.class);
 
-        mChatModel.getFirstMessages(HARD_CODED_CHAT_ID, mUserModel.getmJwt());
+        mChatModel.getFirstMessages(HARD_CODED_CHAT_ID2, mUserModel.getmJwt());
     }
 
     @Override
@@ -63,18 +63,18 @@ public class GroupFragment extends Fragment {
         //Set the Adapter to hold a reference to the list FOR THIS chat ID that the ViewModel
         //holds.
         rv.setAdapter(new ChatRecyclerViewAdapter(
-                mChatModel.getMessageListByChatId(HARD_CODED_CHAT_ID),
+                mChatModel.getMessageListByChatId(HARD_CODED_CHAT_ID2),
                 mUserModel.getEmail()));
 
 
         //When the user scrolls to the top of the RV, the swiper list will "refresh"
         //The user is out of messages, go out to the service and get more
         binding.swipeContainer.setOnRefreshListener(() -> {
-            mChatModel.getNextMessages(HARD_CODED_CHAT_ID, mUserModel.getmJwt());
+            mChatModel.getNextMessages(HARD_CODED_CHAT_ID2, mUserModel.getmJwt());
         });
         //Send button was clicked. Send the message via the SendViewModel
         binding.buttonSend.setOnClickListener(button -> {
-            mSendModel.sendMessage(HARD_CODED_CHAT_ID,
+            mSendModel.sendMessage(HARD_CODED_CHAT_ID2,
                     mUserModel.getmJwt(),
                     binding.editMessage.getText().toString());
         });
@@ -82,7 +82,7 @@ public class GroupFragment extends Fragment {
         mSendModel.addResponseObserver(getViewLifecycleOwner(), response ->
                 binding.editMessage.setText(""));
 
-        mChatModel.addMessageObserver(HARD_CODED_CHAT_ID, getViewLifecycleOwner(),
+        mChatModel.addMessageObserver(HARD_CODED_CHAT_ID2, getViewLifecycleOwner(),
                 list -> {
                     /*
                      * This solution needs work on the scroll position. As a group,
@@ -96,6 +96,6 @@ public class GroupFragment extends Fragment {
                     binding.swipeContainer.setRefreshing(false);
                 });
 
-   }
+    }
 
 }

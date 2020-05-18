@@ -7,6 +7,26 @@
     android:layout_height="match_parent"
     tools:context=".ui.chat.ChatFragment">
 
+    <Button
+        android:id="@+id/button_groupB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="388dp"
+        android:text="@string/button_chatfragment_groupB"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_groupC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="472dp"
+        android:text="@string/button_chatfragment_groupC"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="249dp"
@@ -30,12 +50,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button_group"
+        android:id="@+id/button_groupA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="312dp"
-        android:text="Group A"
+        android:text="@string/button_chatfragment_groupA"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
