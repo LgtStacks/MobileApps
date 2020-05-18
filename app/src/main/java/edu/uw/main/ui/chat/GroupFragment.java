@@ -25,7 +25,6 @@ public class GroupFragment extends Fragment {
     //The chat ID for "global" chat
     private static final int HARD_CODED_CHAT_ID = 1;
     private ChatSendViewModel mSendModel;
-
     private ChatViewModel mChatModel;
     private UserInfoViewModel mUserModel;
 
@@ -73,13 +72,13 @@ public class GroupFragment extends Fragment {
         binding.swipeContainer.setOnRefreshListener(() -> {
             mChatModel.getNextMessages(HARD_CODED_CHAT_ID, mUserModel.getmJwt());
         });
-//Send button was clicked. Send the message via the SendViewModel
+        //Send button was clicked. Send the message via the SendViewModel
         binding.buttonSend.setOnClickListener(button -> {
             mSendModel.sendMessage(HARD_CODED_CHAT_ID,
                     mUserModel.getmJwt(),
                     binding.editMessage.getText().toString());
         });
-//when we get the response back from the server, clear the edittext
+        //when we get the response back from the server, clear the edittext
         mSendModel.addResponseObserver(getViewLifecycleOwner(), response ->
                 binding.editMessage.setText(""));
 
@@ -96,5 +95,7 @@ public class GroupFragment extends Fragment {
                     rv.scrollToPosition(rv.getAdapter().getItemCount() - 1);
                     binding.swipeContainer.setRefreshing(false);
                 });
-    }
+
+   }
+
 }
