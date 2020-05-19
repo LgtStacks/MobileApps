@@ -103,7 +103,7 @@ public class WeatherFragment extends Fragment {
                             parseForecast(response);
                             Log.e("Button Pressed", "Forecast");
                         }
-                        else if(response.has("hourly")){
+                        else if(response.has("data")){
                             parseHourly(response);
                             Log.e("Button Pressed", "Hourly");
                         }
@@ -111,7 +111,7 @@ public class WeatherFragment extends Fragment {
                             parseCurrent(response);
                             Log.e("Button Pressed", "Current");
                         }
-                    binding.textWeather.setText(response.toString());
+                    //binding.textWeather.setText(response.toString());
                     Log.e("Response", response.toString());
             }
         } else {
@@ -122,35 +122,25 @@ public class WeatherFragment extends Fragment {
 
     }
     private void parseHourly(final JSONObject response){
-        String[] weatherInfo = new String[24];
+        Log.d("got here", "gotten");
         String date = "";
         float temp = 0;
-        float humidity = 0;
-        String main = "";
         String descrip = "";
         String whole = "";
         try {
             for (int i =  0; i < 24; i++) {
-                JSONArray jsTemp = response.getJSONArray("hourly");
+                JSONArray jsTemp = response.getJSONArray("data");
 
-                date = getDate(Long.parseLong(jsTemp.getJSONObject(i).get("dt").toString()));
+                date = jsTemp.getJSONObject(i).get("timestamp_local").toString();
 
                 temp = Float.parseFloat(jsTemp.getJSONObject(i).get("temp").toString());
 
-                humidity = Float.parseFloat(jsTemp.getJSONObject(i).get("humidity").toString());
-
-                main = jsTemp.getJSONObject(i).getJSONArray("weather").getJSONObject(0).get("main").toString();
-
-                descrip = jsTemp.getJSONObject(i).getJSONArray("weather").getJSONObject(0).get("description").toString();
+               descrip = jsTemp.getJSONObject(i).getJSONObject("weather").get("description").toString();
 
                 String theString = date + " - "
                         + "Temp: " + temp + " - "
-                        +  "Humidity: " + humidity + " - "
-                        + "Weather: " + main + " " + descrip + "\n";
-                weatherInfo[i] = theString;
-            }
-            for (int i = 0; i < 24; i++) {
-                whole += weatherInfo[i];
+                        + "Weather: " +  " " + descrip + "\n";
+                whole += theString;
             }
             binding.textWeather.setText(whole);
         }
