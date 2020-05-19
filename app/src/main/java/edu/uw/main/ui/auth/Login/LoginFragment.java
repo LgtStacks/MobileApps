@@ -76,7 +76,7 @@ public class LoginFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentLoginBinding.inflate(inflater, container, false);
-        
+
         binding.layoutWait.setVisibility(View.INVISIBLE);
         return binding.getRoot();
     }
@@ -98,7 +98,7 @@ public class LoginFragment extends Fragment {
         mLoginModel.addResponseObserver(
                 getViewLifecycleOwner(),
                 this::observeSignInResponse);
-        
+
         mLoginModel.addResponseObserver(getViewLifecycleOwner(), response ->
                 binding.layoutWait.setVisibility(View.GONE));
 
@@ -208,9 +208,18 @@ public class LoginFragment extends Fragment {
     /**
      * Method to inform user that they still need to validate their email account.
      */
-    private void processToast() {
+    private void processToastValidate() {
         Toast toast = Toast.makeText(getActivity(), "Please Validate Your Email" , Toast.LENGTH_LONG);
-        toast.setGravity(Gravity.TOP|Gravity.LEFT, 250, 900);
+        toast.setGravity(Gravity.BOTTOM, 0, 0);
+        toast.show();
+    }
+
+    /**
+     * Method to inform user that their password is incorrect.
+     */
+    private void processToastEmail() {
+        Toast toast = Toast.makeText(getActivity(), "Incorrect password. Please try again" , Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.BOTTOM, 0, 0);
         toast.show();
     }
 
@@ -227,9 +236,14 @@ public class LoginFragment extends Fragment {
                     binding.textEmail.setError(
                             "Error Authenticating: " +
                                     response.getJSONObject("data").getString("message"));
+
                 } catch (JSONException e) {
                     Log.e("JSON1 Parse Error", e.getMessage());
-                    processToast();
+                        if (e.getMessage().contains("Credentials")) {
+                            processToastEmail();
+                        } else if (e.getMessage().contains("Not")) {
+                            processToastValidate();
+                        }
                 }
             } else {
                 try {
