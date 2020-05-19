@@ -40,8 +40,8 @@ public class recovery extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
+        getActivity().setTitle("Recover Password");
         mRecoveryModel = new ViewModelProvider(getActivity())
                 .get(RecoveryViewModel.class);
     }

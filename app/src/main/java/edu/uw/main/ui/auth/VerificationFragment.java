@@ -51,5 +51,4 @@ public class VerificationFragment extends Fragment {
     private void navigateToLogin() {
         Navigation.findNavController(getView()).navigate(VerificationFragmentDirections.actionVerificationFragmentToLoginFragment());
     }
-
 }

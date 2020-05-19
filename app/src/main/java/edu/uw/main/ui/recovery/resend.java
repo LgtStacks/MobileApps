@@ -40,8 +40,8 @@ public class resend extends Fragment {
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
+        getActivity().setTitle("Resend Verification");
         mResendModel = new ViewModelProvider(getActivity())
                 .get(ResendViewModel.class);
     }
