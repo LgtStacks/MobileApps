@@ -10,9 +10,9 @@
 
     <TextView
         android:id="@+id/text_weather"
-        android:layout_width="381dp"
-        android:layout_height="438dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="305dp"
+        android:layout_height="346dp"
+        android:layout_marginTop="16dp"
         android:text="@string/text_weather_currentForecast"
         android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,9 +35,9 @@
         android:id="@+id/button_forecast"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="53dp"
         android:layout_marginStart="45dp"
         android:layout_marginTop="136dp"
+        android:layout_marginEnd="53dp"
         android:text="Forecast"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button_current"

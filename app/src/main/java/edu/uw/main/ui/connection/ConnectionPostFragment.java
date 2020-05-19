@@ -39,7 +39,7 @@ public class ConnectionPostFragment extends Fragment {
 
         binding.textName.setText(args.getFriend().getConnection());
         ((MainActivity) getActivity())
-                .setActionBarTitle(args.getFriend().getConnection());
+                .setActionBarTitle(args.getFriend().getConnection() + " Profile");
 
     }
     @Override
