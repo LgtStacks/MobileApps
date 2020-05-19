@@ -42,6 +42,7 @@ public class change extends Fragment {
 
     private ChangePasswordViewModel mChangeModel;
     private UserInfoViewModel mUserViewModel;
+    private boolean flag;
 
     public change() {
         // Required empty public constructor
@@ -85,6 +86,7 @@ public class change extends Fragment {
      * @param model the UserInfoViewModel
      */
     private void navigateBack(UserInfoViewModel model) {
+
         if (!binding.textNewPw.getText().toString().equals(binding.textNewRetype.getText().toString())) {
             binding.textNewPw.setError("Passwords do not match");
         } else if (binding.textNewPw.length() < 1) {
@@ -98,11 +100,12 @@ public class change extends Fragment {
     /**
      * Method to inform user that they have entered their original password incorrectly.
      */
-    private void processToastPassword() {
-        Toast toast = Toast.makeText(getActivity(), "Your original password is incorrect" , Toast.LENGTH_LONG);
+    private void processToastSuccess() {
+        Toast toast = Toast.makeText(getActivity(), "Password has been successfully changed" , Toast.LENGTH_LONG);
         toast.setGravity(Gravity.BOTTOM, 0, 0);
         toast.show();
     }
+
 
     /**
      * An observer on the HTTP Response from the web server. This observer should be
@@ -121,7 +124,8 @@ public class change extends Fragment {
                 } catch (JSONException e) {
                     Log.e("JSON1 Parse Error", e.getMessage());
                     if (e.getMessage().contains("Passwords")) {
-                        processToastPassword();
+                        binding.textOldPw.setError("Your original password is incorrect");
+
                     }
                 }
             } else {
@@ -131,6 +135,8 @@ public class change extends Fragment {
                                     binding.textOldPw.getText().toString(),
                                     response.getString("token")
                             )).get(UserInfoViewModel.class);
+
+
 
 
                 } catch (JSONException e) {
