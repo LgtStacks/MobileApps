@@ -16,6 +16,8 @@ import org.json.JSONObject;
 
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
+import edu.uw.main.AuthActivity;
+import edu.uw.main.MainActivity;
 import edu.uw.main.R;
 import edu.uw.main.databinding.FragmentChangeBinding;
 import edu.uw.main.model.UserInfoViewModel;
