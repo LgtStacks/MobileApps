@@ -95,6 +95,13 @@ public class LoginFragment extends Fragment {
             }
         });
 
+        binding.textResendVerification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navigateToResendVerification();
+            }
+        });
+
         mLoginModel.addResponseObserver(
                 getViewLifecycleOwner(),
                 this::observeSignInResponse);
@@ -123,6 +130,10 @@ public class LoginFragment extends Fragment {
 
     private void navigateToRecovery() {
         Navigation.findNavController(getView()).navigate(LoginFragmentDirections.actionLoginFragmentToRecovery());
+    }
+
+    private void navigateToResendVerification() {
+        Navigation.findNavController(getView()).navigate(LoginFragmentDirections.actionLoginFragmentToReVerification());
     }
 
     /**

@@ -26,6 +26,9 @@
         <action
             android:id="@+id/action_loginFragment_to_recovery"
             app:destination="@id/recovery" />
+        <action
+            android:id="@+id/action_loginFragment_to_reVerification"
+            app:destination="@id/reVerification" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -68,6 +71,15 @@
         tools:layout="@layout/fragment_recovery" >
         <action
             android:id="@+id/action_recovery_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/reVerification"
+        android:name="edu.uw.main.ui.recovery.resend"
+        android:label="fragment_re_verification"
+        tools:layout="@layout/fragment_re_verification" >
+        <action
+            android:id="@+id/action_reVerification_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
 </navigation>

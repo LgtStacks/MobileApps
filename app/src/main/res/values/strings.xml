@@ -24,6 +24,8 @@
     <string name="button_hint_old_pw">Old Password</string>
     <string name="button_hint_new_pw">New Password</string>
     <string name="button_hint_new_pw_retype">Retype Password</string>
+    <string name="text_resend_hint">Resend Verification</string>
+    <string name="text_resend_title">Resend Verficiation Email!</string>
 
     <string name="button_second_register">REGISTER</string>
     <string name="button_friend_Remove">Remove Friend</string>
@@ -38,9 +40,6 @@
     <string name="keys_json_connection_response">response</string>
     <string name="keys_json_connection_data">data</string>
     <string name="keys_json_connection_email">email</string>
-
-
-
 
 
     <string name="title_home">Home</string>

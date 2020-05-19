@@ -29,7 +29,7 @@ import java.util.Objects;
  * @author Group 3
  * @version 5/5
  */
-public class RecoveryViewModel extends AndroidViewModel {
+public class ResendViewModel extends AndroidViewModel {
 
     private MutableLiveData<JSONObject> mResponse;
 
@@ -37,7 +37,7 @@ public class RecoveryViewModel extends AndroidViewModel {
      * Standard constructor with parameters.
      * @param application new application for live data.
      */
-    public RecoveryViewModel(@NonNull Application application) {
+    public ResendViewModel(@NonNull Application application) {
         super(application);
         mResponse = new MutableLiveData<>();
         mResponse.setValue(new JSONObject());
@@ -58,7 +58,7 @@ public class RecoveryViewModel extends AndroidViewModel {
      * @param email - Email user entered.
      */
     public void connect(final String email) {
-        String url = "https://app-backend-server.herokuapp.com/recover/" + email;
+        String url = "https://app-backend-server.herokuapp.com/reverify/" + email;
         Request request = new JsonObjectRequest(
                 Request.Method.GET,
                 url,
