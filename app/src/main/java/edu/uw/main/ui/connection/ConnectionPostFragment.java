@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -60,5 +61,13 @@ public class ConnectionPostFragment extends Fragment {
                     new ConnectionRecyclerViewAdapter(ConnectionGenerator.getConnectionsList()));
         }
         return view;
+    }
+    @Override
+    public void onResume() {
+        if (MainActivity.changePassword) {
+            MainActivity.changePassword = false;
+            Navigation.findNavController(getView()).navigate(ConnectionPostFragmentDirections.actionConnectionPostFragmentToChange2());
+        }
+        super.onResume();
     }
 }
