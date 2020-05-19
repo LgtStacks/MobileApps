@@ -53,6 +53,7 @@ public class WeatherFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentWeatherBinding.inflate(inflater, container, false);
+        binding.layoutWait.setVisibility(View.INVISIBLE);
         return binding.getRoot();
     }
     @Override
@@ -60,6 +61,8 @@ public class WeatherFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         ((MainActivity) getActivity())
                 .setActionBarTitle("Weather");
+        mWeatherModel.addResponseObserver(getViewLifecycleOwner(), response ->
+                binding.layoutWait.setVisibility(View.GONE));
         Calendar cc = Calendar.getInstance();
         int mHour = cc.get(Calendar.HOUR_OF_DAY);
         int mHour2 = cc.get(Calendar.HOUR);
@@ -81,14 +84,20 @@ public class WeatherFragment extends Fragment {
     public void handleCurrent(String jwt){
 
         mWeatherModel.connectCurrent(jwt);
+
+        binding.layoutWait.setVisibility(View.VISIBLE);
     }
     public void handleForecast(String jwt){
 
         mWeatherModel.connectForecast(jwt);
+
+        binding.layoutWait.setVisibility(View.VISIBLE);
     }
     public void handleHourly(String jwt){
 
         mWeatherModel.connectHourly(jwt);
+
+        binding.layoutWait.setVisibility(View.VISIBLE);
     }
 
     private void observeWeatherResponse(final JSONObject response) {
@@ -102,20 +111,20 @@ public class WeatherFragment extends Fragment {
                     Log.e("JSON1 Parse Error", e.getMessage());
                 }
             } else {
-                        if(response.has("list")){
-                            parseForecast(response);
-                            Log.e("Button Pressed", "Forecast");
-                        }
-                        else if(response.has("data")){
-                            parseHourly(response);
-                            Log.e("Button Pressed", "Hourly");
-                        }
-                        else {
-                            parseCurrent(response);
-                            Log.e("Button Pressed", "Current");
-                        }
-                    //binding.textWeather.setText(response.toString());
-                    Log.e("Response", response.toString());
+                if(response.has("list")){
+                    parseForecast(response);
+                    Log.e("Button Pressed", "Forecast");
+                }
+                else if(response.has("data")){
+                    parseHourly(response);
+                    Log.e("Button Pressed", "Hourly");
+                }
+                else {
+                    parseCurrent(response);
+                    Log.e("Button Pressed", "Current");
+                }
+                //binding.textWeather.setText(response.toString());
+                Log.e("Response", response.toString());
             }
         } else {
             Log.d("JSON Response", "No Response");
@@ -138,7 +147,7 @@ public class WeatherFragment extends Fragment {
 
                 temp = Float.parseFloat(jsTemp.getJSONObject(i).get("temp").toString());
 
-               descrip = jsTemp.getJSONObject(i).getJSONObject("weather").get("description").toString();
+                descrip = jsTemp.getJSONObject(i).getJSONObject("weather").get("description").toString();
 
                 String theString = date + " - "
                         + "Temp: " + temp + " - "
