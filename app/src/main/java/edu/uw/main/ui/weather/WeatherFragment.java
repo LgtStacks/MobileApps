@@ -20,6 +20,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import edu.uw.main.MainActivity;
 import edu.uw.main.R;
 import edu.uw.main.databinding.FragmentWeatherBinding;
 import edu.uw.main.model.PushyTokenViewModel;
@@ -57,6 +58,8 @@ public class WeatherFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
+        ((MainActivity) getActivity())
+                .setActionBarTitle("Weather");
         Calendar cc = Calendar.getInstance();
         int mHour = cc.get(Calendar.HOUR_OF_DAY);
         int mHour2 = cc.get(Calendar.HOUR);
