@@ -6,12 +6,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import edu.uw.main.MainActivity;
 import edu.uw.main.R;
 import edu.uw.main.databinding.FragmentGroupBinding;
 import edu.uw.main.model.UserInfoViewModel;
@@ -97,5 +99,12 @@ public class GroupFragment2 extends Fragment {
                 });
 
     }
-
+    @Override
+    public void onResume() {
+        if (MainActivity.changePassword) {
+            MainActivity.changePassword = false;
+            Navigation.findNavController(getView()).navigate(GroupFragment2Directions.actionGroupFragment2ToChange2());
+        }
+        super.onResume();
+    }
 }

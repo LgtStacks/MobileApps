@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import edu.uw.main.MainActivity;
 import edu.uw.main.R;
 import edu.uw.main.databinding.FragmentChatBinding;
 
@@ -66,5 +67,12 @@ public class ChatFragment extends Fragment {
                 ChatFragmentDirections.actionNavigationChatToGroupFragment3()
         );
     }
-
+    @Override
+    public void onResume() {
+        if (MainActivity.changePassword) {
+            MainActivity.changePassword = false;
+            Navigation.findNavController(getView()).navigate(ChatFragmentDirections.actionNavigationChatToChange2());
+        }
+        super.onResume();
+    }
 }

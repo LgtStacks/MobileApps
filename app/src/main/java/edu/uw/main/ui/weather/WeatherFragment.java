@@ -170,4 +170,12 @@ public class WeatherFragment extends Fragment {
         String date = DateFormat.format("dd-MM-yyyy", cal).toString();
         return date;
     }
+    @Override
+    public void onResume() {
+        if (MainActivity.changePassword) {
+            MainActivity.changePassword = false;
+            Navigation.findNavController(getView()).navigate(WeatherFragmentDirections.actionWeatherActivityToChange2());
+        }
+        super.onResume();
+    }
 }

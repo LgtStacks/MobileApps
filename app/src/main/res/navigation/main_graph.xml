@@ -28,17 +28,28 @@
         <action
             android:id="@+id/action_navigation_chat_to_groupFragment3"
             app:destination="@id/groupFragment3" />
+        <action
+            android:id="@+id/action_navigation_chat_to_change2"
+            app:destination="@id/change" />
     </fragment>
     <fragment
         android:id="@+id/WeatherActivity"
         android:name="edu.uw.main.ui.weather.WeatherFragment"
         android:label="fragment_weather"
-        tools:layout="@layout/fragment_weather" />
+        tools:layout="@layout/fragment_weather" >
+        <action
+            android:id="@+id/action_WeatherActivity_to_change2"
+            app:destination="@id/change" />
+    </fragment>
     <fragment
         android:id="@+id/groupFragment"
         android:name="edu.uw.main.ui.chat.GroupFragment"
         android:label="@string/title_groupfragmentA"
-        tools:layout="@layout/fragment_group" />
+        tools:layout="@layout/fragment_group" >
+        <action
+            android:id="@+id/action_groupFragment_to_change2"
+            app:destination="@id/change" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_connection"
         android:name="edu.uw.main.ui.connection.ConnectionListFragment"
@@ -46,6 +57,9 @@
         <action
             android:id="@+id/action_navigation_connection_to_connectionPostFragment"
             app:destination="@id/connectionPostFragment" />
+        <action
+            android:id="@+id/action_navigation_connection_to_change2"
+            app:destination="@id/change" />
     </fragment>
     <fragment
         android:id="@+id/connectionPostFragment"
@@ -55,6 +69,9 @@
         <argument
             android:name="friend"
             app:argType="edu.uw.main.ui.connection.ConnectionPost" />
+        <action
+            android:id="@+id/action_connectionPostFragment_to_change2"
+            app:destination="@id/change" />
     </fragment>
     <fragment
         android:id="@+id/change"
@@ -69,9 +86,17 @@
         android:id="@+id/groupFragment2"
         android:name="edu.uw.main.ui.chat.GroupFragment2"
         android:label="@string/title_groupfragmentB"
-        tools:layout="@layout/fragment_group2" />
+        tools:layout="@layout/fragment_group2" >
+        <action
+            android:id="@+id/action_groupFragment2_to_change2"
+            app:destination="@id/change" />
+    </fragment>
     <fragment
         android:id="@+id/groupFragment3"
         android:name="edu.uw.main.ui.chat.GroupFragment3"
-        android:label="@string/title_groupfragmentC" />
+        android:label="@string/title_groupfragmentC" >
+        <action
+            android:id="@+id/action_groupFragment3_to_change2"
+            app:destination="@id/change" />
+    </fragment>
 </navigation>
