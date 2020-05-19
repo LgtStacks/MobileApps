@@ -111,7 +111,7 @@ public class WeatherFragment extends Fragment {
                             parseCurrent(response);
                             Log.e("Button Pressed", "Current");
                         }
-                    //,binding.textWeather.setText(response.toString());
+                    binding.textWeather.setText(response.toString());
                     Log.e("Response", response.toString());
             }
         } else {

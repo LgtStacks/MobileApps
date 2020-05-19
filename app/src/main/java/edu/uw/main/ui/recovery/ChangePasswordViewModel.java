@@ -57,7 +57,7 @@ public class ChangePasswordViewModel extends AndroidViewModel {
      * Sends email and password to our webservice. Authenticates the credentials.
      * @param password - Password user entered.
      */
-    public void connect(final String password, final String jwt) {
+    public void connect(final String password, final String oldPassword,final String jwt) {
 
         String url = "https://app-backend-server.herokuapp.com/changePass/";
         Request request = new JsonObjectRequest(
@@ -72,6 +72,7 @@ public class ChangePasswordViewModel extends AndroidViewModel {
                 // add headers <key,value>
                 headers.put("Authorization", jwt);
                 headers.put("password", password);
+                headers.put("old", oldPassword);
                 return headers;
             }
         };
