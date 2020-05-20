@@ -188,6 +188,7 @@ public class LoginFragment extends Fragment {
                         mUserViewModel.getmJwt()
                 )
         );
+        getActivity().finish();
     }
 
     /**
