@@ -27,24 +27,48 @@ import java.util.Map;
 import java.util.function.IntFunction;
 
 import edu.uw.main.R;
-
+/**
+ * A List view model for each connection.
+ * @author Group 3
+ * @version 5/19
+ */
 public class ConnectionListViewModel extends AndroidViewModel {
     private MutableLiveData<List<ConnectionPost>> mConnectionList;
     private MutableLiveData<List<ConnectionPost>> mUpdateList;
 
+    /**
+     * Chile Connection list view model.
+     * @param application the application.
+     */
     public ConnectionListViewModel(@NonNull Application application) {
         super(application);
         mConnectionList = new MutableLiveData<>();
         mConnectionList.setValue(new ArrayList<>());
     }
+
+    /**
+     * The connection list observer.
+     * @param owner the owner
+     * @param observer the observer.
+     */
     public void addConnectionListObserver(@NonNull LifecycleOwner owner,
                                     @NonNull Observer<? super List<ConnectionPost>> observer) {
         mConnectionList.observe(owner, observer);
     }
+
+    /**
+     * Handles the error code when the server has trouble connecting.
+     * @param error the server response error.
+     */
     private void handleError(final VolleyError error) {
         Log.e("CONNECTION ERROR", error.getLocalizedMessage());
         throw new IllegalStateException(error.getMessage());
     }
+
+    /**
+     * Handles the server response success code.
+     * @param result the server response.
+     */
     private void handleResult(final JSONObject result) {
         Log.e("Result CHECK", result.toString());
         mUpdateList = new MutableLiveData<>();
@@ -66,6 +90,12 @@ public class ConnectionListViewModel extends AndroidViewModel {
         }
         mConnectionList.setValue(mUpdateList.getValue());
     }
+
+    /**
+     * Sends a connection request to the web server.
+     * @param jwt The Generated Java Web Token.
+     * @param name The name of the user.
+     */
     public void connectGet(final String jwt, String name) {
         JSONObject body = new JSONObject();
         try {

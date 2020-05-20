@@ -16,13 +16,21 @@ import edu.uw.main.R;
 import edu.uw.main.databinding.FragmentConnectionCardBinding;
 import edu.uw.main.model.UserInfoViewModel;
 
-
+/**
+ * The class to handle the recycler view adapter.
+ * @author Group 3
+ * @version 5/19
+ */
 public class ConnectionRecyclerViewAdapter extends
         RecyclerView.Adapter<ConnectionRecyclerViewAdapter.ConnectionViewHolder> {
 
     private final List<ConnectionPost> mConnection;
     private UserInfoViewModel mUserModel;
 
+    /**
+     * The connection recycler view constructor.
+     * @param items list of items posts.
+     */
     public ConnectionRecyclerViewAdapter(List<ConnectionPost> items) {
         this.mConnection = items;
     }
@@ -43,10 +51,17 @@ public class ConnectionRecyclerViewAdapter extends
         holder.setConnection(mConnection.get(position));
     }
 
+    /**
+     * Inner class for holding each connection.
+     */
     public class ConnectionViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         private FragmentConnectionCardBinding binding;
 
+        /**
+         * Inner connect view holder constructor.
+         * @param view the view.
+         */
         public ConnectionViewHolder(View view) {
             super(view);
 
@@ -55,7 +70,10 @@ public class ConnectionRecyclerViewAdapter extends
 
         }
 
-
+        /**
+         * Updates each connection post.
+         * @param connection each individual connection post.
+         */
         void setConnection(final ConnectionPost connection) {
             binding.buttonName.setOnClickListener(view ->Navigation.findNavController(mView).navigate(
                     ConnectionListFragmentDirections

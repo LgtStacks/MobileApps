@@ -19,10 +19,21 @@ import java.util.List;
 import edu.uw.main.R;
 import edu.uw.main.databinding.FragmentChatMessageBinding;
 
+/**
+ * The main chat recycler of each chat room.
+ * @author Group 3
+ * @version 5/19
+ */
 public class ChatRecyclerViewAdapter extends RecyclerView.Adapter<ChatRecyclerViewAdapter.MessageViewHolder> {
 
     private final List<ChatMessage> mMessages;
     private final String mEmail;
+
+    /**
+     * Constructor for chat recycler.
+     * @param messages each text message.
+     * @param email each email name.
+     */
     public ChatRecyclerViewAdapter(List<ChatMessage> messages, String email) {
         this.mMessages = messages;
         mEmail = email;
@@ -47,16 +58,27 @@ public class ChatRecyclerViewAdapter extends RecyclerView.Adapter<ChatRecyclerVi
         return mMessages.size();
     }
 
+    /**
+     * Inner class for each message holder.
+     */
     class MessageViewHolder extends RecyclerView.ViewHolder {
         private final View mView;
         private FragmentChatMessageBinding binding;
 
+        /**
+         * Inner Message View Holder Constructor.
+         * @param view the view.
+         */
         public MessageViewHolder(@NonNull View view) {
             super(view);
             mView = view;
             binding = FragmentChatMessageBinding.bind(view);
         }
 
+        /**
+         * This message will display and set each incomming chat messages.
+         * @param message text message.
+         */
         void setMessage(final ChatMessage message) {
             final Resources res = mView.getContext().getResources();
             final MaterialCardView card = binding.cardRoot;

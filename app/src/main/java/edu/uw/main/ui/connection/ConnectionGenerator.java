@@ -2,7 +2,11 @@ package edu.uw.main.ui.connection;
 
 import java.util.Arrays;
 import java.util.List;
-
+/**
+ * A Mock generator of connections list.
+ * @author Group 3
+ * @version 5/19
+ */
 public final class ConnectionGenerator {
     private static final ConnectionPost[] FRIEND;
     public static final int COUNT = 10;
@@ -23,13 +27,24 @@ public final class ConnectionGenerator {
 
     }
 
+    /**
+     * Returns the mock connections list.
+     * @return an array list of connections.
+     */
     public static List<ConnectionPost> getConnectionsList() {
         return Arrays.asList(FRIEND);
     }
 
+    /**
+     * Posts each connection
+     * @return an array of friends and total number of friends.
+     */
     public static ConnectionPost[] getConnectionss() {
         return Arrays.copyOf(FRIEND, FRIEND.length);
     }
 
+    /**
+     * Default Constructor.
+     */
     private ConnectionGenerator() { }
 }

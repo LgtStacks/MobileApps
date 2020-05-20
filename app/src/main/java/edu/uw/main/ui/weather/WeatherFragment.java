@@ -131,6 +131,48 @@ public class WeatherFragment extends Fragment {
         }
     }
     private void parseForecast(final JSONObject response){
+        try {
+            int counter = 1;
+            int maxTemp = 0;
+            int minTemp = 10000000;
+            String whole = "";
+            String date = "";
+            String weather = "";
+            JSONArray jsTemp = response.getJSONArray("list");
+            for(int i = 0; i < 40; i++){
+                JSONObject currObj = jsTemp.getJSONObject(i);
+                if(counter > 7){
+                    String theString = date + ": High: " + kelvinToFahrenheit(maxTemp) + "\u00B0 F"
+                            + " Low: " + kelvinToFahrenheit(minTemp) + "\u00B0 F"
+                            + " Weather: " + weather + "\n";
+                    counter = 0;
+                    maxTemp = 0;
+                    minTemp = 100000000;
+                    whole += theString;
+                }
+                if(counter == 1) {
+                    weather = currObj.getJSONArray("weather")
+                            .getJSONObject(0)
+                            .get("description")
+                            .toString();
+                    date = currObj.get("dt_txt").toString().split(" ")[0];
+                }
+                int currentMax = currObj.getJSONObject("main").getInt("temp_max");
+                Log.e("MAX", String.valueOf(currentMax));
+                int currentMin =currObj.getJSONObject("main").getInt("temp_min");
+                Log.e("MIN", String.valueOf(currentMin));
+                if(currentMax > maxTemp) {
+                    maxTemp = currentMax;
+                }
+                if(currentMin < minTemp) {
+                    minTemp = currentMin;
+                }
+                counter++;
+            }
+            binding.textWeather.setText(whole);
+        } catch (JSONException e) {
+            Log.e("JSON1 Parse Error", e.getMessage());
+        }
 
     }
     private void parseHourly(final JSONObject response){
@@ -161,13 +203,36 @@ public class WeatherFragment extends Fragment {
         }
     }
     private void parseCurrent(final JSONObject response){
-
+        try {
+            String weather = response.getJSONArray("weather").getJSONObject(0).get("description").toString();
+            int temp = response.getJSONObject("main").getInt("temp");
+            int feels_like =response.getJSONObject("main").getInt("feels_like");
+            int pressure =response.getJSONObject("main").getInt("pressure");
+            int humidity =response.getJSONObject("main").getInt("humidity");
+            int sunrise = response.getJSONObject("sys").getInt("sunrise");
+            int sunset = response.getJSONObject("sys").getInt("sunset");
+            String whole = "Weather: " + weather + "\n"
+                    + "Temp: " + kelvinToFahrenheit(temp) + "\u00B0 F\n"
+                    + "Feels Like: " + kelvinToFahrenheit(feels_like) + "\u00B0 F\n"
+                    + "Pressure: " + (pressure * 100) / 6895 + " PSI\n"
+                    + "Humidity: " + humidity + "%\n"
+                    + "Sunrise: " + getDate(sunrise) + " AM\n"
+                    + "Sunset: " + getDate(sunset) + " PM\n";
+            binding.textWeather.setText(whole);
+        }
+        catch (JSONException e) {
+            Log.e("JSON1 Parse Error", e.getMessage());
+        }
     }
 
+    private double kelvinToFahrenheit(int k){
+        double temp = (k-273.15)* (9/5) + 32;
+        return Math.floor(temp * 100) / 100;
+    }
     private String getDate(long time) {
         Calendar cal = Calendar.getInstance(Locale.ENGLISH);
         cal.setTimeInMillis(time * 1000);
-        String date = DateFormat.format("dd-MM-yyyy", cal).toString();
+        String date = DateFormat.format("hh:mm:ss", cal).toString();
         return date;
     }
     @Override

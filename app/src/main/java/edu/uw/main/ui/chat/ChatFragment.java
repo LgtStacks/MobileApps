@@ -19,7 +19,7 @@ import edu.uw.main.databinding.FragmentChatBinding;
 /**
  * The main chat fragment page.
  * @author Group 3
- * @version 5/5
+ * @version 5/19
  */
 public class ChatFragment extends Fragment {
     private FragmentChatBinding binding;
@@ -50,18 +50,26 @@ public class ChatFragment extends Fragment {
 
 
     }
+
+    /**
+     * Moves to the first group chat.
+     */
     public void processFriend(){
         Navigation.findNavController(getView()).navigate(
                 ChatFragmentDirections.actionNavigationChatToGroupFragment()
         );
     }
-
+    /**
+     * Moves to the second group chat.
+     */
     public void processFriend2(){
         Navigation.findNavController(getView()).navigate(
                 ChatFragmentDirections.actionNavigationChatToGroupFragment2()
         );
     }
-
+    /**
+     * Moves to the third group chat.
+     */
     public void processFriend3(){
         Navigation.findNavController(getView()).navigate(
                 ChatFragmentDirections.actionNavigationChatToGroupFragment3()

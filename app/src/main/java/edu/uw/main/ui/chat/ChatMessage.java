@@ -17,6 +17,13 @@ public final class ChatMessage implements Serializable {
     private final String mSender;
     private final String mTimeStamp;
 
+    /**
+     * Chat Message Constructor.
+     * @param messageId Chat message id number
+     * @param message Chat message string text
+     * @param sender Chat sender name.
+     * @param timeStamp Chat timestamp of message
+     */
     public ChatMessage(int messageId, String message, String sender, String timeStamp) {
         mMessageId = messageId;
         mMessage = message;
@@ -39,18 +46,34 @@ public final class ChatMessage implements Serializable {
                 msg.getString("timestamp"));
     }
 
+    /**
+     * Getter for messages.
+     * @return the text message
+     */
     public String getMessage() {
         return mMessage;
     }
 
+    /**
+     * Getter for the sender name.
+     * @return the senders name.
+     */
     public String getSender() {
         return mSender;
     }
 
+    /**
+     * Getter for the time stamp.
+     * @return the string timestamp.
+     */
     public String getTimeStamp() {
         return mTimeStamp;
     }
 
+    /**
+     * Getter for the message ID
+     * @return the int message id.
+     */
     public int getMessageId() {
         return mMessageId;
     }

@@ -42,7 +42,6 @@ public class change extends Fragment {
 
     private ChangePasswordViewModel mChangeModel;
     private UserInfoViewModel mUserViewModel;
-    private boolean flag;
 
     public change() {
         // Required empty public constructor
@@ -93,7 +92,6 @@ public class change extends Fragment {
             binding.textNewPw.setError("Password field is empty");
         } else {
             mModel.connect(binding.textNewPw.getText().toString(), binding.textOldPw.getText().toString(), model.getmJwt());
-            getActivity().onBackPressed();
         }
     }
 
@@ -126,6 +124,8 @@ public class change extends Fragment {
                     if (e.getMessage().contains("Passwords")) {
                         binding.textOldPw.setError("Your original password is incorrect");
 
+                    } else if (e.getMessage().contains("changed")){
+                        processToastSuccess();
                     }
                 }
             } else {

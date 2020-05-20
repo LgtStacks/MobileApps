@@ -19,7 +19,9 @@ import edu.uw.main.databinding.FragmentConnectionListBinding;
 import edu.uw.main.model.UserInfoViewModel;
 
 /**
- * A simple {@link Fragment} subclass.
+ * A Handles the front page of each connection.
+ * @author Group 3
+ * @version 5/19
  */
 public class ConnectionListFragment extends Fragment {
 
@@ -27,7 +29,9 @@ public class ConnectionListFragment extends Fragment {
     private UserInfoViewModel mUserModel;
     private static final String HARD_CODED_Connection_ID = "tjack957@hotmail.com";
 
-
+    /**
+     * Default constructor.
+     */
     public ConnectionListFragment() {
 
     }
