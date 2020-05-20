@@ -53,6 +53,9 @@ public class resend extends Fragment {
         binding.btnResendSend.setOnClickListener(button -> navigateToResendVerification());
     }
 
+    /**
+     * This method sends the Email to the endpoint which then verifies if the user needs another verification email.
+     */
     private void navigateToResendVerification() {
         mResendModel.connect(binding.textResendEmail.getText().toString());
         Navigation.findNavController(getView()).navigate(resendDirections.actionReVerificationToLoginFragment());

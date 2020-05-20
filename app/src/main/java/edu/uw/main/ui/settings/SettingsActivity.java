@@ -75,6 +75,10 @@ public class SettingsActivity extends AppCompatActivity {
             }
             return true;
         }
+
+        /**
+         * Restarts the activity when they change the theme to show the new theme.
+         */
         private void restart() {
             AuthActivity.changed = true;
             getActivity().finish();
