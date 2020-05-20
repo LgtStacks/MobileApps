@@ -19,9 +19,9 @@ import edu.uw.main.databinding.FragmentGroupBinding;
 import edu.uw.main.model.UserInfoViewModel;
 
 /**
- * A mock fragment showing how to interact in a group chat.
+ * A Second group chat room.
  * @author Group 3
- * @version 5/5
+ * @version 5/19
  */
 public class GroupFragment2 extends Fragment {
     //The chat ID for "global" chat
@@ -30,6 +30,9 @@ public class GroupFragment2 extends Fragment {
     private ChatViewModel mChatModel;
     private UserInfoViewModel mUserModel;
 
+    /**
+     * Default Constructor
+     */
     public GroupFragment2() {
         // Required empty public constructor
     }

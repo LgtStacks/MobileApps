@@ -16,10 +16,16 @@ import edu.uw.main.MainActivity;
 import edu.uw.main.R;
 import edu.uw.main.databinding.FragmentConnectionPostBinding;
 
-
+/**
+ * A The post fragment of each connection.
+ * @author Group 3
+ * @version 5/19
+ */
 public class ConnectionPostFragment extends Fragment {
 
-
+    /**
+     * Default constructor.
+     */
     public ConnectionPostFragment() {
         // Required empty public constructor
     }

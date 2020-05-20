@@ -13,7 +13,7 @@ import androidx.collection.LruCache;
 /**
  * This class will generate and manage a request queue of instances.
  * @author Group 3
- * @version 5/5
+ * @version 5/19
  */
 public class RequestQueueSingleton {
     private static RequestQueueSingleton instance;
