@@ -19,7 +19,7 @@ import edu.uw.main.model.UserInfoViewModel;
 /**
  * The fragment showing the list of connections/friends.
  * @author Group 3
- *  @version 5/5
+ *  @version 5/19
  */
 public class ConnectionFragment extends Fragment {
     private FragmentConnectionBinding binding;

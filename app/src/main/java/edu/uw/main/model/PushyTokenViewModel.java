@@ -27,12 +27,21 @@ import edu.uw.main.R;
 import edu.uw.main.io.RequestQueueSingleton;
 import me.pushy.sdk.Pushy;
 
-
+/**
+ *  This class will monitor pushy tokens for chatting.
+ *  Extends the android view model.
+ *  @author Group 3
+ *  @version 5/19
+ */
 public class PushyTokenViewModel extends AndroidViewModel {
 
     private final MutableLiveData<String> mPushyToken;
     private final MutableLiveData<JSONObject> mResponse;
 
+    /**
+     * Child Constructor
+     * @param application the app application
+     */
     public PushyTokenViewModel(@NonNull Application application) {
         super(application);
         mPushyToken = new MutableLiveData<>();
@@ -51,11 +60,19 @@ public class PushyTokenViewModel extends AndroidViewModel {
         mPushyToken.observe(owner, observer);
     }
 
+    /**
+     * Adds a new observer to the response observer.
+     * @param owner the fragments lifecycle owner
+     * @param observer the observer
+     */
     public void addResponseObserver(@NonNull LifecycleOwner owner,
                                     @NonNull Observer<? super JSONObject> observer) {
         mResponse.observe(owner, observer);
     }
 
+    /**
+     * moniters the change to the pushy tokens.
+     */
     public void retrieveToken() {
         if (!Pushy.isRegistered(getApplication().getApplicationContext())) {
 
@@ -145,6 +162,10 @@ public class PushyTokenViewModel extends AndroidViewModel {
                 .addToRequestQueue(request);
     }
 
+    /**
+     * Oberves the responses error message.
+     * @param error is the server response error code.
+     */
     private void handleError(final VolleyError error) {
         if (Objects.isNull(error.networkResponse)) {
             try {

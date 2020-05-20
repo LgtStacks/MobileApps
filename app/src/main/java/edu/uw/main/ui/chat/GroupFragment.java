@@ -20,9 +20,9 @@ import edu.uw.main.model.UserInfoViewModel;
 import edu.uw.main.ui.weather.WeatherFragmentDirections;
 
 /**
- * A mock fragment showing how to interact in a group chat.
+ * A First group chat room.
  * @author Group 3
- * @version 5/5
+ * @version 5/19
  */
 public class GroupFragment extends Fragment {
     //The chat ID for "global" chat
@@ -31,6 +31,9 @@ public class GroupFragment extends Fragment {
     private ChatViewModel mChatModel;
     private UserInfoViewModel mUserModel;
 
+    /**
+     * default constructor.
+     */
     public GroupFragment() {
         // Required empty public constructor
     }

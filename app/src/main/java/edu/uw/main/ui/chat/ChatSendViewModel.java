@@ -25,22 +25,41 @@ import java.util.Objects;
 import edu.uw.main.R;
 import edu.uw.main.io.RequestQueueSingleton;
 
-
+/**
+ * The main chat sending view model.
+ * @author Group 3
+ * @version 5/19
+ */
 public class ChatSendViewModel extends AndroidViewModel {
 
     private final MutableLiveData<JSONObject> mResponse;
 
+    /**
+     * Constuctor for the chat send view model
+     * @param application the app application
+     */
     public ChatSendViewModel(@NonNull Application application) {
         super(application);
         mResponse = new MutableLiveData<>();
         mResponse.setValue(new JSONObject());
     }
 
+    /**
+     * Observes the server response
+     * @param owner the owner
+     * @param observer the observer
+     */
     public void addResponseObserver(@NonNull LifecycleOwner owner,
                                     @NonNull Observer<? super JSONObject> observer) {
         mResponse.observe(owner, observer);
     }
 
+    /**
+     * This method will send a chat message to the server.
+     * @param chatId ID of the Chat.
+     * @param jwt Unique Java Web Token from server
+     * @param message the text message.
+     */
     public void sendMessage(final int chatId, final String jwt, final String message) {
         String url = getApplication().getResources().getString(R.string.base_url) +
                 "messages";
@@ -79,7 +98,10 @@ public class ChatSendViewModel extends AndroidViewModel {
     }
 
 
-
+    /**
+     * This method will display the server error response.
+     * @param error Server respone error code.
+     */
     private void handleError(final VolleyError error) {
         if (Objects.isNull(error.networkResponse)) {
             Log.e("NETWORK ERROR", error.getMessage());

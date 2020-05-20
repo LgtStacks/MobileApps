@@ -27,7 +27,11 @@ import java.util.Objects;
 
 import edu.uw.main.R;
 import edu.uw.main.io.RequestQueueSingleton;
-
+/**
+ * The main chat view model.
+ * @author Group 3
+ * @version 5/19
+ */
 public class ChatViewModel extends AndroidViewModel {
 
     /**
@@ -37,6 +41,10 @@ public class ChatViewModel extends AndroidViewModel {
      */
     private Map<Integer, MutableLiveData<List<ChatMessage>>> mMessages;
 
+    /**
+     * Constructor for the chat view model.
+     * @param application the application
+     */
     public ChatViewModel(@NonNull Application application) {
         super(application);
         mMessages = new HashMap<>();
@@ -69,6 +77,11 @@ public class ChatViewModel extends AndroidViewModel {
         return getOrCreateMapEntry(chatId).getValue();
     }
 
+    /**
+     * Adds new messages into the mutable live data.
+     * @param chatId the chatroom id.
+     * @return a new map of chat messages.
+     */
     private MutableLiveData<List<ChatMessage>> getOrCreateMapEntry(final int chatId) {
         if(!mMessages.containsKey(chatId)) {
             mMessages.put(chatId, new MutableLiveData<>(new ArrayList<>()));
@@ -176,6 +189,10 @@ public class ChatViewModel extends AndroidViewModel {
         getOrCreateMapEntry(chatId).setValue(list);
     }
 
+    /**
+     * When the server response is successful
+     * @param response server response message.
+     */
     private void handelSuccess(final JSONObject response) {
         List<ChatMessage> list;
         if (!response.has("chatId")) {
@@ -211,6 +228,10 @@ public class ChatViewModel extends AndroidViewModel {
         }
     }
 
+    /**
+     * When the server response returns an error.
+     * @param error server response error code.
+     */
     private void handleError(final VolleyError error) {
         if (Objects.isNull(error.networkResponse)) {
             Log.e("NETWORK ERROR", error.getMessage());
