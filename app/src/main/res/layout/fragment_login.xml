@@ -81,7 +81,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:checked="true"
-        android:text="Switch"
+        android:text="@string/switch_sign_in"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
