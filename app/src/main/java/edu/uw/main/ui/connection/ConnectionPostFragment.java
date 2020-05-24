@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,6 +16,9 @@ import android.view.ViewGroup;
 import edu.uw.main.MainActivity;
 import edu.uw.main.R;
 import edu.uw.main.databinding.FragmentConnectionPostBinding;
+import edu.uw.main.model.PushyTokenViewModel;
+import edu.uw.main.model.UserInfoViewModel;
+import edu.uw.main.ui.auth.Login.LoginViewModel;
 
 /**
  * A The post fragment of each connection.
@@ -22,7 +26,9 @@ import edu.uw.main.databinding.FragmentConnectionPostBinding;
  * @version 5/19
  */
 public class ConnectionPostFragment extends Fragment {
-
+    /** Our login view model. */
+    private ConnectionListViewModel mConnectionModel;
+    private UserInfoViewModel mUserModel;
     /**
      * Default constructor.
      */
@@ -30,7 +36,15 @@ public class ConnectionPostFragment extends Fragment {
         // Required empty public constructor
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
 
+        super.onCreate(savedInstanceState);
+        mConnectionModel = new ViewModelProvider(getActivity())
+                .get(ConnectionListViewModel.class);
+        ViewModelProvider provider = new ViewModelProvider(getActivity());
+        mUserModel = provider.get(UserInfoViewModel.class);
+    }
 /**
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,10 +59,21 @@ public class ConnectionPostFragment extends Fragment {
         FragmentConnectionPostBinding binding = FragmentConnectionPostBinding.bind(getView());
 
         binding.textName.setText(args.getFriend().getConnection());
+        binding.buttonRemove.setOnClickListener(button ->
+                removeClicked(args.getFriend().getConnection()));
         ((MainActivity) getActivity())
                 .setActionBarTitle(args.getFriend().getConnection() + " Profile");
 
     }
+
+    private void removeClicked(String toDel) {
+        mConnectionModel.connectDelete(mUserModel.getmJwt(), toDel);
+        Navigation.findNavController(getView()).navigate(
+                ConnectionPostFragmentDirections.actionConnectionPostFragmentToNavigationConnection()
+        );
+
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

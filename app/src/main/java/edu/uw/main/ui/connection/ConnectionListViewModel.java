@@ -94,20 +94,46 @@ public class ConnectionListViewModel extends AndroidViewModel {
     /**
      * Sends a connection request to the web server.
      * @param jwt The Generated Java Web Token.
-     * @param name The name of the user.
      */
-    public void connectGet(final String jwt, String name) {
+    public void connectGet(final String jwt) {
         JSONObject body = new JSONObject();
-        try {
-            body.put("email", name);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
         Log.e("BODY CHECK", body.toString());
         String url =
                 "https://app-backend-server.herokuapp.com/connections";
         Request request = new JsonObjectRequest(
                 Request.Method.POST,
+                url,
+                body,
+                this::handleResult,
+                this::handleError) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headers = new HashMap<>();
+                // add headers <key,value>
+                headers.put("Authorization", jwt);
+                return headers;
+            }
+        };
+        Log.e("REQUEST CHECK: ", request.toString());
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                10_000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        //Instantiate the RequestQueue and add the request to the queue
+        Volley.newRequestQueue(getApplication().getApplicationContext())
+                .add(request);
+    }
+
+    /**
+     * Sends a connection request to the web server.
+     * @param jwt The Generated Java Web Token.
+     */
+    public void connectDelete(final String jwt, final String toDelete) {
+        JSONObject body = new JSONObject();
+        String url =
+                "https://app-backend-server.herokuapp.com/connections/" + toDelete;
+        Request request = new JsonObjectRequest(
+                Request.Method.DELETE,
                 url,
                 body,
                 this::handleResult,

@@ -72,6 +72,9 @@
         <action
             android:id="@+id/action_connectionPostFragment_to_change2"
             app:destination="@id/change" />
+        <action
+            android:id="@+id/action_connectionPostFragment_to_navigation_connection"
+            app:destination="@id/navigation_connection" />
     </fragment>
     <fragment
         android:id="@+id/change"

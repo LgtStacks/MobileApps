@@ -27,7 +27,6 @@ public class ConnectionListFragment extends Fragment {
 
     private ConnectionListViewModel mModel;
     private UserInfoViewModel mUserModel;
-    private static final String HARD_CODED_Connection_ID = "tjack957@hotmail.com";
 
     /**
      * Default constructor.
@@ -67,7 +66,7 @@ public class ConnectionListFragment extends Fragment {
         ViewModelProvider provider = new ViewModelProvider(getActivity());
         mUserModel = provider.get(UserInfoViewModel.class);
         mModel = new ViewModelProvider(getActivity()).get(ConnectionListViewModel.class);
-        mModel.connectGet(mUserModel.getmJwt(), HARD_CODED_Connection_ID);
+        mModel.connectGet(mUserModel.getmJwt());
     }
 
     @Override
