@@ -1,5 +1,7 @@
 package edu.uw.main.ui.auth.Login;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -7,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import com.auth0.android.jwt.JWT;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,6 +22,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import edu.uw.main.PasswordValidator;
+import edu.uw.main.R;
 import edu.uw.main.databinding.FragmentLoginBinding;
 import edu.uw.main.model.PushyTokenViewModel;
 import edu.uw.main.model.UserInfoViewModel;
@@ -117,6 +122,28 @@ public class LoginFragment extends Fragment {
                 getViewLifecycleOwner(),
                 this::observePushyPutResponse);
     }
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        SharedPreferences prefs =
+                getActivity().getSharedPreferences(
+                        getString(R.string.keys_shared_prefs),
+                        Context.MODE_PRIVATE);
+
+        if (prefs.contains(getString(R.string.keys_prefs_jwt))) {
+            String token = prefs.getString(getString(R.string.keys_prefs_jwt), "");
+            JWT jwt = new JWT(token);
+            // Check to see if the web token is still valid or not. To make a JWT expire after a
+            // longer or shorter time period, change the expiration time when the JWT is
+            // created on the web service.
+            if(!jwt.isExpired(0)) {
+                String email = jwt.getClaim("email").asString();
+                success(email, token);
+                return;
+            }
+        }
+    }
 
     /**
      * Navigates to the register page when the register button is clicked.
@@ -178,14 +205,22 @@ public class LoginFragment extends Fragment {
     /**
      * Navigates to the success fragment with email and json web token params passed.
      */
-    private void success() {
+    private void success(final String email, final String jwt) {
         binding.layoutWait.setVisibility(View.VISIBLE);
         String message = binding.textPassword.getText().toString();
-        Log.d("TESTER", String.valueOf(message.length()));
+        if (binding.switchSignin.isChecked()) {
+            SharedPreferences prefs =
+                    getActivity().getSharedPreferences(
+                            getString(R.string.keys_shared_prefs),
+                            Context.MODE_PRIVATE);
+            //Store the credentials in SharedPrefs
+            prefs.edit().putString(getString(R.string.keys_prefs_jwt), jwt).apply();
+        }
+
         Navigation.findNavController(getView()).navigate(
                 LoginFragmentDirections.actionLoginFragmentToSuccessFragment(
-                        binding.textEmail.getText().toString(),
-                        mUserViewModel.getmJwt()
+                        email,
+                        jwt
                 )
         );
         getActivity().finish();
@@ -296,7 +331,7 @@ public class LoginFragment extends Fragment {
                 binding.textEmail.setError(
                         "Error Authenticating on Push Token. Please contact support");
             } else {
-                success();
+                success(binding.textEmail.getText().toString(), mUserViewModel.getmJwt());
             }
         }
     }

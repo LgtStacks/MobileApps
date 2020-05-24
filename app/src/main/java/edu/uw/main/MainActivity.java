@@ -133,6 +133,9 @@ public class MainActivity extends AppCompatActivity {
         } else if (id == android.R.id.home) {
             super.onBackPressed();
             return true;
+        } else if (id == R.id.action_sign_out) {
+            signOut();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -184,6 +187,18 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+    private void signOut() {
+        SharedPreferences prefs =
+                getSharedPreferences(
+                        getString(R.string.keys_shared_prefs),
+                        Context.MODE_PRIVATE);
+
+        prefs.edit().remove(getString(R.string.keys_prefs_jwt)).apply();
+        //End the app completely
+        finishAndRemoveTask();
+    }
+
 }
 
 
