@@ -1,5 +1,6 @@
 package edu.uw.main.ui.weather;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import java.util.Calendar;
 import java.util.Locale;
@@ -7,14 +8,21 @@ import java.util.Locale;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
+import androidx.viewpager.widget.ViewPager;
 
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,6 +35,17 @@ import edu.uw.main.model.PushyTokenViewModel;
 import edu.uw.main.model.UserInfoViewModel;
 import edu.uw.main.ui.auth.Login.LoginViewModel;
 
+
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+
+
 /**
  * The main fragment to handle the weather.
  * @author Group 3
@@ -35,6 +54,8 @@ import edu.uw.main.ui.auth.Login.LoginViewModel;
 public class WeatherFragment extends Fragment {
     private FragmentWeatherBinding binding;
     private WeatherViewModel mWeatherModel;
+    private GoogleMap mMap;
+
     /**
      * Default constructor for the weather fragment.
      */
@@ -56,10 +77,10 @@ public class WeatherFragment extends Fragment {
         binding.layoutWait.setVisibility(View.INVISIBLE);
         return binding.getRoot();
     }
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
+
         ((MainActivity) getActivity())
                 .setActionBarTitle("Weather");
         mWeatherModel.addResponseObserver(getViewLifecycleOwner(), response ->
@@ -70,42 +91,56 @@ public class WeatherFragment extends Fragment {
         Log.e("Hour of Day", String.valueOf(mHour));
         Log.e("Hour", String.valueOf(mHour2));
         UserInfoViewModel model = new ViewModelProvider(getActivity()).get(UserInfoViewModel.class);
-        binding.buttonCurrent.setOnClickListener(button ->
-                handleCurrent(model.getmJwt()));
-        binding.buttonForecast.setOnClickListener(button ->
-                handleForecast(model.getmJwt()));
-        binding.buttonHourly.setOnClickListener(button ->
-                handleHourly(model.getmJwt()));
+//        binding.buttonCurrent.setOnClickListener(button ->
+//                handleCurrent(model.getmJwt()));
+//        binding.buttonForecast.setOnClickListener(button ->
+//                handleForecast(model.getmJwt()));
+//        binding.buttonHourly.setOnClickListener(button ->
+//                handleHourly(model.getmJwt()));
         mWeatherModel.addResponseObserver(
                 getViewLifecycleOwner(),
                 this::observeWeatherResponse);
 
+        FragmentWeatherBinding binding = FragmentWeatherBinding.bind(getView());
+
+        mWeatherModel = new ViewModelProvider(getActivity()).get(WeatherViewModel.class);
+        mWeatherModel.addLocationObserver(getViewLifecycleOwner(),
+                location -> mWeatherModel.connectCurrent(model.getmJwt()));
+        mWeatherModel.addLocationObserver(getViewLifecycleOwner(),
+                location -> mWeatherModel.connectHourly(model.getmJwt()));
+        mWeatherModel.addLocationObserver(getViewLifecycleOwner(),
+                location -> mWeatherModel.connectForecast(model.getmJwt()));
+
+        binding.button.setOnClickListener(button ->
+                Navigation.findNavController(getView()).
+                        navigate(WeatherFragmentDirections.actionWeatherActivityToLocationFragment()));
+
     }
 
-    public void handleCurrent(String jwt){
-
-        mWeatherModel.connectCurrent(jwt);
-
-        binding.layoutWait.setVisibility(View.VISIBLE);
-    }
-    public void handleForecast(String jwt){
-
-        mWeatherModel.connectForecast(jwt);
-
-        binding.layoutWait.setVisibility(View.VISIBLE);
-    }
-    public void handleHourly(String jwt){
-
-        mWeatherModel.connectHourly(jwt);
-
-        binding.layoutWait.setVisibility(View.VISIBLE);
-    }
+//    public void handleCurrent(String jwt){
+//
+//      //  mWeatherModel.connectCurrent(jwt);
+//
+//        binding.layoutWait.setVisibility(View.VISIBLE);
+//    }
+//    public void handleForecast(String jwt){
+//
+//        mWeatherModel.connectForecast(jwt);
+//
+//        binding.layoutWait.setVisibility(View.VISIBLE);
+//    }
+//    public void handleHourly(String jwt){
+//
+//        mWeatherModel.connectHourly(jwt);
+//
+//        binding.layoutWait.setVisibility(View.VISIBLE);
+//    }
 
     private void observeWeatherResponse(final JSONObject response) {
         if (response.length() > 0) {
             if (response.has("code")) {
                 try {
-                    binding.textWeather.setError(
+                    binding.textWeatherCurrent.setError(
                             "Error Authenticating: " +
                                     response.getJSONObject("data").getString("message"));
                 } catch (JSONException e) {
@@ -170,7 +205,7 @@ public class WeatherFragment extends Fragment {
                 }
                 counter++;
             }
-            binding.textWeather.setText(whole);
+            binding.textWeatherForecast.setText(whole);
         } catch (JSONException e) {
             Log.e("JSON1 Parse Error", e.getMessage());
         }
@@ -197,7 +232,7 @@ public class WeatherFragment extends Fragment {
                         + "Weather: " +  " " + descrip + "\n";
                 whole += theString;
             }
-            binding.textWeather.setText(whole);
+            binding.textWeatherHourly.setText(whole);
         }
         catch (JSONException e) {
             Log.e("JSON1 Parse Error", e.getMessage());
@@ -219,7 +254,7 @@ public class WeatherFragment extends Fragment {
                     + "Humidity: " + humidity + "%\n"
                     + "Sunrise: " + getDate(sunrise) + " AM\n"
                     + "Sunset: " + getDate(sunset) + " PM\n";
-            binding.textWeather.setText(whole);
+            binding.textWeatherCurrent.setText(whole);
         }
         catch (JSONException e) {
             Log.e("JSON1 Parse Error", e.getMessage());
