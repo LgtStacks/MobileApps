@@ -68,60 +68,86 @@ public class WeatherViewModel extends AndroidViewModel {
         }
     }
 
-    public void connectCurrent(String jwt) {
+//    public void connectCurrent(String jwt) {
+//        String url =
+//                "https://app-backend-server.herokuapp.com/weather/current/?q=98504";
+//        Request request = new JsonObjectRequest(
+//                Request.Method.POST,
+//                url,
+//                null, //no body for this get request
+//                mResponse::setValue,
+//                this::handleError) {
+//            @Override
+//            public Map<String, String> getHeaders() {
+//                Map<String, String> headers = new HashMap<>();
+//                // add headers <key,value>
+//                headers.put("Authorization", jwt);
+//                return headers;
+//            }
+//        };
+//        request.setRetryPolicy(new DefaultRetryPolicy(
+//                10_000,
+//                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+//                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+//        //Instantiate the RequestQueue and add the request to the queue
+//        RequestQueueSingleton.getInstance(getApplication().getApplicationContext())
+//                .addToRequestQueue(request);
+//    }
+//    public void connectForecast(String jwt) {
+//        String url =
+//                "https://app-backend-server.herokuapp.com/weather/forecast/?q=98402";
+//        Request request = new JsonObjectRequest(
+//                Request.Method.POST,
+//                url,
+//                null, //no body for this get request
+//                mResponse::setValue,
+//                this::handleError) {
+//            @Override
+//            public Map<String, String> getHeaders() {
+//                Map<String, String> headers = new HashMap<>();
+//                // add headers <key,value>
+//                headers.put("Authorization", jwt);
+//                return headers;
+//            }
+//        };
+//        request.setRetryPolicy(new DefaultRetryPolicy(
+//                10_000,
+//                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+//                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+//        //Instantiate the RequestQueue and add the request to the queue
+//        RequestQueueSingleton.getInstance(getApplication().getApplicationContext())
+//                .addToRequestQueue(request);
+//    }
+//    public void connectHourly(String jwt) {
+//        String url =
+//                "https://app-backend-server.herokuapp.com/weather/hourly/?postal_code=98502&country=US";
+//               // "https://app-backend-server.herokuapp.com/weather/hourly";
+//        Request request = new JsonObjectRequest(
+//                Request.Method.GET,
+//                url,
+//                null, //no body for this get request
+//                mResponse::setValue,
+//                this::handleError) {
+//            @Override
+//            public Map<String, String> getHeaders() {
+//                Map<String, String> headers = new HashMap<>();
+//                // add headers <key,value>
+//                headers.put("Authorization", jwt);
+//                return headers;
+//            }
+//        };
+//        request.setRetryPolicy(new DefaultRetryPolicy(
+//                10_000,
+//                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+//                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+//        //Instantiate the RequestQueue and add the request to the queue
+//        RequestQueueSingleton.getInstance(getApplication().getApplicationContext())
+//                .addToRequestQueue(request);
+//    }
+
+    public void connectLatLon(String jwt, double lat, double lon) {
         String url =
-                "https://app-backend-server.herokuapp.com/weather/current/?q=98504";
-        Request request = new JsonObjectRequest(
-                Request.Method.POST,
-                url,
-                null, //no body for this get request
-                mResponse::setValue,
-                this::handleError) {
-            @Override
-            public Map<String, String> getHeaders() {
-                Map<String, String> headers = new HashMap<>();
-                // add headers <key,value>
-                headers.put("Authorization", jwt);
-                return headers;
-            }
-        };
-        request.setRetryPolicy(new DefaultRetryPolicy(
-                10_000,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        //Instantiate the RequestQueue and add the request to the queue
-        RequestQueueSingleton.getInstance(getApplication().getApplicationContext())
-                .addToRequestQueue(request);
-    }
-    public void connectForecast(String jwt) {
-        String url =
-                "https://app-backend-server.herokuapp.com/weather/forecast/?q=98402";
-        Request request = new JsonObjectRequest(
-                Request.Method.POST,
-                url,
-                null, //no body for this get request
-                mResponse::setValue,
-                this::handleError) {
-            @Override
-            public Map<String, String> getHeaders() {
-                Map<String, String> headers = new HashMap<>();
-                // add headers <key,value>
-                headers.put("Authorization", jwt);
-                return headers;
-            }
-        };
-        request.setRetryPolicy(new DefaultRetryPolicy(
-                10_000,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        //Instantiate the RequestQueue and add the request to the queue
-        RequestQueueSingleton.getInstance(getApplication().getApplicationContext())
-                .addToRequestQueue(request);
-    }
-    public void connectHourly(String jwt) {
-        String url =
-                "https://app-backend-server.herokuapp.com/weather/hourly/?postal_code=98502&country=US";
-               // "https://app-backend-server.herokuapp.com/weather/hourly";
+                "https://app-backend-server.herokuapp.com/weather/hourly/?&lat=" + lat + "&lon=" + lon;
         Request request = new JsonObjectRequest(
                 Request.Method.GET,
                 url,
@@ -145,10 +171,9 @@ public class WeatherViewModel extends AndroidViewModel {
                 .addToRequestQueue(request);
     }
 
-    public void connectLatLon(String jwt, double lat, double lon) {
+    public void connectLatLonForecast(String jwt, double lat, double lon) {
         String url =
-                //"https://app-backend-server.herokuapp.com/weather/hourly/?lat=" + lat + "?lon=" + lon;
-                "https://app-backend-server.herokuapp.com/weather/hourly/?&lat=" + lat + "&lon=" + lon;
+                "https://app-backend-server.herokuapp.com/weather/daily/?&lat=" + lat + "&lon=" + lon;
         Request request = new JsonObjectRequest(
                 Request.Method.GET,
                 url,
