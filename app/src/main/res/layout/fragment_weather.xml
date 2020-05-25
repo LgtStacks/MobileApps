@@ -7,56 +7,41 @@
     android:layout_height="match_parent"
     tools:context=".ui.weather.WeatherFragment">
 
-
     <TextView
-        android:id="@+id/text_weather"
-        android:layout_width="305dp"
-        android:layout_height="346dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/text_weather_currentForecast"
+        android:id="@+id/text_weather_hourly"
+        android:layout_width="302dp"
+        android:layout_height="109dp"
+        android:layout_marginTop="80dp"
+        android:text="@string/text_weatherfragment_hourly"
         android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_weather_current" />
+
+    <TextView
+        android:id="@+id/text_weather_forecast"
+        android:layout_width="302dp"
+        android:layout_height="109dp"
+        android:layout_marginTop="296dp"
+        android:text="@string/text_weatherfragment_forecast"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_weather_current" />
+
+    <TextView
+        android:id="@+id/text_weather_current"
+        android:layout_width="302dp"
+        android:layout_height="109dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/text_weatherfragment_current"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/button_hourly"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="136dp"
-        android:text="Hourly"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_weather"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/button_forecast"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="136dp"
-        android:layout_marginEnd="53dp"
-        android:text="Forecast"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button_current"
-        app:layout_constraintHorizontal_bias="0.304"
-        app:layout_constraintStart_toEndOf="@+id/button_hourly"
-        app:layout_constraintTop_toBottomOf="@+id/text_weather"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/button_current"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="136dp"
-        android:text="Current"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_weather"
-        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_wait"
@@ -81,5 +66,43 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="@string/label_weatherfragment_current"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="54dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="188dp"
+        android:text="@string/label_weatherfragment_hourly"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="53dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="404dp"
+        android:text="@string/label_weatherfragment_forecast"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="53dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="52dp"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_weather_forecast"
+        tools:layout_editor_absoluteX="63dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
