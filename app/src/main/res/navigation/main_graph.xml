@@ -40,6 +40,9 @@
         <action
             android:id="@+id/action_WeatherActivity_to_change2"
             app:destination="@id/change" />
+        <action
+            android:id="@+id/action_WeatherActivity_to_locationFragment"
+            app:destination="@id/locationFragment" />
     </fragment>
     <fragment
         android:id="@+id/groupFragment"
@@ -102,4 +105,8 @@
             android:id="@+id/action_groupFragment3_to_change2"
             app:destination="@id/change" />
     </fragment>
+    <fragment
+        android:id="@+id/locationFragment"
+        android:name="edu.uw.main.ui.weather.LocationFragment"
+        android:label="LocationFragment" />
 </navigation>
