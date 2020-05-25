@@ -100,10 +100,22 @@
     <!-- GroupC Fragment -->
     <string name="title_groupfragmentC">Group Chat C</string>
 
+    <!-- Location Fragment -->
+    <string name="label_locationfragment_location">Click Anywhere On Map To Get Weather Update</string>
+
+    <!-- Weather Fragment -->
+    <string name="label_weatherfragment_current">Current</string>
+    <string name="label_weatherfragment_hourly">Hourly</string>
+    <string name="label_weatherfragment_forecast">Forecast</string>
+    <string name="text_weatherfragment_current">Current</string>
+    <string name="text_weatherfragment_hourly">Hourly</string>
+    <string name="text_weatherfragment_forecast">Forecast</string>
+
     <string name="switch_sign_in">Stay Signed in</string>
     <string name="keys_shared_prefs">My Auth App Shared Prefs</string>
     <string name="keys_prefs_jwt">Sharded Prefs JWT</string>
     <string name="action_sign_out">Sign Out</string>
+    <string name="title_activity_maps">Map</string>
 
 
 </resources>
