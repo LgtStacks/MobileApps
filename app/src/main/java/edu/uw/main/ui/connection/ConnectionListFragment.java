@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 
 import edu.uw.main.MainActivity;
 import edu.uw.main.R;
+import edu.uw.main.databinding.FragmentConnectionBinding;
 import edu.uw.main.databinding.FragmentConnectionListBinding;
 import edu.uw.main.model.UserInfoViewModel;
 
@@ -24,6 +25,7 @@ import edu.uw.main.model.UserInfoViewModel;
  * @version 5/19
  */
 public class ConnectionListFragment extends Fragment {
+    private FragmentConnectionListBinding binding;
 
     private ConnectionListViewModel mModel;
     private UserInfoViewModel mUserModel;
@@ -42,7 +44,8 @@ public class ConnectionListFragment extends Fragment {
 
         ((MainActivity) getActivity())
                 .setActionBarTitle("Connection List");
-        return inflater.inflate(R.layout.fragment_connection_list, container, false);
+        binding = FragmentConnectionListBinding.inflate(inflater, container, false);
+        return binding.getRoot();
 
     }
     @Override
@@ -58,6 +61,7 @@ public class ConnectionListFragment extends Fragment {
               //binding.layoutWait.setVisibility(View.GONE);
             }
         });
+        binding.buttonAddContacts.setOnClickListener(button -> navigateToConnectionAdd());
     }
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -74,9 +78,11 @@ public class ConnectionListFragment extends Fragment {
         if (MainActivity.changePassword) {
             MainActivity.changePassword = false;
             Navigation.findNavController(getView()).navigate(ConnectionListFragmentDirections.actionNavigationConnectionToChange2());
-
-
         }
         super.onResume();
     }
+    private void navigateToConnectionAdd() {
+        Navigation.findNavController(getView()).navigate(ConnectionListFragmentDirections.actionNavigationConnectionToConnectionFragment2());
+    }
+
 }
