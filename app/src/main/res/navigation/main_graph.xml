@@ -23,12 +23,6 @@
             android:id="@+id/action_navigation_chat_to_groupFragment"
             app:destination="@id/groupFragment" />
         <action
-            android:id="@+id/action_navigation_chat_to_groupFragment2"
-            app:destination="@id/groupFragment2" />
-        <action
-            android:id="@+id/action_navigation_chat_to_groupFragment3"
-            app:destination="@id/groupFragment3" />
-        <action
             android:id="@+id/action_navigation_chat_to_change2"
             app:destination="@id/change" />
     </fragment>
@@ -52,6 +46,9 @@
         <action
             android:id="@+id/action_groupFragment_to_change2"
             app:destination="@id/change" />
+        <argument
+            android:name="chatRoom"
+            app:argType="edu.uw.main.ui.chat.GroupPost" />
     </fragment>
     <fragment
         android:id="@+id/navigation_connection"
@@ -93,23 +90,6 @@
         <action
             android:id="@+id/action_change_to_navigation_home2"
             app:destination="@id/navigation_home" />
-    </fragment>
-    <fragment
-        android:id="@+id/groupFragment2"
-        android:name="edu.uw.main.ui.chat.GroupFragment2"
-        android:label="@string/title_groupfragmentB"
-        tools:layout="@layout/fragment_group2" >
-        <action
-            android:id="@+id/action_groupFragment2_to_change2"
-            app:destination="@id/change" />
-    </fragment>
-    <fragment
-        android:id="@+id/groupFragment3"
-        android:name="edu.uw.main.ui.chat.GroupFragment3"
-        android:label="@string/title_groupfragmentC" >
-        <action
-            android:id="@+id/action_groupFragment3_to_change2"
-            app:destination="@id/change" />
     </fragment>
     <fragment
         android:id="@+id/locationFragment"

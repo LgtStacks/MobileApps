@@ -54,7 +54,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class WeatherFragment extends Fragment {
     private FragmentWeatherBinding binding;
     private WeatherViewModel mWeatherModel;
-    private GoogleMap mMap;
+   // private GoogleMap mMap;
 
     /**
      * Default constructor for the weather fragment.

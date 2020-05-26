@@ -7,25 +7,18 @@
     android:layout_height="match_parent"
     tools:context=".ui.chat.ChatFragment">
 
-    <Button
-        android:id="@+id/button_groupB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="388dp"
-        android:text="@string/button_chatfragment_groupB"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_root"
+        android:name="edu.uw.main.ui.connection.ConnectionFragment"
+        android:layout_width="403dp"
+        android:layout_height="588dp"
+        android:layout_marginTop="32dp"
+        android:orientation="vertical"
+        app:layoutManager="LinearLayoutManager"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/button_groupC"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="472dp"
-        android:text="@string/button_chatfragment_groupC"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/text_title"
+        tools:context="edu.uw.main.ui.connection.ConnectionListFragment"
+        tools:listitem="@layout/fragment_chatroom_card" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -46,16 +39,6 @@
         android:textSize="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/button_groupA"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="312dp"
-        android:text="@string/button_chatfragment_groupA"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
