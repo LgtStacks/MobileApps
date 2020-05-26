@@ -9,33 +9,35 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.io.Serializable;
 
 import edu.uw.main.MainActivity;
 import edu.uw.main.R;
 import edu.uw.main.databinding.FragmentGroupBinding;
 import edu.uw.main.model.UserInfoViewModel;
-import edu.uw.main.ui.weather.WeatherFragmentDirections;
 
 /**
  * A First group chat room.
  * @author Group 3
  * @version 5/19
  */
-public class GroupFragment extends Fragment {
+public class GroupFragment extends Fragment{
     //The chat ID for "global" chat
-    private static final int HARD_CODED_CHAT_ID = 1;
+
+    private ChatroomListViewModel mModel;
+
     private ChatSendViewModel mSendModel;
     private ChatViewModel mChatModel;
     private UserInfoViewModel mUserModel;
-
-    /**
-     * default constructor.
-     */
+    private int chatID = -6;
+    private String chatName = "NAME";
     public GroupFragment() {
-        // Required empty public constructor
+
     }
 
     @Override
@@ -43,17 +45,22 @@ public class GroupFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         ViewModelProvider provider = new ViewModelProvider(getActivity());
+        mModel = provider.get(ChatroomListViewModel.class);
         mUserModel = provider.get(UserInfoViewModel.class);
         mChatModel = provider.get(ChatViewModel.class);
         mSendModel = provider.get(ChatSendViewModel.class);
-
-        mChatModel.getFirstMessages(HARD_CODED_CHAT_ID, mUserModel.getmJwt());
+        chatID = GroupFragmentArgs.fromBundle(getArguments()).getChatRoom().getId();
+        chatName = GroupFragmentArgs.fromBundle(getArguments()).getChatRoom().getChat();
+        Log.e("Chat ID", String.valueOf(chatID));
+        mChatModel.getFirstMessages(chatID, mUserModel.getmJwt());
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        ((MainActivity) getActivity())
+                .setActionBarTitle(chatName);
+
         return inflater.inflate(R.layout.fragment_group, container, false);
     }
 
@@ -69,18 +76,18 @@ public class GroupFragment extends Fragment {
         //Set the Adapter to hold a reference to the list FOR THIS chat ID that the ViewModel
         //holds.
         rv.setAdapter(new ChatRecyclerViewAdapter(
-                mChatModel.getMessageListByChatId(HARD_CODED_CHAT_ID),
+                mChatModel.getMessageListByChatId(chatID),
                 mUserModel.getEmail()));
 
 
         //When the user scrolls to the top of the RV, the swiper list will "refresh"
         //The user is out of messages, go out to the service and get more
         binding.swipeContainer.setOnRefreshListener(() -> {
-            mChatModel.getNextMessages(HARD_CODED_CHAT_ID, mUserModel.getmJwt());
+            mChatModel.getNextMessages(chatID, mUserModel.getmJwt());
         });
         //Send button was clicked. Send the message via the SendViewModel
         binding.buttonSend.setOnClickListener(button -> {
-            mSendModel.sendMessage(HARD_CODED_CHAT_ID,
+            mSendModel.sendMessage(chatID,
                     mUserModel.getmJwt(),
                     binding.editMessage.getText().toString());
         });
@@ -88,7 +95,7 @@ public class GroupFragment extends Fragment {
         mSendModel.addResponseObserver(getViewLifecycleOwner(), response ->
                 binding.editMessage.setText(""));
 
-        mChatModel.addMessageObserver(HARD_CODED_CHAT_ID, getViewLifecycleOwner(),
+        mChatModel.addMessageObserver(chatID, getViewLifecycleOwner(),
                 list -> {
                     /*
                      * This solution needs work on the scroll position. As a group,

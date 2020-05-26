@@ -40,6 +40,8 @@
     <string name="keys_json_connection_response">response</string>
     <string name="keys_json_connection_data">data</string>
     <string name="keys_json_connection_email">email</string>
+    <string name="keys_json_chatroom_name">name</string>
+
 
 
     <string name="title_home">Home</string>
