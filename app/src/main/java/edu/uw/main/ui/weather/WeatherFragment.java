@@ -54,7 +54,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class WeatherFragment extends Fragment {
     private FragmentWeatherBinding binding;
     private WeatherViewModel mWeatherModel;
-   // private GoogleMap mMap;
+    //private GoogleMap mMap;
 
     /**
      * Default constructor for the weather fragment.
@@ -115,7 +115,11 @@ public class WeatherFragment extends Fragment {
                     }
                 });
 
-        binding.button.setOnClickListener(button ->
+        binding.buttonZipCode.setOnClickListener(button ->
+                Navigation.findNavController(getView()).
+                        navigate(WeatherFragmentDirections.actionWeatherActivityToZipCodeFragment()));
+
+        binding.buttonLocation.setOnClickListener(button ->
                 Navigation.findNavController(getView()).
                         navigate(WeatherFragmentDirections.actionWeatherActivityToLocationFragment()));
 
@@ -173,7 +177,7 @@ public class WeatherFragment extends Fragment {
 
     }
     private void parseHourly(final JSONObject response){
-        Log.d("got here", "gotten");
+        Log.d("hourly!", "gotten");
         String date = "";
         float temp = 0;
         String descrip = "";
