@@ -43,7 +43,6 @@
     <string name="keys_json_chatroom_name">name</string>
 
 
-
     <string name="title_home">Home</string>
     <string name="title_blogs">Blogs</string>
     <string name="title_connection">Connection</string>
@@ -113,11 +112,16 @@
     <string name="text_weatherfragment_hourly">Hourly</string>
     <string name="text_weatherfragment_forecast">Forecast</string>
 
+    <!-- ZipCode Fragment -->
+    <string name="text_zipcodefragment_enter">Enter A Zip Code To Look Up Weather</string>
+    <string name="text_zipcodefragment_zipcode">Zip Code</string>
+
+
     <string name="switch_sign_in">Stay Signed in</string>
     <string name="keys_shared_prefs">My Auth App Shared Prefs</string>
     <string name="keys_prefs_jwt">Sharded Prefs JWT</string>
     <string name="action_sign_out">Sign Out</string>
     <string name="title_activity_maps">Map</string>
 
-    <string name="button_text_hint_add_contacts">Add A New Contact</string>
+
 </resources>
