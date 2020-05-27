@@ -89,7 +89,8 @@ public class RegisterViewModel extends AndroidViewModel {
     public void connect(final String first,
                         final String last,
                         final String email,
-                        final String password) {
+                        final String password,
+                        final String nickname) {
 
       //  String url = "https://cfb3-lab4-backend-2020sp.herokuapp.com/auth";
 
@@ -100,6 +101,7 @@ public class RegisterViewModel extends AndroidViewModel {
             body.put("last", last);
             body.put("email", email);
             body.put("password", password);
+            body.put("nickname", nickname);
         } catch (JSONException e) {
             e.printStackTrace();
         }

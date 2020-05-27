@@ -41,6 +41,7 @@ public class change extends Fragment {
     private ChangePasswordViewModel mModel;
 
     private ChangePasswordViewModel mChangeModel;
+
     private UserInfoViewModel mUserViewModel;
 
     public change() {
@@ -70,6 +71,7 @@ public class change extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
         ((MainActivity) getActivity()).setActionBarTitle("Change Password");
+
         UserInfoViewModel model = new ViewModelProvider(getActivity()).get(UserInfoViewModel.class);
 
         mChangeModel.addResponseObserver(

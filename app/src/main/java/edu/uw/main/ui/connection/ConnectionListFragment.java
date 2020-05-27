@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 
 import edu.uw.main.MainActivity;
 import edu.uw.main.R;
-import edu.uw.main.databinding.FragmentConnectionBinding;
 import edu.uw.main.databinding.FragmentConnectionListBinding;
 import edu.uw.main.model.UserInfoViewModel;
 

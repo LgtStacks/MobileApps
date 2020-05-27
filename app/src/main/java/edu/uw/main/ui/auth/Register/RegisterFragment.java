@@ -143,7 +143,8 @@ public class RegisterFragment extends Fragment {
                 binding.textFirstName.getText().toString(),
                 binding.textLastName.getText().toString(),
                 binding.textEmail.getText().toString(),
-                binding.textPassword.getText().toString());
+                binding.textPassword.getText().toString(),
+                binding.textNickname.getText().toString());
         //This is an Asynchronous call. No statements after should rely on the
         //result of connect()
     }
