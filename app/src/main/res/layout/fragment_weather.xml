@@ -7,6 +7,19 @@
     android:layout_height="match_parent"
     tools:context=".ui.weather.WeatherFragment">
 
+
+    <Button
+        android:id="@+id/buttonZipCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="42dp"
+        android:layout_marginBottom="52dp"
+        android:text="WIP ZipCode"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonLocation"
+        app:layout_constraintTop_toBottomOf="@+id/text_weather_forecast"
+        app:layout_constraintVertical_bias="0.8" />
+
     <TextView
         android:id="@+id/text_weather_hourly"
         android:layout_width="302dp"
@@ -95,14 +108,14 @@
         tools:layout_editor_absoluteX="53dp" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="52dp"
-        android:text="Button"
+        android:text="WIP Location"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_weather_forecast"
-        tools:layout_editor_absoluteX="63dp" />
-
+        app:layout_constraintVertical_bias="0.8"
+        tools:layout_editor_absoluteX="54dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
