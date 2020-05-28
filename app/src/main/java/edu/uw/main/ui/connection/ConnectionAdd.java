@@ -70,7 +70,7 @@ public class ConnectionAdd extends Fragment {
     public void onResume() {
         if (MainActivity.changePassword) {
             MainActivity.changePassword = false;
-            Navigation.findNavController(getView()).navigate(ConnectionAddDirections.actionConnectionAddFragmentToChange());
+            Navigation.findNavController(getView()).navigate(ConnectionAddDirections.actionConnectionAddToChange());
         }
         super.onResume();
     }

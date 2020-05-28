@@ -81,7 +81,7 @@ public class ConnectionListFragment extends Fragment {
         super.onResume();
     }
     private void navigateToConnectionAdd() {
-        Navigation.findNavController(getView()).navigate(ConnectionListFragmentDirections.actionNavigationConnectionToConnectionFragment2());
+        Navigation.findNavController(getView()).navigate(ConnectionListFragmentDirections.actionNavigationConnectionToConnectionAdd());
     }
 
 }

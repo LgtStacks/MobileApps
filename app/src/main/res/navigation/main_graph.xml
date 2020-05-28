@@ -63,6 +63,9 @@
         <action
             android:id="@+id/action_navigation_connection_to_change2"
             app:destination="@id/change" />
+        <action
+            android:id="@+id/action_navigation_connection_to_connectionAdd"
+            app:destination="@id/connectionAdd" />
     </fragment>
     <fragment
         android:id="@+id/connectionPostFragment"
@@ -97,4 +100,12 @@
         android:name="edu.uw.main.ui.weather.ZipCodeFragment"
         android:label="fragment_zip_code"
         tools:layout="@layout/fragment_zip_code" />
+    <fragment
+        android:id="@+id/connectionAdd"
+        android:name="edu.uw.main.ui.connection.ConnectionAdd"
+        android:label="ConnectionAdd" >
+        <action
+            android:id="@+id/action_connectionAdd_to_change"
+            app:destination="@id/change" />
+    </fragment>
 </navigation>
