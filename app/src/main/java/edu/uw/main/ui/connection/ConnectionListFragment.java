@@ -27,6 +27,7 @@ public class ConnectionListFragment extends Fragment {
     private FragmentConnectionListBinding binding;
 
     private ConnectionListViewModel mModel;
+
     private UserInfoViewModel mUserModel;
 
     /**

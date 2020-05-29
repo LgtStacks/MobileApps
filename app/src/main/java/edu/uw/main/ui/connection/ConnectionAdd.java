@@ -60,9 +60,14 @@ public class ConnectionAdd extends Fragment {
 
         UserInfoViewModel model = new ViewModelProvider(getActivity()).get(UserInfoViewModel.class);
 
-        mAddModel.addResponseObserver(
-                getViewLifecycleOwner(),
-                this::observeQueryResponse);
+        mAddModel.addConnectionAddObserver(getViewLifecycleOwner(), connectionList -> {
+            if (!connectionList.isEmpty()) {
+                binding.listRoot.setAdapter(
+                        new ConnectionAddRecyclerViewAdapter(connectionList)
+                );
+                //binding.layoutWait.setVisibility(View.GONE);
+            }
+        });
         binding.buttonSearch.setOnClickListener(button -> processQuery(model.getmJwt()));
     }
 
@@ -79,35 +84,4 @@ public class ConnectionAdd extends Fragment {
         mAddModel.connect(binding.textSearch.getText().toString(), jwt);
     }
 
-    private void observeQueryResponse(final JSONObject response) {
-        if (response.length() > 0) {
-            if (response.has("code")) {
-                try {
-                    binding.textSearch.setError(
-                            "Error Authenticating: " +
-                                    response.getJSONObject("data").getString("message"));
-                } catch (JSONException e) {
-                    Log.e("JSON1 Parse Error", e.getMessage());
-                }
-            } else {
-                try {
-                    binding.textQuery.setText(parseResponse(response));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        } else {
-            Log.d("JSON Response", "No Response");
-        }
-    }
-
-    private String parseResponse(final JSONObject response) throws JSONException {
-        String finalString = "";
-        JSONArray jsTemp = response.getJSONArray("email");
-        int size = jsTemp.length();
-        for (int i = 0; i < size; i++) {
-            finalString += jsTemp.getJSONObject(i).get("username").toString() + "\n";
-        }
-        return finalString;
-    }
 }

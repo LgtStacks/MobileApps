@@ -124,5 +124,6 @@
     <string name="title_activity_maps">Map</string>
 
     <string name="button_text_hint_add_contacts">Add A New Contact</string>
+    <string name="button_add_hint">Add</string>
     
 </resources>
