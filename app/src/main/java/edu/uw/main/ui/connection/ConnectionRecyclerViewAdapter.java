@@ -25,6 +25,7 @@ public class ConnectionRecyclerViewAdapter extends
         RecyclerView.Adapter<ConnectionRecyclerViewAdapter.ConnectionViewHolder> {
 
     private final List<ConnectionPost> mConnection;
+    
     private UserInfoViewModel mUserModel;
 
     /**

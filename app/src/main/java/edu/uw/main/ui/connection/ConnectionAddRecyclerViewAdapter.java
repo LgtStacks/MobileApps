@@ -1,19 +1,19 @@
 package edu.uw.main.ui.connection;
 
-import android.graphics.drawable.Icon;
+import android.app.Activity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
+import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 import edu.uw.main.R;
-import edu.uw.main.databinding.FragmentConnectionCardBinding;
 import edu.uw.main.databinding.FragmentSearchCardBinding;
 import edu.uw.main.model.UserInfoViewModel;
 
@@ -27,14 +27,22 @@ public class ConnectionAddRecyclerViewAdapter extends
 
     private final List<Add> mConnection;
 
+    private ConnectionAddViewModel mAddModel;
+
     private UserInfoViewModel mUserModel;
+
+    private Activity act;
 
     /**
      * The connection recycler view constructor.
      * @param items list of items posts.
      */
-    public ConnectionAddRecyclerViewAdapter(List<Add> items) {
+    public ConnectionAddRecyclerViewAdapter(List<Add> items, ConnectionAddViewModel model, Activity theActivity) {
         this.mConnection = items;
+        mAddModel = model;
+        act = theActivity;
+        ViewModelProvider provider = new ViewModelProvider((ViewModelStoreOwner) theActivity);
+        mUserModel = provider.get(UserInfoViewModel.class);
     }
 
     @Override
@@ -50,7 +58,7 @@ public class ConnectionAddRecyclerViewAdapter extends
     }
     @Override
     public void onBindViewHolder(@NonNull ConnectionViewHolder holder, int position) {
-        holder.setConnection(mConnection.get(position));
+        holder.setConnection(mConnection.get(position), mUserModel.getmJwt());
     }
 
     /**
@@ -76,14 +84,18 @@ public class ConnectionAddRecyclerViewAdapter extends
 
         /**
          * Updates each connection post.
-         * @param connection each individual connection post.
+         * @param user each individual connection post.
          */
-        void setConnection(final Add connection) {
-            binding.textName.setText(connection.getUsername());
+        void setConnection(final Add user, final String jwt) {
+            binding.textName.setText(user.getUsername());
 
-            //binding.buttonName.setText(connection.getConnection());
+            binding.buttonAdd.setOnClickListener(button -> getUsername(user, jwt));
             //Use methods in the HTML class to format the HTML found in the text
 
         }
+    }
+
+    private void getUsername(final Add user, final String jwt) {
+        mAddModel.connectAdd(user.getUsername(), jwt);
     }
 }

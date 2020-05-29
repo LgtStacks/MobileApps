@@ -6,19 +6,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import edu.uw.main.MainActivity;
-import edu.uw.main.R;
 import edu.uw.main.databinding.FragmentConnectionAddBinding;
 import edu.uw.main.model.UserInfoViewModel;
 
@@ -63,12 +57,12 @@ public class ConnectionAdd extends Fragment {
         mAddModel.addConnectionAddObserver(getViewLifecycleOwner(), connectionList -> {
             if (!connectionList.isEmpty()) {
                 binding.listRoot.setAdapter(
-                        new ConnectionAddRecyclerViewAdapter(connectionList)
+                        new ConnectionAddRecyclerViewAdapter(connectionList, mAddModel, getActivity())
                 );
                 //binding.layoutWait.setVisibility(View.GONE);
             }
         });
-        binding.buttonSearch.setOnClickListener(button -> processQuery(model.getmJwt()));
+        binding.buttonSearch.setOnClickListener(button -> processSearch(model.getmJwt()));
     }
 
     @Override
@@ -80,8 +74,12 @@ public class ConnectionAdd extends Fragment {
         super.onResume();
     }
 
-    private void processQuery(final String jwt) {
-        mAddModel.connect(binding.textSearch.getText().toString(), jwt);
+    private void processSearch(final String jwt) {
+        mAddModel.connectSearch(binding.textSearch.getText().toString(), jwt);
+    }
+
+    private void processAdd(final String jwt) {
+
     }
 
 }

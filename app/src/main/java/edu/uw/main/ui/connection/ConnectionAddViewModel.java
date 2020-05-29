@@ -1,6 +1,7 @@
 package edu.uw.main.ui.connection;
 
 import android.app.Application;
+import android.os.Bundle;
 import android.util.Log;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -17,7 +18,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.IntFunction;
 
 
 import androidx.annotation.NonNull;
@@ -26,7 +26,7 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
-import edu.uw.main.R;
+import androidx.lifecycle.ViewModelProvider;
 import edu.uw.main.io.RequestQueueSingleton;
 
 public class ConnectionAddViewModel extends AndroidViewModel {
@@ -35,6 +35,8 @@ public class ConnectionAddViewModel extends AndroidViewModel {
     private MutableLiveData<List<Add>> mAddList;
 
     private MutableLiveData<List<Add>> mUpdateList;
+
+    private ConnectionAddViewModel mAddModel;
 
     /**
      * Chile Connection list view model.
@@ -48,7 +50,6 @@ public class ConnectionAddViewModel extends AndroidViewModel {
         mAddList = new MutableLiveData<>();
         mAddList.setValue(new ArrayList<>());
     }
-
     /**
      * This method will add a response observer for interacting with the server.
      *
@@ -86,7 +87,7 @@ public class ConnectionAddViewModel extends AndroidViewModel {
      *
      * @param email - email the user is searching for.
      */
-    public void connect(final String email, final String jwt) {
+    public void connectSearch(final String email, final String jwt) {
 
         String url = "https://app-backend-server.herokuapp.com/connections/" + email;
         Request request = new JsonObjectRequest(
@@ -94,6 +95,36 @@ public class ConnectionAddViewModel extends AndroidViewModel {
                 url,
                 null, //no body for this get request
                 this::handleResult,
+                this::handleError) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headers = new HashMap<>();
+                // add headers <key,value>
+                headers.put("Authorization", jwt);
+                return headers;
+            }
+        };
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                10_000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        //Instantiate the RequestQueue and add the request to the queue
+        RequestQueueSingleton.getInstance(getApplication().getApplicationContext())
+                .addToRequestQueue(request);
+    }
+    /**
+     * Sends email and password to our webservice. Authenticates the credentials.
+     *
+     * @param email - email the user is searching for.
+     */
+    public void connectAdd(final String email, final String jwt) {
+
+        String url = "https://app-backend-server.herokuapp.com/connections/" + email;
+        Request request = new JsonObjectRequest(
+                Request.Method.PUT,
+                url,
+                null,
+                null,
                 this::handleError) {
             @Override
             public Map<String, String> getHeaders() {
