@@ -14,7 +14,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -38,7 +37,7 @@ import edu.uw.main.model.UserInfoViewModel;
 
 public class LocationFragment extends Fragment implements GoogleMap.OnMapClickListener, OnMapReadyCallback {
     private FragmentLocationBinding binding;
-    private WeatherListViewModel mModel;
+    private WeatherViewModel mModel;
     private GoogleMap mMap;
 
 
@@ -53,7 +52,7 @@ public class LocationFragment extends Fragment implements GoogleMap.OnMapClickLi
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mModel = new ViewModelProvider(getActivity())
-                .get(WeatherListViewModel.class);
+                .get(WeatherViewModel.class);
     }
 
 
@@ -93,7 +92,7 @@ public class LocationFragment extends Fragment implements GoogleMap.OnMapClickLi
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        WeatherListViewModel model = new ViewModelProvider(getActivity()).get(WeatherListViewModel.class);
+        WeatherViewModel model = new ViewModelProvider(getActivity()).get(WeatherViewModel.class);
         model.addLocationObserver(getViewLifecycleOwner(), location -> {
             if (location != null) {
                 googleMap.getUiSettings().setZoomControlsEnabled(true);

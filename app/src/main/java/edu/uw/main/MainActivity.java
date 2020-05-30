@@ -1,7 +1,6 @@
 package edu.uw.main;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
@@ -13,8 +12,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,10 +32,9 @@ import edu.uw.main.model.UserInfoViewModel;
 import edu.uw.main.services.PushReceiver;
 import edu.uw.main.ui.chat.ChatMessage;
 import edu.uw.main.ui.chat.ChatViewModel;
-import edu.uw.main.ui.recovery.change;
 import edu.uw.main.ui.settings.SettingsActivity;
 
-import edu.uw.main.ui.weather.WeatherListViewModel;
+import edu.uw.main.ui.weather.WeatherViewModel;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -90,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
     private LocationCallback mLocationCallback;
 
     // The ViewModel that will store the current location
-    private WeatherListViewModel mWeatherModel;
+    private WeatherViewModel mWeatherModel;
 
 
 
@@ -176,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
 
                     Log.d("LOCATION UPDATE", location.toString());
                     if (mWeatherModel == null) {
-                        mWeatherModel = new ViewModelProvider(MainActivity.this).get(WeatherListViewModel.class);
+                        mWeatherModel = new ViewModelProvider(MainActivity.this).get(WeatherViewModel.class);
                     }
                     mWeatherModel.setLocation(location);
                 }
@@ -241,7 +237,7 @@ public class MainActivity extends AppCompatActivity {
                     if (location != null) {
                         Log.d("LOCATION", location.toString());
                         if (mWeatherModel == null) {
-                            mWeatherModel = new ViewModelProvider(MainActivity.this).get(WeatherListViewModel.class);
+                            mWeatherModel = new ViewModelProvider(MainActivity.this).get(WeatherViewModel.class);
                         }
                         mWeatherModel.setLocation(location);
                     }

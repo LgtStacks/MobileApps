@@ -17,17 +17,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
-import edu.uw.main.AuthActivity;
+
 import edu.uw.main.MainActivity;
-import edu.uw.main.PasswordValidator;
-import edu.uw.main.R;
 import edu.uw.main.databinding.FragmentChangeBinding;
 import edu.uw.main.model.UserInfoViewModel;
-import edu.uw.main.ui.auth.Login.LoginViewModel;
-import edu.uw.main.ui.weather.WeatherListViewModel;
 
-import static edu.uw.main.PasswordValidator.checkExcludeWhiteSpace;
 import static edu.uw.main.PasswordValidator.checkPwdLength;
 import static edu.uw.main.PasswordValidator.checkPwdSpecialChar;
 

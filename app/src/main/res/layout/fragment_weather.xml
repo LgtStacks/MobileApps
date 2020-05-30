@@ -12,49 +12,29 @@
         android:id="@+id/buttonZipCode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="42dp"
+        android:layout_marginStart="48dp"
         android:layout_marginBottom="52dp"
         android:text="WIP ZipCode"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/buttonLocation"
-        app:layout_constraintTop_toBottomOf="@+id/text_weather_forecast"
-        app:layout_constraintVertical_bias="0.8" />
+        app:layout_constraintTop_toBottomOf="@+id/list_root"
+        app:layout_constraintVertical_bias="1.0" />
 
-    <TextView
-        android:id="@+id/text_weather_hourly"
-        android:layout_width="302dp"
-        android:layout_height="109dp"
-        android:layout_marginTop="80dp"
-        android:text="@string/text_weatherfragment_hourly"
-        android:textSize="10sp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_root"
+        android:name="edu.uw.main.ui.weather.WeatherFragment"
+        android:layout_width="358dp"
+        android:layout_height="536dp"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical"
+        app:layoutManager="LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_weather_current" />
-
-    <TextView
-        android:id="@+id/text_weather_forecast"
-        android:layout_width="302dp"
-        android:layout_height="109dp"
-        android:layout_marginTop="296dp"
-        android:text="@string/text_weatherfragment_forecast"
-        android:textSize="10sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_weather_current" />
-
-    <TextView
-        android:id="@+id/text_weather_current"
-        android:layout_width="302dp"
-        android:layout_height="109dp"
-        android:layout_marginTop="32dp"
-        android:text="@string/text_weatherfragment_current"
-        android:textSize="10sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context="edu.uw.main.ui.weather.WeatherFragment"
+        tools:layout="@layout/fragment_weather"
+        tools:listitem="@layout/fragment_weather_card" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_wait"
@@ -80,42 +60,18 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="@string/label_weatherfragment_current"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="54dp" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="188dp"
-        android:text="@string/label_weatherfragment_hourly"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="53dp" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="404dp"
-        android:text="@string/label_weatherfragment_forecast"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="53dp" />
-
     <Button
         android:id="@+id/buttonLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
         android:layout_marginBottom="52dp"
         android:text="WIP Location"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_weather_forecast"
-        app:layout_constraintVertical_bias="0.8"
-        tools:layout_editor_absoluteX="54dp" />
+        tools:layout_editor_absoluteX="54dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/list_root"
+        app:layout_constraintVertical_bias="0.854" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

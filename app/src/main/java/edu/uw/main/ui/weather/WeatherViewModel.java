@@ -29,7 +29,7 @@ import java.util.Objects;
 
 import edu.uw.main.io.RequestQueueSingleton;
 
-public class WeatherListViewModel extends AndroidViewModel {
+public class WeatherViewModel extends AndroidViewModel {
 
    private MutableLiveData<List<WeatherPost>> mWeatherList;
 
@@ -40,7 +40,7 @@ public class WeatherListViewModel extends AndroidViewModel {
      * Standard constructor with parameters.
      * @param application new application for live data.
      */
-    public WeatherListViewModel(@NonNull Application application) {
+    public WeatherViewModel(@NonNull Application application) {
         super(application);
         mWeatherList = new MutableLiveData<>();
         mWeatherList.setValue(new ArrayList<>());
@@ -83,12 +83,11 @@ public class WeatherListViewModel extends AndroidViewModel {
             mLocation.setValue(location);
         }
     }
-    public void setMutableData(final MutableLiveData<List<WeatherPost>> mw){
-       // Log.e("DATA OUTPUT: ", mw.getValue());
-       // if(mWeatherList.getValue().hashCode() == mw.getValue().)
+    public void setMutableData(final MutableLiveData<List<WeatherPost>> mw) {
+        // Log.e("DATA OUTPUT: ", mw.getValue());
+        // if(mWeatherList.getValue().hashCode() == mw.getValue().)
         mWeatherList.setValue(mw.getValue());
-
-<<<<<<< Updated upstream:app/src/main/java/edu/uw/main/ui/weather/WeatherViewModel.java
+    }
     public void connectCurrent(String jwt, String zip) {
         String url =
                 "https://app-backend-server.herokuapp.com/weather/current/?q=" + zip + ", US";
@@ -166,9 +165,7 @@ public class WeatherListViewModel extends AndroidViewModel {
 //        RequestQueueSingleton.getInstance(getApplication().getApplicationContext())
 //                .addToRequestQueue(request);
 //    }
-=======
-    }
->>>>>>> Stashed changes:app/src/main/java/edu/uw/main/ui/weather/WeatherListViewModel.java
+
 
     public void connectLatLon(String jwt, double lat, double lon) {
         String url =
