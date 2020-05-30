@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import androidx.navigation.Navigation;
 import edu.uw.main.MainActivity;
+import edu.uw.main.R;
 import edu.uw.main.databinding.FragmentSuccessBinding;
 import edu.uw.main.model.UserInfoViewModel;
 
@@ -40,7 +41,12 @@ public class SuccessFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        View view = getActivity().findViewById(R.id.tab_layout);
+        view.setVisibility(View.GONE);
+
         binding = FragmentSuccessBinding.inflate(inflater, container, false);
+
         // Inflate the layout for this fragment
         return binding.getRoot();
     }
@@ -53,7 +59,7 @@ public class SuccessFragment extends Fragment {
 
                 .get(UserInfoViewModel.class);
 
-      //  SuccessFragmentArgs args = SuccessFragmentArgs.fromBundle(getArguments());
+        //  SuccessFragmentArgs args = SuccessFragmentArgs.fromBundle(getArguments());
 
         binding.textMessage.setText("Hello " + model.getEmail());
 
