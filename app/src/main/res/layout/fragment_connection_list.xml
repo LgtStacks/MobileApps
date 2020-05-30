@@ -9,7 +9,7 @@
         android:id="@+id/list_root"
         android:name="edu.uw.main.ui.connection.ConnectionFragment"
         android:layout_width="410dp"
-        android:layout_height="640dp"
+        android:layout_height="525dp"
         android:orientation="vertical"
         app:layoutManager="LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -24,12 +24,39 @@
     <Button
         android:id="@+id/button_add_contacts"
         android:layout_width="380dp"
-        android:layout_height="44dp"
+        android:layout_height="45dp"
         android:text="@string/button_text_hint_add_contacts"
         app:layout_constraintBottom_toTopOf="@+id/list_root"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.081" />
+
+    <Button
+        android:id="@+id/button_pending"
+        android:layout_width="380dp"
+        android:layout_height="45dp"
+        android:text="@string/button_pending_hint"
+        app:layout_constraintBottom_toTopOf="@+id/list_root"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_add_contacts"
+        app:layout_constraintVertical_bias="0.119" />
+
+    <Button
+        android:id="@+id/button_sent_requests"
+        android:layout_width="380dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/button_sent_hint"
+        app:layout_constraintBottom_toTopOf="@+id/list_root"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_pending"
+        app:layout_constraintVertical_bias="0.172" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

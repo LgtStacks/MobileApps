@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import edu.uw.main.R;
-import edu.uw.main.databinding.FragmentSearchCardBinding;
+import edu.uw.main.databinding.FragmentPendingCardBinding;
 import edu.uw.main.model.UserInfoViewModel;
 
 /**
@@ -21,12 +21,12 @@ import edu.uw.main.model.UserInfoViewModel;
  * @author Group 3
  * @version 5/19
  */
-public class ConnectionAddRecyclerViewAdapter extends
-        RecyclerView.Adapter<ConnectionAddRecyclerViewAdapter.ConnectionViewHolder> {
+public class ConnectionPendingRecyclerViewAdapter extends
+        RecyclerView.Adapter<ConnectionPendingRecyclerViewAdapter.ConnectionViewHolder> {
 
-    private final List<Add> mConnection;
+    private final List<Pending> mConnection;
 
-    private ConnectionAddViewModel mAddModel;
+    private ConnectionPendingViewModel mPendingModel;
 
     private UserInfoViewModel mUserModel;
 
@@ -36,9 +36,9 @@ public class ConnectionAddRecyclerViewAdapter extends
      * The connection recycler view constructor.
      * @param items list of items posts.
      */
-    public ConnectionAddRecyclerViewAdapter(List<Add> items, ConnectionAddViewModel model, Activity theActivity) {
+    public ConnectionPendingRecyclerViewAdapter(List<Pending> items, ConnectionPendingViewModel model, Activity theActivity) {
         this.mConnection = items;
-        mAddModel = model;
+        mPendingModel = model;
         act = theActivity;
         ViewModelProvider provider = new ViewModelProvider((ViewModelStoreOwner) theActivity);
         mUserModel = provider.get(UserInfoViewModel.class);
@@ -53,7 +53,7 @@ public class ConnectionAddRecyclerViewAdapter extends
     public ConnectionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ConnectionViewHolder(LayoutInflater
                 .from(parent.getContext())
-                .inflate(R.layout.fragment_search_card, parent, false));
+                .inflate(R.layout.fragment_pending_card, parent, false));
     }
     @Override
     public void onBindViewHolder(@NonNull ConnectionViewHolder holder, int position) {
@@ -67,7 +67,7 @@ public class ConnectionAddRecyclerViewAdapter extends
 
         public final View mView;
 
-        private FragmentSearchCardBinding binding;
+        private FragmentPendingCardBinding binding;
 
         /**
          * Inner connect view holder constructor.
@@ -77,7 +77,8 @@ public class ConnectionAddRecyclerViewAdapter extends
             super(view);
 
             mView = view;
-            binding = FragmentSearchCardBinding.bind(view);
+            //How I add listeners to the card layout view stuff
+            binding = FragmentPendingCardBinding.bind(view);
 
         }
 
@@ -85,16 +86,16 @@ public class ConnectionAddRecyclerViewAdapter extends
          * Updates each connection post.
          * @param user each individual connection post.
          */
-        void setConnection(final Add user, final String jwt) {
-            binding.textName.setText(user.getUsername());
-
-            binding.buttonAdd.setOnClickListener(button -> getUsername(user, jwt));
+        void setConnection(final Pending user, final String jwt) {
+//            binding.textName.setText(user.getUsername());
+//
+//            binding.buttonAdd.setOnClickListener(button -> getUsername(user, jwt));
             //Use methods in the HTML class to format the HTML found in the text
 
         }
     }
 
-    private void getUsername(final Add user, final String jwt) {
-        mAddModel.connectAdd(user.getUsername(), jwt);
+    private void getUsername(final Pending user, final String jwt) {
+//        mPendingModel.connectAdd(user.getUsername(), jwt);
     }
 }

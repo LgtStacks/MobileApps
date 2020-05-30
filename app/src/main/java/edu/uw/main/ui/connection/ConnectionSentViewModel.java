@@ -25,30 +25,27 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
-import androidx.lifecycle.ViewModelProvider;
 import edu.uw.main.io.RequestQueueSingleton;
 
-public class ConnectionAddViewModel extends AndroidViewModel {
+public class ConnectionSentViewModel extends AndroidViewModel {
 
     private MutableLiveData<JSONObject> mResponse;
 
-    private MutableLiveData<List<Add>> mAddList;
+    private MutableLiveData<List<Sent>> mSentList;
 
-    private MutableLiveData<List<Add>> mUpdateList;
-
-    private ConnectionAddViewModel mAddModel;
+    private MutableLiveData<List<Sent>> mUpdateList;
 
     /**
      * Chile Connection list view model.
      *
      * @param application the application.
      */
-    public ConnectionAddViewModel(@NonNull Application application) {
+    public ConnectionSentViewModel(@NonNull Application application) {
         super(application);
         mResponse = new MutableLiveData<>();
         mResponse.setValue(new JSONObject());
-        mAddList = new MutableLiveData<>();
-        mAddList.setValue(new ArrayList<>());
+        mSentList = new MutableLiveData<>();
+        mSentList.setValue(new ArrayList<>());
     }
     /**
      * This method will add a response observer for interacting with the server.
@@ -67,9 +64,9 @@ public class ConnectionAddViewModel extends AndroidViewModel {
      * @param owner    the owner
      * @param observer the observer.
      */
-    public void addConnectionAddObserver(@NonNull LifecycleOwner owner,
-                                          @NonNull Observer<? super List<Add>> observer) {
-        mAddList.observe(owner, observer);
+    public void addSentObserver(@NonNull LifecycleOwner owner,
+                                   @NonNull Observer<? super List<Sent>> observer) {
+        mSentList.observe(owner, observer);
     }
 
     /**
@@ -87,7 +84,7 @@ public class ConnectionAddViewModel extends AndroidViewModel {
      *
      * @param email - email the user is searching for.
      */
-    public void connectSearch(final String email, final String jwt) {
+    public void connectGetSentRequests(final String email, final String jwt) {
 
         String url = "https://app-backend-server.herokuapp.com/connections/" + email;
         Request request = new JsonObjectRequest(
@@ -112,6 +109,7 @@ public class ConnectionAddViewModel extends AndroidViewModel {
         RequestQueueSingleton.getInstance(getApplication().getApplicationContext())
                 .addToRequestQueue(request);
     }
+
     /**
      * Sends email and password to our webservice. Authenticates the credentials.
      *
@@ -155,11 +153,12 @@ public class ConnectionAddViewModel extends AndroidViewModel {
             JSONArray jsTemp = response.getJSONArray("email");
             int size = jsTemp.length();
             for (int i = 0; i < size; i++) {
-                mUpdateList.getValue().add(new Add.Builder(jsTemp.getJSONObject(i).get("username").toString()).build());
+                mUpdateList.getValue().add(new Sent.Builder(jsTemp.getJSONObject(i).get("username").toString()).build());
             }
         } catch (JSONException ex) {
             ex.printStackTrace();
         }
-        mAddList.setValue(mUpdateList.getValue());
+        mSentList.setValue(mUpdateList.getValue());
     }
 }
+

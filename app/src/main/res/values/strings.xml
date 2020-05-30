@@ -125,5 +125,7 @@
 
     <string name="button_text_hint_add_contacts">Add A New Contact</string>
     <string name="button_add_hint">Add</string>
-    
+    <string name="button_pending_hint">Pending Contacts</string>
+    <string name="button_decline_hint">Decline</string>
+    <string name="button_sent_hint">Sent Requests</string>
 </resources>

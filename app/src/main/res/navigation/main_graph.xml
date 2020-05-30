@@ -27,6 +27,21 @@
             app:destination="@id/change" />
     </fragment>
     <fragment
+        android:id="@+id/WeatherActivity"
+        android:name="edu.uw.main.ui.weather.WeatherFragment"
+        android:label="fragment_weather"
+        tools:layout="@layout/fragment_weather" >
+        <action
+            android:id="@+id/action_WeatherActivity_to_change2"
+            app:destination="@id/change" />
+        <action
+            android:id="@+id/action_WeatherActivity_to_locationFragment"
+            app:destination="@id/locationFragment" />
+        <action
+            android:id="@+id/action_WeatherActivity_to_zipCodeFragment"
+            app:destination="@id/zipCodeFragment" />
+    </fragment>
+    <fragment
         android:id="@+id/groupFragment"
         android:name="edu.uw.main.ui.chat.GroupFragment"
         android:label="@string/title_groupfragmentA"
@@ -51,6 +66,12 @@
         <action
             android:id="@+id/action_navigation_connection_to_connectionAdd"
             app:destination="@id/connectionAdd" />
+        <action
+            android:id="@+id/action_navigation_connection_to_connectionPending"
+            app:destination="@id/connectionPending" />
+        <action
+            android:id="@+id/action_navigation_connection_to_connectionSentRequest"
+            app:destination="@id/connectionSentRequest" />
     </fragment>
     <fragment
         android:id="@+id/connectionPostFragment"
@@ -77,6 +98,15 @@
             app:destination="@id/navigation_home" />
     </fragment>
     <fragment
+        android:id="@+id/locationFragment"
+        android:name="edu.uw.main.ui.weather.LocationFragment"
+        android:label="LocationFragment" />
+    <fragment
+        android:id="@+id/zipCodeFragment"
+        android:name="edu.uw.main.ui.weather.ZipCodeFragment"
+        android:label="fragment_zip_code"
+        tools:layout="@layout/fragment_zip_code" />
+    <fragment
         android:id="@+id/connectionAdd"
         android:name="edu.uw.main.ui.connection.ConnectionAdd"
         android:label="ConnectionAdd" >
@@ -85,8 +115,21 @@
             app:destination="@id/change" />
     </fragment>
     <fragment
-        android:id="@+id/weatherMain"
-        android:name="edu.uw.main.ui.weather.WeatherMain"
-        android:label="fragment_weather_main"
-        tools:layout="@layout/fragment_weather_main" />
+        android:id="@+id/connectionPending"
+        android:name="edu.uw.main.ui.connection.ConnectionPending"
+        android:label="fragment_connection_pending"
+        tools:layout="@layout/fragment_connection_pending" >
+        <action
+            android:id="@+id/action_connectionPending_to_change"
+            app:destination="@id/change" />
+    </fragment>
+    <fragment
+        android:id="@+id/connectionSentRequest"
+        android:name="edu.uw.main.ui.connection.ConnectionSentRequest"
+        android:label="fragment_connection_sent_request"
+        tools:layout="@layout/fragment_connection_sent_request" >
+        <action
+            android:id="@+id/action_connectionSentRequest_to_change"
+            app:destination="@id/change" />
+    </fragment>
 </navigation>

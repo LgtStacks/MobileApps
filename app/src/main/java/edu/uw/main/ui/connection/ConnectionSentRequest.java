@@ -13,28 +13,29 @@ import android.view.ViewGroup;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import edu.uw.main.MainActivity;
-import edu.uw.main.databinding.FragmentConnectionAddBinding;
+import edu.uw.main.databinding.FragmentConnectionSentRequestBinding;
 import edu.uw.main.model.UserInfoViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ConnectionAdd extends Fragment {
+public class ConnectionSentRequest extends Fragment {
 
-    private FragmentConnectionAddBinding binding;
+    private FragmentConnectionSentRequestBinding binding;
 
-    private ConnectionAddViewModel mAddModel;
+    private ConnectionSentViewModel mSentModel;
 
-    public ConnectionAdd() {
+    public ConnectionSentRequest() {
         // Required empty public constructor
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ((MainActivity) getActivity())
-                .setActionBarTitle("Connection Add");
-        binding = FragmentConnectionAddBinding.inflate(inflater, container, false);
+                .setActionBarTitle("Connection Pending");
+        binding = FragmentConnectionSentRequestBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -42,10 +43,8 @@ public class ConnectionAdd extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        mAddModel = new ViewModelProvider(getActivity())
-                .get(ConnectionAddViewModel.class);
-
-
+        mSentModel = new ViewModelProvider(getActivity())
+                .get(ConnectionSentViewModel.class);
     }
 
     @Override
@@ -54,27 +53,23 @@ public class ConnectionAdd extends Fragment {
 
         UserInfoViewModel model = new ViewModelProvider(getActivity()).get(UserInfoViewModel.class);
 
-        mAddModel.addConnectionAddObserver(getViewLifecycleOwner(), connectionList -> {
+        mSentModel.addSentObserver(getViewLifecycleOwner(), connectionList -> {
             if (!connectionList.isEmpty()) {
                 binding.listRoot.setAdapter(
-                        new ConnectionAddRecyclerViewAdapter(connectionList, mAddModel, getActivity())
+                        new ConnectionSentRecyclerViewAdapter(connectionList, mSentModel, getActivity())
                 );
                 //binding.layoutWait.setVisibility(View.GONE);
             }
         });
-        binding.buttonSearch.setOnClickListener(button -> processSearch(model.getmJwt()));
+
     }
 
     @Override
     public void onResume() {
         if (MainActivity.changePassword) {
             MainActivity.changePassword = false;
-            Navigation.findNavController(getView()).navigate(ConnectionAddDirections.actionConnectionAddToChange());
+            Navigation.findNavController(getView()).navigate(ConnectionSentRequestDirections.actionConnectionSentRequestToChange());
         }
         super.onResume();
-    }
-
-    private void processSearch(final String jwt) {
-        mAddModel.connectSearch(binding.textSearch.getText().toString(), jwt);
     }
 }

@@ -14,6 +14,7 @@ import java.util.List;
 
 import edu.uw.main.R;
 import edu.uw.main.databinding.FragmentSearchCardBinding;
+import edu.uw.main.databinding.FragmentSentCardsBinding;
 import edu.uw.main.model.UserInfoViewModel;
 
 /**
@@ -21,12 +22,12 @@ import edu.uw.main.model.UserInfoViewModel;
  * @author Group 3
  * @version 5/19
  */
-public class ConnectionAddRecyclerViewAdapter extends
-        RecyclerView.Adapter<ConnectionAddRecyclerViewAdapter.ConnectionViewHolder> {
+public class ConnectionSentRecyclerViewAdapter extends
+        RecyclerView.Adapter<ConnectionSentRecyclerViewAdapter.ConnectionViewHolder> {
 
-    private final List<Add> mConnection;
+    private final List<Sent> mConnection;
 
-    private ConnectionAddViewModel mAddModel;
+    private ConnectionSentViewModel mSentModel;
 
     private UserInfoViewModel mUserModel;
 
@@ -36,9 +37,9 @@ public class ConnectionAddRecyclerViewAdapter extends
      * The connection recycler view constructor.
      * @param items list of items posts.
      */
-    public ConnectionAddRecyclerViewAdapter(List<Add> items, ConnectionAddViewModel model, Activity theActivity) {
+    public ConnectionSentRecyclerViewAdapter(List<Sent> items, ConnectionSentViewModel model, Activity theActivity) {
         this.mConnection = items;
-        mAddModel = model;
+        mSentModel = model;
         act = theActivity;
         ViewModelProvider provider = new ViewModelProvider((ViewModelStoreOwner) theActivity);
         mUserModel = provider.get(UserInfoViewModel.class);
@@ -53,7 +54,7 @@ public class ConnectionAddRecyclerViewAdapter extends
     public ConnectionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ConnectionViewHolder(LayoutInflater
                 .from(parent.getContext())
-                .inflate(R.layout.fragment_search_card, parent, false));
+                .inflate(R.layout.fragment_sent_cards, parent, false));
     }
     @Override
     public void onBindViewHolder(@NonNull ConnectionViewHolder holder, int position) {
@@ -67,7 +68,7 @@ public class ConnectionAddRecyclerViewAdapter extends
 
         public final View mView;
 
-        private FragmentSearchCardBinding binding;
+        private FragmentSentCardsBinding binding;
 
         /**
          * Inner connect view holder constructor.
@@ -77,7 +78,7 @@ public class ConnectionAddRecyclerViewAdapter extends
             super(view);
 
             mView = view;
-            binding = FragmentSearchCardBinding.bind(view);
+            binding = FragmentSentCardsBinding.bind(view);
 
         }
 
@@ -85,16 +86,17 @@ public class ConnectionAddRecyclerViewAdapter extends
          * Updates each connection post.
          * @param user each individual connection post.
          */
-        void setConnection(final Add user, final String jwt) {
-            binding.textName.setText(user.getUsername());
-
-            binding.buttonAdd.setOnClickListener(button -> getUsername(user, jwt));
+        void setConnection(final Sent user, final String jwt) {
+//            binding.textName.setText(user.getUsername());
+//
+//            binding.buttonAdd.setOnClickListener(button -> getUsername(user, jwt));
             //Use methods in the HTML class to format the HTML found in the text
 
         }
     }
 
     private void getUsername(final Add user, final String jwt) {
-        mAddModel.connectAdd(user.getUsername(), jwt);
+//        mSentModel.connectAdd(user.getUsername(), jwt);
     }
 }
+

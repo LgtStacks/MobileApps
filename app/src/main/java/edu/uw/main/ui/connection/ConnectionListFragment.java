@@ -63,6 +63,8 @@ public class ConnectionListFragment extends Fragment {
             }
         });
         binding.buttonAddContacts.setOnClickListener(button -> navigateToConnectionAdd());
+        binding.buttonPending.setOnClickListener(button -> navigateToConnectionPending());
+        binding.buttonSentRequests.setOnClickListener(button -> navigateToSentRequest());
     }
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -91,4 +93,11 @@ public class ConnectionListFragment extends Fragment {
         Navigation.findNavController(getView()).navigate(ConnectionListFragmentDirections.actionNavigationConnectionToConnectionAdd());
     }
 
+    private void navigateToConnectionPending() {
+        Navigation.findNavController(getView()).navigate(ConnectionListFragmentDirections.actionNavigationConnectionToConnectionPending());
+    }
+
+    private void navigateToSentRequest() {
+        Navigation.findNavController(getView()).navigate(ConnectionListFragmentDirections.actionNavigationConnectionToConnectionSentRequest());
+    }
 }

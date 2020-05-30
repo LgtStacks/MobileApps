@@ -25,30 +25,28 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
-import androidx.lifecycle.ViewModelProvider;
 import edu.uw.main.io.RequestQueueSingleton;
 
-public class ConnectionAddViewModel extends AndroidViewModel {
-
+public class ConnectionPendingViewModel extends AndroidViewModel {
     private MutableLiveData<JSONObject> mResponse;
 
-    private MutableLiveData<List<Add>> mAddList;
+    private MutableLiveData<List<Pending>> mPendingList;
 
-    private MutableLiveData<List<Add>> mUpdateList;
+    private MutableLiveData<List<Pending>> mUpdateList;
 
-    private ConnectionAddViewModel mAddModel;
+    private ConnectionPendingViewModel mPendingModel;
 
     /**
      * Chile Connection list view model.
      *
      * @param application the application.
      */
-    public ConnectionAddViewModel(@NonNull Application application) {
+    public ConnectionPendingViewModel(@NonNull Application application) {
         super(application);
         mResponse = new MutableLiveData<>();
         mResponse.setValue(new JSONObject());
-        mAddList = new MutableLiveData<>();
-        mAddList.setValue(new ArrayList<>());
+        mPendingList = new MutableLiveData<>();
+        mPendingList.setValue(new ArrayList<>());
     }
     /**
      * This method will add a response observer for interacting with the server.
@@ -67,9 +65,9 @@ public class ConnectionAddViewModel extends AndroidViewModel {
      * @param owner    the owner
      * @param observer the observer.
      */
-    public void addConnectionAddObserver(@NonNull LifecycleOwner owner,
-                                          @NonNull Observer<? super List<Add>> observer) {
-        mAddList.observe(owner, observer);
+    public void addPendingObserver(@NonNull LifecycleOwner owner,
+                                         @NonNull Observer<? super List<Pending>> observer) {
+        mPendingList.observe(owner, observer);
     }
 
     /**
@@ -87,7 +85,7 @@ public class ConnectionAddViewModel extends AndroidViewModel {
      *
      * @param email - email the user is searching for.
      */
-    public void connectSearch(final String email, final String jwt) {
+    public void connectGetPending(final String email, final String jwt) {
 
         String url = "https://app-backend-server.herokuapp.com/connections/" + email;
         Request request = new JsonObjectRequest(
@@ -112,6 +110,7 @@ public class ConnectionAddViewModel extends AndroidViewModel {
         RequestQueueSingleton.getInstance(getApplication().getApplicationContext())
                 .addToRequestQueue(request);
     }
+
     /**
      * Sends email and password to our webservice. Authenticates the credentials.
      *
@@ -155,11 +154,11 @@ public class ConnectionAddViewModel extends AndroidViewModel {
             JSONArray jsTemp = response.getJSONArray("email");
             int size = jsTemp.length();
             for (int i = 0; i < size; i++) {
-                mUpdateList.getValue().add(new Add.Builder(jsTemp.getJSONObject(i).get("username").toString()).build());
+                mUpdateList.getValue().add(new Pending.Builder(jsTemp.getJSONObject(i).get("username").toString()).build());
             }
         } catch (JSONException ex) {
             ex.printStackTrace();
         }
-        mAddList.setValue(mUpdateList.getValue());
+        mPendingList.setValue(mUpdateList.getValue());
     }
 }
