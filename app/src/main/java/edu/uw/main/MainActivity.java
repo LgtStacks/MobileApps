@@ -1,12 +1,17 @@
 package edu.uw.main;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Context;
 import android.content.Intent;
@@ -21,7 +26,11 @@ import android.view.MenuItem;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import androidx.core.app.ActivityCompat;
+import androidx.viewpager.widget.ViewPager;
+import androidx.databinding.DataBindingUtil;
+
 import android.Manifest;
+import android.view.View;
 
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -34,7 +43,10 @@ import edu.uw.main.ui.chat.ChatMessage;
 import edu.uw.main.ui.chat.ChatViewModel;
 import edu.uw.main.ui.settings.SettingsActivity;
 
+import edu.uw.main.ui.weather.LocationFragment;
+import edu.uw.main.ui.weather.WeatherFragment;
 import edu.uw.main.ui.weather.WeatherViewModel;
+import edu.uw.main.ui.weather.ZipCodeFragment;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -42,6 +54,9 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -94,8 +109,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(AuthActivity.theTheme);
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_main);
+        setUpWithViewPager(binding.viewPager);
+
+        binding.tabLayout.setupWithViewPager(binding.viewPager);
+        binding.tabLayout.setVisibility(View.GONE);
+
+
+
+
+//
+//        binding = ActivityMainBinding.inflate(getLayoutInflater());
+//        setContentView(binding.getRoot());
         AuthActivity.showChangePW = true;
         MainActivityArgs args = MainActivityArgs.fromBundle(getIntent().getExtras());
         String email = args.getEmail();
@@ -113,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home,  R.id.navigation_connection, R.id.navigation_chat,
-                R.id.WeatherActivity)
+                R.id.weatherMain)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
@@ -180,6 +206,48 @@ public class MainActivity extends AppCompatActivity {
         };
         createLocationRequest();
     }
+
+    private void setUpWithViewPager(ViewPager viewPager) {
+        MainActivity.SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new WeatherFragment(), "Current");
+        adapter.addFragment(new LocationFragment(), "Location");
+        adapter.addFragment(new ZipCodeFragment(), "Zip");
+        viewPager.setAdapter(adapter);
+    }
+
+    private static class SectionsPagerAdapter extends FragmentPagerAdapter {
+
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
+
+        public SectionsPagerAdapter(FragmentManager manager) {
+            super(manager);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
+    }
+
+
+
+
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -363,6 +431,4 @@ public class MainActivity extends AppCompatActivity {
         finishAndRemoveTask();
     }
 }
-
-
 
