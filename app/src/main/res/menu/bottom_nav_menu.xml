@@ -16,7 +16,7 @@
         android:title="@string/title_chat" />
 
     <item
-        android:id="@+id/WeatherActivity"
+        android:id="@+id/weatherMain"
         android:icon="@drawable/ic_weather_black_24dp"
         android:title="@string/title_weather" />
 
