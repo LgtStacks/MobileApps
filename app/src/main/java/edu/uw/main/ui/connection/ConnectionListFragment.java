@@ -59,7 +59,7 @@ public class ConnectionListFragment extends Fragment {
                 binding.listRoot.setAdapter(
                         new ConnectionRecyclerViewAdapter(connectionList)
                 );
-              //binding.layoutWait.setVisibility(View.GONE);
+                //binding.layoutWait.setVisibility(View.GONE);
             }
         });
         binding.buttonAddContacts.setOnClickListener(button -> navigateToConnectionAdd());
@@ -67,6 +67,11 @@ public class ConnectionListFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        View view = getActivity().findViewById(R.id.tab_layout);
+        view.setVisibility(View.GONE);
+        View view2 = getActivity().findViewById(R.id.frameLayout5);
+        view2.setVisibility(View.GONE);
 
         ViewModelProvider provider = new ViewModelProvider(getActivity());
         mUserModel = provider.get(UserInfoViewModel.class);
