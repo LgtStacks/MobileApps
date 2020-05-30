@@ -40,6 +40,10 @@ public class ChatFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = getActivity().findViewById(R.id.tab_layout);
+        view.setVisibility(View.GONE);
+        View view2 = getActivity().findViewById(R.id.frameLayout5);
+        view2.setVisibility(View.GONE);
 
         ((MainActivity) getActivity())
                 .setActionBarTitle("Chat Rooms");
