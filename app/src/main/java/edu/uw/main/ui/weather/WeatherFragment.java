@@ -56,7 +56,6 @@ public class WeatherFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         mWeatherModel = new ViewModelProvider(getActivity())
                 .get(WeatherViewModel.class);
@@ -69,9 +68,9 @@ public class WeatherFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         /**
-        binding = FragmentWeatherBinding.inflate(inflater, container, false);
-        binding.layoutWait.setVisibility(View.INVISIBLE);
-        return binding.getRoot();
+         binding = FragmentWeatherBinding.inflate(inflater, container, false);
+         binding.layoutWait.setVisibility(View.INVISIBLE);
+         return binding.getRoot();
          */
         return inflater.inflate(R.layout.fragment_weather, container, false);
     }
@@ -85,8 +84,6 @@ public class WeatherFragment extends Fragment {
         ((MainActivity) getActivity())
                 .setActionBarTitle("Weather");
 
-        mWeatherModel.addResponseObserver(getViewLifecycleOwner(), response ->
-                binding.layoutWait.setVisibility(View.GONE));
 
         mWeatherModel.addWeatherListViewModel(getViewLifecycleOwner(), weatherList -> {
             if (!weatherList.isEmpty()) {
@@ -110,9 +107,9 @@ public class WeatherFragment extends Fragment {
                 this::observeWeatherResponse);
 
 
-       // FragmentWeatherBinding binding = FragmentWeatherBinding.bind(getView());
+        // FragmentWeatherBinding binding = FragmentWeatherBinding.bind(getView());
 
-     //   mWeatherModel = new ViewModelProvider(getActivity()).get(WeatherListViewModel.class);
+        //   mWeatherModel = new ViewModelProvider(getActivity()).get(WeatherListViewModel.class);
 
         mWeatherModel.addLocationObserver(getViewLifecycleOwner(),
                 location -> {
@@ -123,37 +120,33 @@ public class WeatherFragment extends Fragment {
                 });
 
 /**
-        mWeatherModel.addLocationObserver(getViewLifecycleOwner(),
-                location -> {
-                    if (location != null) {
-                        mWeatherModel.connectLatLonForecast(model.getmJwt(), location.getLatitude(), location.getLongitude());
-                    }
-                });
-<<<<<<< Updated upstream
-
-        binding.buttonZipCode.setOnClickListener(button ->
-                Navigation.findNavController(getView()).
-                        navigate(WeatherFragmentDirections.actionWeatherActivityToZipCodeFragment()));
-
-        binding.buttonLocation.setOnClickListener(button ->
-=======
-*/
+ mWeatherModel.addLocationObserver(getViewLifecycleOwner(),
+ location -> {
+ if (location != null) {
+ mWeatherModel.connectLatLonForecast(model.getmJwt(), location.getLatitude(), location.getLongitude());
+ }
+ });
+ <<<<<<< Updated upstream
+ binding.buttonZipCode.setOnClickListener(button ->
+ Navigation.findNavController(getView()).
+ navigate(WeatherFragmentDirections.actionWeatherActivityToZipCodeFragment()));
+ binding.buttonLocation.setOnClickListener(button ->
+ =======
+ */
         Log.e("DATA INPUT: ", mWeatherList.getValue().toString());
-        binding.buttonLocation.setOnClickListener(button ->
-                Navigation.findNavController(getView()).
-                        navigate(WeatherFragmentDirections.actionWeatherActivityToLocationFragment()));
+
 
     }
 
     private void observeWeatherResponse(final JSONObject response) {
         Log.e("Step", "1");
-       // mWeatherList.setValue(new ArrayList<>());
+        // mWeatherList.setValue(new ArrayList<>());
 
         if (response.length() > 0) {
             if (response.has("code")) {
                 try {
                     String error = "Error Authenticating: " +
-                                    response.getJSONObject("data").getString("message");
+                            response.getJSONObject("data").getString("message");
                     mWeatherList.getValue().add(new WeatherPost.Builder("Error", error).build());
 
                 } catch (JSONException e) {
@@ -166,8 +159,8 @@ public class WeatherFragment extends Fragment {
 
                 //  Log.e("ForecastData", "Forecast");
                 parseHourly(response);
-               // Log.e("HourlyData", "Hourly");
-              //  Log.e("TEST3", mWeatherList.getValue().toString());
+                // Log.e("HourlyData", "Hourly");
+                //  Log.e("TEST3", mWeatherList.getValue().toString());
 
             }
         } else {
@@ -235,7 +228,7 @@ public class WeatherFragment extends Fragment {
 
                 lowTemp = Float.parseFloat(jsTemp.getJSONObject(i).get("app_min_temp").toString());
 
-               descrip = jsTemp.getJSONObject(i).getJSONObject("weather").get("description").toString();
+                descrip = jsTemp.getJSONObject(i).getJSONObject("weather").get("description").toString();
 
                 String theString = date
                         + " High " + celsiusToFahrenheit(highTemp) + "°F "
@@ -247,7 +240,7 @@ public class WeatherFragment extends Fragment {
             mWeatherList.getValue().add(new WeatherPost.Builder("Forecast", whole).build());
             //Log.e("TEST2", mWeatherList.getValue().toString());
 
-           // binding.textWeatherForecast.setText(whole);
+            // binding.textWeatherForecast.setText(whole);
         } catch (JSONException e) {
             Log.e("JSON1 Parse Error", e.getMessage());
         }
@@ -285,7 +278,7 @@ public class WeatherFragment extends Fragment {
             }
             Log.e("Step", "4");
             mWeatherList.getValue().add(new WeatherPost.Builder("Current", part).build());
-           //Log.e("CURRENT DATA", mWeatherList.getValue().get(1).getTitle()) ;
+            //Log.e("CURRENT DATA", mWeatherList.getValue().get(1).getTitle()) ;
 
             //binding.textWeatherCurrent.setText(part);
 
@@ -305,7 +298,7 @@ public class WeatherFragment extends Fragment {
             }
             mWeatherList.getValue().add(new WeatherPost.Builder("Hourly", whole).build());
 
-         //   Log.e("TESTE", mWeatherList.getValue().toString());
+            //   Log.e("TESTE", mWeatherList.getValue().toString());
             //binding.textWeatherHourly.setText(whole);
         }
         catch (JSONException e) {
@@ -316,12 +309,12 @@ public class WeatherFragment extends Fragment {
         int temp = (int) ((c/5) * 9 + 32);
         return temp;
     }
-    @Override
-    public void onResume() {
-        if (MainActivity.changePassword) {
-            MainActivity.changePassword = false;
-            Navigation.findNavController(getView()).navigate(WeatherFragmentDirections.actionWeatherActivityToChange2());
-        }
-        super.onResume();
-    }
+//    @Override
+//    public void onResume() {
+//        if (MainActivity.changePassword) {
+//            MainActivity.changePassword = false;
+//            Navigation.findNavController(getView()).navigate(WeatherFragmentDirections.actionWeatherActivityToChange2());
+//        }
+//        super.onResume();
+//    }
 }
