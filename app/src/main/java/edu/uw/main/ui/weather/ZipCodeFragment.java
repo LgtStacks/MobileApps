@@ -154,12 +154,12 @@ public class ZipCodeFragment extends Fragment {
         return date;
     }
 
-    @Override
-    public void onResume() {
-        if (MainActivity.changePassword) {
-            MainActivity.changePassword = false;
-            Navigation.findNavController(getView()).navigate(WeatherFragmentDirections.actionWeatherActivityToChange2());
-        }
-        super.onResume();
-    }
+//    @Override
+//    public void onResume() {
+//        if (MainActivity.changePassword) {
+//            MainActivity.changePassword = false;
+//            Navigation.findNavController(getView()).navigate(WeatherFragmentDirections.actionWeatherActivityToChange2());
+//        }
+//        super.onResume();
+//    }
 }
