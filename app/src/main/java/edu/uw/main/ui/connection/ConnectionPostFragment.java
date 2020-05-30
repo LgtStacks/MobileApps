@@ -45,13 +45,7 @@ public class ConnectionPostFragment extends Fragment {
         ViewModelProvider provider = new ViewModelProvider(getActivity());
         mUserModel = provider.get(UserInfoViewModel.class);
     }
-/**
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
-    }
- */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

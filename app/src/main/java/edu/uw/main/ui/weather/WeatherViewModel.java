@@ -21,13 +21,17 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
 import edu.uw.main.io.RequestQueueSingleton;
 
-public class WeatherViewModel extends AndroidViewModel {
+public class WeatherListViewModel extends AndroidViewModel {
+
+   private MutableLiveData<List<WeatherPost>> mWeatherList;
 
     private MutableLiveData<JSONObject> mResponse;
     private MutableLiveData<Location> mLocation;
@@ -36,11 +40,23 @@ public class WeatherViewModel extends AndroidViewModel {
      * Standard constructor with parameters.
      * @param application new application for live data.
      */
-    public WeatherViewModel(@NonNull Application application) {
+    public WeatherListViewModel(@NonNull Application application) {
         super(application);
+        mWeatherList = new MutableLiveData<>();
+        mWeatherList.setValue(new ArrayList<>());
+
         mResponse = new MutableLiveData<>();
         mResponse.setValue(new JSONObject());
         mLocation = new MediatorLiveData<>();
+    }
+    /**
+     * This method will add a response observer for interacting with the server.
+     * @param owner Owner of the data.
+     * @param observer JSON Object to report the result.
+*/
+    public void addWeatherListViewModel(@NonNull LifecycleOwner owner,
+                                    @NonNull Observer<? super List<WeatherPost>> observer) {
+        mWeatherList.observe(owner, observer);
     }
 
     /**
@@ -67,7 +83,12 @@ public class WeatherViewModel extends AndroidViewModel {
             mLocation.setValue(location);
         }
     }
+    public void setMutableData(final MutableLiveData<List<WeatherPost>> mw){
+       // Log.e("DATA OUTPUT: ", mw.getValue());
+       // if(mWeatherList.getValue().hashCode() == mw.getValue().)
+        mWeatherList.setValue(mw.getValue());
 
+<<<<<<< Updated upstream:app/src/main/java/edu/uw/main/ui/weather/WeatherViewModel.java
     public void connectCurrent(String jwt, String zip) {
         String url =
                 "https://app-backend-server.herokuapp.com/weather/current/?q=" + zip + ", US";
@@ -145,6 +166,9 @@ public class WeatherViewModel extends AndroidViewModel {
 //        RequestQueueSingleton.getInstance(getApplication().getApplicationContext())
 //                .addToRequestQueue(request);
 //    }
+=======
+    }
+>>>>>>> Stashed changes:app/src/main/java/edu/uw/main/ui/weather/WeatherListViewModel.java
 
     public void connectLatLon(String jwt, double lat, double lon) {
         String url =

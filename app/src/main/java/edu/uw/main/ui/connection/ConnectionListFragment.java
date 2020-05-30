@@ -53,6 +53,7 @@ public class ConnectionListFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         FragmentConnectionListBinding binding = FragmentConnectionListBinding.bind(getView());
 
+
         mModel.addConnectionListObserver(getViewLifecycleOwner(), connectionList -> {
             if (!connectionList.isEmpty()) {
                 binding.listRoot.setAdapter(

@@ -38,7 +38,7 @@ import edu.uw.main.ui.chat.ChatViewModel;
 import edu.uw.main.ui.recovery.change;
 import edu.uw.main.ui.settings.SettingsActivity;
 
-import edu.uw.main.ui.weather.WeatherViewModel;
+import edu.uw.main.ui.weather.WeatherListViewModel;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
     private LocationCallback mLocationCallback;
 
     // The ViewModel that will store the current location
-    private WeatherViewModel mWeatherModel;
+    private WeatherListViewModel mWeatherModel;
 
 
 
@@ -176,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
 
                     Log.d("LOCATION UPDATE", location.toString());
                     if (mWeatherModel == null) {
-                        mWeatherModel = new ViewModelProvider(MainActivity.this).get(WeatherViewModel.class);
+                        mWeatherModel = new ViewModelProvider(MainActivity.this).get(WeatherListViewModel.class);
                     }
                     mWeatherModel.setLocation(location);
                 }
@@ -241,7 +241,7 @@ public class MainActivity extends AppCompatActivity {
                     if (location != null) {
                         Log.d("LOCATION", location.toString());
                         if (mWeatherModel == null) {
-                            mWeatherModel = new ViewModelProvider(MainActivity.this).get(WeatherViewModel.class);
+                            mWeatherModel = new ViewModelProvider(MainActivity.this).get(WeatherListViewModel.class);
                         }
                         mWeatherModel.setLocation(location);
                     }

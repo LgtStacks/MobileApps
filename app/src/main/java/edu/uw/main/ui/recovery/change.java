@@ -25,7 +25,7 @@ import edu.uw.main.R;
 import edu.uw.main.databinding.FragmentChangeBinding;
 import edu.uw.main.model.UserInfoViewModel;
 import edu.uw.main.ui.auth.Login.LoginViewModel;
-import edu.uw.main.ui.weather.WeatherViewModel;
+import edu.uw.main.ui.weather.WeatherListViewModel;
 
 import static edu.uw.main.PasswordValidator.checkExcludeWhiteSpace;
 import static edu.uw.main.PasswordValidator.checkPwdLength;

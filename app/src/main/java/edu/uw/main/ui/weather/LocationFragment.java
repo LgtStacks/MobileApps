@@ -38,7 +38,7 @@ import edu.uw.main.model.UserInfoViewModel;
 
 public class LocationFragment extends Fragment implements GoogleMap.OnMapClickListener, OnMapReadyCallback {
     private FragmentLocationBinding binding;
-    private WeatherViewModel mModel;
+    private WeatherListViewModel mModel;
     private GoogleMap mMap;
 
 
@@ -53,7 +53,7 @@ public class LocationFragment extends Fragment implements GoogleMap.OnMapClickLi
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mModel = new ViewModelProvider(getActivity())
-                .get(WeatherViewModel.class);
+                .get(WeatherListViewModel.class);
     }
 
 
@@ -93,7 +93,7 @@ public class LocationFragment extends Fragment implements GoogleMap.OnMapClickLi
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        WeatherViewModel model = new ViewModelProvider(getActivity()).get(WeatherViewModel.class);
+        WeatherListViewModel model = new ViewModelProvider(getActivity()).get(WeatherListViewModel.class);
         model.addLocationObserver(getViewLifecycleOwner(), location -> {
             if (location != null) {
                 googleMap.getUiSettings().setZoomControlsEnabled(true);
