@@ -84,7 +84,7 @@ public class ConnectionSentViewModel extends AndroidViewModel {
      *
      * @param email - email the user is searching for.
      */
-    public void connectGetSentRequests(final String email, final String jwt) {
+    public void connectGetSentRequests(final String jwt) {
 
         String url = "https://app-backend-server.herokuapp.com/contacts/";
         Request request = new JsonObjectRequest(
@@ -153,7 +153,7 @@ public class ConnectionSentViewModel extends AndroidViewModel {
             JSONArray jsTemp = response.getJSONArray("email");
             int size = jsTemp.length();
             for (int i = 0; i < size; i++) {
-                mUpdateList.getValue().add(new Sent.Builder(jsTemp.getJSONObject(i).get("username").toString()).build());
+                mUpdateList.getValue().add(new Sent.Builder(jsTemp.getJSONObject(i).get("email").toString()).build());
             }
         } catch (JSONException ex) {
             ex.printStackTrace();

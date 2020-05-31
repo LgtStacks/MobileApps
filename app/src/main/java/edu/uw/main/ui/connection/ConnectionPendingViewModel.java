@@ -83,11 +83,11 @@ public class ConnectionPendingViewModel extends AndroidViewModel {
     /**
      * Sends email and password to our webservice. Authenticates the credentials.
      *
-     * @param email - email the user is searching for.
+     * @param jwt - email the user is searching for.
      */
-    public void connectGetPendingRequests(final String email, final String jwt) {
+    public void connectGetPendingRequests(final String jwt) {
 
-        String url = "https://app-backend-server.herokuapp.com/connections/";
+        String url = "https://app-backend-server.herokuapp.com/contacts/";
         Request request = new JsonObjectRequest(
                 Request.Method.GET,
                 url,

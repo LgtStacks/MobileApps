@@ -61,7 +61,7 @@ public class ConnectionSentRequest extends Fragment {
                 //binding.layoutWait.setVisibility(View.GONE);
             }
         });
-
+         getSentRequests(model.getmJwt());
     }
 
     @Override
@@ -71,5 +71,9 @@ public class ConnectionSentRequest extends Fragment {
             Navigation.findNavController(getView()).navigate(ConnectionSentRequestDirections.actionConnectionSentRequestToChange());
         }
         super.onResume();
+    }
+
+    private void getSentRequests(final String jwt) {
+        mSentModel.connectGetSentRequests(jwt);
     }
 }

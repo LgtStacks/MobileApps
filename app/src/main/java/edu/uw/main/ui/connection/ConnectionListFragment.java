@@ -30,6 +30,8 @@ public class ConnectionListFragment extends Fragment {
 
     private UserInfoViewModel mUserModel;
 
+    private ConnectionSentViewModel mSentModel;
+
     /**
      * Default constructor.
      */
@@ -65,7 +67,9 @@ public class ConnectionListFragment extends Fragment {
         binding.buttonAddContacts.setOnClickListener(button -> navigateToConnectionAdd());
         binding.buttonPending.setOnClickListener(button -> navigateToConnectionPending());
         binding.buttonSentRequests.setOnClickListener(button -> navigateToSentRequest());
+
     }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

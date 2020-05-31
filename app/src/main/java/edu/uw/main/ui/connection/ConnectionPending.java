@@ -61,7 +61,7 @@ public class ConnectionPending extends Fragment {
                 //binding.layoutWait.setVisibility(View.GONE);
             }
         });
-
+        getPendingRequests(model.getmJwt());
     }
 
     @Override
@@ -71,5 +71,9 @@ public class ConnectionPending extends Fragment {
             Navigation.findNavController(getView()).navigate(ConnectionPendingDirections.actionConnectionPendingToChange());
         }
         super.onResume();
+    }
+
+    private void getPendingRequests(final String jwt) {
+        mPendingModel.connectGetPendingRequests(jwt);
     }
 }

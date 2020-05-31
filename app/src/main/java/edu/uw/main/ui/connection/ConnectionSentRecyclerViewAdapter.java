@@ -1,6 +1,7 @@
 package edu.uw.main.ui.connection;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,6 +57,7 @@ public class ConnectionSentRecyclerViewAdapter extends
                 .from(parent.getContext())
                 .inflate(R.layout.fragment_sent_cards, parent, false));
     }
+
     @Override
     public void onBindViewHolder(@NonNull ConnectionViewHolder holder, int position) {
         holder.setConnection(mConnection.get(position), mUserModel.getmJwt());
@@ -87,17 +89,10 @@ public class ConnectionSentRecyclerViewAdapter extends
          * @param user each individual connection post.
          */
         void setConnection(final Sent user, final String jwt) {
-//            binding.textName.setText(user.getUsername());
-//
-//            binding.buttonAdd.setOnClickListener(button -> getUsername(user, jwt));
-            //Use methods in the HTML class to format the HTML found in the text
-            getUsername(user, jwt);
+            binding.buttonName.setText(user.getUsername());
 
         }
     }
 
-    private void getUsername(final Sent user, final String jwt) {
-        mSentModel.connectGetSentRequests(user.getUsername(), jwt);
-    }
 }
 

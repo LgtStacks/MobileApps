@@ -87,15 +87,8 @@ public class ConnectionPendingRecyclerViewAdapter extends
          * @param user each individual connection post.
          */
         void setConnection(final Pending user, final String jwt) {
-//            binding.textName.setText(user.getUsername());
-//
-           getUsername(user, jwt);
-            //Use methods in the HTML class to format the HTML found in the text
+            binding.buttonName.setText(user.getUsername());
 
         }
-    }
-
-    private void getUsername(final Pending user, final String jwt) {
-        mPendingModel.connectGetPendingRequests(user.getUsername(), jwt);
     }
 }
