@@ -91,12 +91,13 @@ public class ConnectionSentRecyclerViewAdapter extends
 //
 //            binding.buttonAdd.setOnClickListener(button -> getUsername(user, jwt));
             //Use methods in the HTML class to format the HTML found in the text
+            getUsername(user, jwt);
 
         }
     }
 
-    private void getUsername(final Add user, final String jwt) {
-//        mSentModel.connectAdd(user.getUsername(), jwt);
+    private void getUsername(final Sent user, final String jwt) {
+        mSentModel.connectGetSentRequests(user.getUsername(), jwt);
     }
 }
 

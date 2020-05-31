@@ -89,13 +89,13 @@ public class ConnectionPendingRecyclerViewAdapter extends
         void setConnection(final Pending user, final String jwt) {
 //            binding.textName.setText(user.getUsername());
 //
-//            binding.buttonAdd.setOnClickListener(button -> getUsername(user, jwt));
+           getUsername(user, jwt);
             //Use methods in the HTML class to format the HTML found in the text
 
         }
     }
 
     private void getUsername(final Pending user, final String jwt) {
-//        mPendingModel.connectAdd(user.getUsername(), jwt);
+        mPendingModel.connectGetPendingRequests(user.getUsername(), jwt);
     }
 }

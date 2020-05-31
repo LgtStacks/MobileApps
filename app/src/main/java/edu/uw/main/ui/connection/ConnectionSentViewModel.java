@@ -86,9 +86,9 @@ public class ConnectionSentViewModel extends AndroidViewModel {
      */
     public void connectGetSentRequests(final String email, final String jwt) {
 
-        String url = "https://app-backend-server.herokuapp.com/connections/" + email;
+        String url = "https://app-backend-server.herokuapp.com/contacts/";
         Request request = new JsonObjectRequest(
-                Request.Method.GET,
+                Request.Method.POST,
                 url,
                 null, //no body for this get request
                 this::handleResult,
@@ -110,36 +110,36 @@ public class ConnectionSentViewModel extends AndroidViewModel {
                 .addToRequestQueue(request);
     }
 
-    /**
-     * Sends email and password to our webservice. Authenticates the credentials.
-     *
-     * @param email - email the user is searching for.
-     */
-    public void connectAdd(final String email, final String jwt) {
-
-        String url = "https://app-backend-server.herokuapp.com/connections/" + email;
-        Request request = new JsonObjectRequest(
-                Request.Method.PUT,
-                url,
-                null,
-                null,
-                this::handleError) {
-            @Override
-            public Map<String, String> getHeaders() {
-                Map<String, String> headers = new HashMap<>();
-                // add headers <key,value>
-                headers.put("Authorization", jwt);
-                return headers;
-            }
-        };
-        request.setRetryPolicy(new DefaultRetryPolicy(
-                10_000,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        //Instantiate the RequestQueue and add the request to the queue
-        RequestQueueSingleton.getInstance(getApplication().getApplicationContext())
-                .addToRequestQueue(request);
-    }
+//    /**
+//     * Sends email and password to our webservice. Authenticates the credentials.
+//     *
+//     * @param email - email the user is searching for.
+//     */
+//    public void connectGetRequest(final String email, final String jwt) {
+//
+//        String url = "https://app-backend-server.herokuapp.com/contacts/" + email;
+//        Request request = new JsonObjectRequest(
+//                Request.Method.GET,
+//                url,
+//                null,
+//                null,
+//                this::handleError) {
+//            @Override
+//            public Map<String, String> getHeaders() {
+//                Map<String, String> headers = new HashMap<>();
+//                // add headers <key,value>
+//                headers.put("Authorization", jwt);
+//                return headers;
+//            }
+//        };
+//        request.setRetryPolicy(new DefaultRetryPolicy(
+//                10_000,
+//                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+//                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+//        //Instantiate the RequestQueue and add the request to the queue
+//        RequestQueueSingleton.getInstance(getApplication().getApplicationContext())
+//                .addToRequestQueue(request);
+//    }
 
     /**
      * Handles the server response success code.
