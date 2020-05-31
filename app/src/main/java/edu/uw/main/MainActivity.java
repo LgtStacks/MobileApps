@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
     // The ViewModel that will store the current location
     private WeatherViewModel mWeatherModel;
 
-
+    private WeatherFragment weatherFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +115,8 @@ public class MainActivity extends AppCompatActivity {
 
         binding.tabLayout.setupWithViewPager(binding.viewPager);
         binding.tabLayout.setVisibility(View.GONE);
+
+
 
 
 
@@ -209,9 +211,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void setUpWithViewPager(ViewPager viewPager) {
         MainActivity.SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new WeatherFragment(), "Current");
-        adapter.addFragment(new LocationFragment(), "Location");
-        adapter.addFragment(new ZipCodeFragment(), "Zip");
+        adapter.addFragment(new WeatherFragment(), "Update");
+        adapter.addFragment(new LocationFragment(), "Map");
+        adapter.addFragment(new ZipCodeFragment(), "Zip Code");
         viewPager.setAdapter(adapter);
     }
 
@@ -431,4 +433,3 @@ public class MainActivity extends AppCompatActivity {
         finishAndRemoveTask();
     }
 }
-
