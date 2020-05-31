@@ -1,4 +1,3 @@
-
 package edu.uw.main.ui.weather;
 
 import android.os.Bundle;
@@ -29,6 +28,7 @@ import org.json.JSONObject;
 import java.util.Calendar;
 import java.util.Locale;
 
+import edu.uw.main.MainActivity;
 import edu.uw.main.R;
 
 import edu.uw.main.databinding.FragmentLocationBinding;
@@ -47,18 +47,16 @@ public class LocationFragment extends Fragment implements GoogleMap.OnMapClickLi
         // Required empty public constructor
     }
 
-    // ADDED
-
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mModel = new ViewModelProvider(getActivity())
                 .get(WeatherViewModel.class);
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_location, container, false);
     }
@@ -67,12 +65,13 @@ public class LocationFragment extends Fragment implements GoogleMap.OnMapClickLi
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // ADDED
+        ((MainActivity) getActivity())
+                .setActionBarTitle("Weather");
+
         mModel.addResponseObserver(
                 getViewLifecycleOwner(),
                 this::observeWeatherResponse);
 
-        // Removed
         FragmentLocationBinding binding = FragmentLocationBinding.bind(getView());
 
 //        mWeatherModel.addResponseObserver(
@@ -150,7 +149,7 @@ public class LocationFragment extends Fragment implements GoogleMap.OnMapClickLi
             for (int i =  0; i < 1; i++) {
                 JSONArray jsTemp = response.getJSONArray("data");
 
-               // date = jsTemp.getJSONObject(i).get("timestamp_local").toString();
+                // date = jsTemp.getJSONObject(i).get("timestamp_local").toString();
 
                 temp = Float.parseFloat(jsTemp.getJSONObject(i).get("temp").toString());
 
