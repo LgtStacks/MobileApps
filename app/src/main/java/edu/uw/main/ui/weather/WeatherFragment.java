@@ -67,17 +67,13 @@ public class WeatherFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        /**
-         binding = FragmentWeatherBinding.inflate(inflater, container, false);
-         binding.layoutWait.setVisibility(View.INVISIBLE);
-         return binding.getRoot();
-         */
+
         return inflater.inflate(R.layout.fragment_weather, container, false);
     }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
-
         super.onViewCreated(view, savedInstanceState);
+
         mWeatherList = new MutableLiveData<>();
         mWeatherList.setValue(new ArrayList<>());
         binding = FragmentWeatherBinding.bind(getView());
@@ -119,20 +115,6 @@ public class WeatherFragment extends Fragment {
                     }
                 });
 
-/**
- mWeatherModel.addLocationObserver(getViewLifecycleOwner(),
- location -> {
- if (location != null) {
- mWeatherModel.connectLatLonForecast(model.getmJwt(), location.getLatitude(), location.getLongitude());
- }
- });
- <<<<<<< Updated upstream
- binding.buttonZipCode.setOnClickListener(button ->
- Navigation.findNavController(getView()).
- navigate(WeatherFragmentDirections.actionWeatherActivityToZipCodeFragment()));
- binding.buttonLocation.setOnClickListener(button ->
- =======
- */
         Log.e("DATA INPUT: ", mWeatherList.getValue().toString());
 
 
