@@ -123,7 +123,7 @@ public class ConnectionPendingViewModel extends AndroidViewModel {
             JSONArray jsTemp = response.getJSONArray("email");
             int size = jsTemp.length();
             for (int i = 0; i < size; i++) {
-                mUpdateList.getValue().add(new Pending.Builder(jsTemp.getJSONObject(i).get("username").toString()).build());
+                mUpdateList.getValue().add(new Pending.Builder(jsTemp.getJSONObject(i).get("email").toString()).build());
             }
         } catch (JSONException ex) {
             ex.printStackTrace();
