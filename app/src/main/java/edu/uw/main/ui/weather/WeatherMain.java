@@ -22,8 +22,7 @@ public class WeatherMain extends Fragment {
     public WeatherMain() {
         // Required empty public constructor
     }
-
-
+    
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -31,7 +30,17 @@ public class WeatherMain extends Fragment {
         View view = getActivity().findViewById(R.id.tab_layout);
         view.setVisibility(View.VISIBLE);
         View view2 = getActivity().findViewById(R.id.frameLayout5);
-        view2.setVisibility(View.VISIBLE);
+        View view3 = getActivity().findViewById(R.id.layout_root);
+        View view4 = getActivity().findViewById(R.id.zipCodeLayout);
+        if (view2 != null) {
+            view2.setVisibility(View.VISIBLE);
+        }
+        if (view3 != null) {
+            view3.setVisibility(View.VISIBLE);
+        }
+        if (view4 != null) {
+            view4.setVisibility(View.VISIBLE);
+        }
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_weather_main, container, false);
