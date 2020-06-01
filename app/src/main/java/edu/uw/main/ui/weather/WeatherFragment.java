@@ -2,10 +2,13 @@ package edu.uw.main.ui.weather;
 
 import android.os.Bundle;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import androidx.annotation.NonNull;
@@ -15,6 +18,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -212,11 +216,11 @@ public class WeatherFragment extends Fragment {
 
                 descrip = jsTemp.getJSONObject(i).getJSONObject("weather").get("description").toString();
 
-                String theString = date
+                String theString = getDateForecast(date)
                         + " High " + celsiusToFahrenheit(highTemp) + "°F "
                         + " Low " + celsiusToFahrenheit(lowTemp) + "°F "
                         + descrip + "\n";
-                whole += theString;
+                whole += theString + "\n";
             }
             Log.e("Step", "3.2");
             mWeatherList.getValue().add(new WeatherPost.Builder("Forecast", whole).build());
@@ -273,10 +277,10 @@ public class WeatherFragment extends Fragment {
 
                 descrip = jsTemp.getJSONObject(i).getJSONObject("weather").get("description").toString();
 
-                String theString = date + " - "
-                        + "Temp: " + temp + " - "
-                        + "Weather: " +  " " + descrip + "\n";
-                whole += theString ;
+                String theString = getDateHourly(date) + ": "
+                        + celsiusToFahrenheit(temp) + "°F "
+                        + descrip + "\n";
+                whole += theString + "\n";
             }
             mWeatherList.getValue().add(new WeatherPost.Builder("Hourly", whole).build());
 
@@ -291,6 +295,27 @@ public class WeatherFragment extends Fragment {
         int temp = (int) ((c/5) * 9 + 32);
         return temp;
     }
+
+    private String getDateHourly(String date) {
+        String newDate = date.substring(5,10);
+        String testTime = date.substring(11, 13);
+        String newTime = date.substring(11, 16);
+        String amPm = "";
+        if (Integer.valueOf(testTime) < 12) {
+            amPm = "am";
+        } else {
+            amPm = "pm";
+        }
+        String newDT = newDate + " " + newTime + amPm;
+        return newDT;
+    }
+
+    private String getDateForecast(String date) {
+        String newDate = date.substring(5,10);
+        String newDT = newDate + " ";
+        return newDT;
+    }
+
 //    @Override
 //    public void onResume() {
 //        if (MainActivity.changePassword) {
