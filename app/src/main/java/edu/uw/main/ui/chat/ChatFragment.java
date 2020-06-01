@@ -43,7 +43,17 @@ public class ChatFragment extends Fragment {
         View view = getActivity().findViewById(R.id.tab_layout);
         view.setVisibility(View.GONE);
         View view2 = getActivity().findViewById(R.id.frameLayout5);
-        view2.setVisibility(View.GONE);
+        View view3 = getActivity().findViewById(R.id.zipCodeLayout);
+        View view4 = getActivity().findViewById(R.id.layout_root);
+        if (view2 != null) {
+            view2.setVisibility(View.GONE);
+        }
+        if (view3 != null) {
+            view3.setVisibility(View.GONE);
+        }
+        if (view4 != null) {
+            view4.setVisibility(View.GONE);
+        }
 
         ((MainActivity) getActivity())
                 .setActionBarTitle("Chat Rooms");
