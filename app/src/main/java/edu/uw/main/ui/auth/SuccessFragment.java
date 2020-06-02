@@ -37,14 +37,24 @@ public class SuccessFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = getActivity().findViewById(R.id.tab_layout);
         view.setVisibility(View.GONE);
-
+        View view2 = getActivity().findViewById(R.id.frameLayout5);
+        View view3 = getActivity().findViewById(R.id.zipCodeLayout);
+        View view4 = getActivity().findViewById(R.id.layout_root);
+        if (view2 != null) {
+            view2.setVisibility(View.GONE);
+        }
+        if (view3 != null) {
+            view3.setVisibility(View.GONE);
+        }
+        if (view4 != null) {
+            view4.setVisibility(View.GONE);
+        }
         binding = FragmentSuccessBinding.inflate(inflater, container, false);
 
         // Inflate the layout for this fragment
@@ -60,7 +70,6 @@ public class SuccessFragment extends Fragment {
                 .get(UserInfoViewModel.class);
 
         //  SuccessFragmentArgs args = SuccessFragmentArgs.fromBundle(getArguments());
-
         binding.textMessage.setText("Hello " + model.getEmail());
 
     }
