@@ -1,6 +1,7 @@
 package edu.uw.main.ui.connection;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -95,6 +96,8 @@ public class ConnectionAddRecyclerViewAdapter extends
     }
 
     private void getUsername(final Add user, final String jwt) {
+        Log.e("Add Step", "1");
+
         mAddModel.connectAdd(user.getUsername(), jwt);
     }
 }

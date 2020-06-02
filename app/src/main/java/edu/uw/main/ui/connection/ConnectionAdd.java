@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import edu.uw.main.MainActivity;
+import edu.uw.main.R;
 import edu.uw.main.databinding.FragmentConnectionAddBinding;
 import edu.uw.main.model.UserInfoViewModel;
 
@@ -34,8 +36,10 @@ public class ConnectionAdd extends Fragment {
                              Bundle savedInstanceState) {
         ((MainActivity) getActivity())
                 .setActionBarTitle("Connection Add");
-        binding = FragmentConnectionAddBinding.inflate(inflater, container, false);
-        return binding.getRoot();
+
+      //  binding.textSearch.setFocusableInTouchMode(true);
+
+        return inflater.inflate(R.layout.fragment_connection_add, container, false);
     }
 
     @Override
@@ -44,6 +48,7 @@ public class ConnectionAdd extends Fragment {
         super.onCreate(savedInstanceState);
         mAddModel = new ViewModelProvider(getActivity())
                 .get(ConnectionAddViewModel.class);
+      //  binding.buttonSearch.setEnabled(true);
 
 
     }
@@ -51,7 +56,7 @@ public class ConnectionAdd extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        binding = FragmentConnectionAddBinding.bind(getView());
         UserInfoViewModel model = new ViewModelProvider(getActivity()).get(UserInfoViewModel.class);
 
         mAddModel.addConnectionAddObserver(getViewLifecycleOwner(), connectionList -> {
@@ -62,6 +67,8 @@ public class ConnectionAdd extends Fragment {
                 //binding.layoutWait.setVisibility(View.GONE);
             }
         });
+
+
         binding.buttonSearch.setOnClickListener(button -> processSearch(model.getmJwt()));
     }
 
@@ -75,6 +82,8 @@ public class ConnectionAdd extends Fragment {
     }
 
     private void processSearch(final String jwt) {
+        Log.e("Check Addition", binding.textSearch.getText().toString());
+
         mAddModel.connectSearch(binding.textSearch.getText().toString(), jwt);
     }
 }

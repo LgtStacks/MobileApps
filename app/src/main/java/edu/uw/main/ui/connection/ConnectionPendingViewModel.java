@@ -69,7 +69,16 @@ public class ConnectionPendingViewModel extends AndroidViewModel {
                                          @NonNull Observer<? super List<Pending>> observer) {
         mPendingList.observe(owner, observer);
     }
-
+    public void removePendingRequest(final String username){
+        int size = mPendingList.getValue().size();
+        for(int i = 0; i < size; i++){
+            String check = mPendingList.getValue().get(i).getUsername();
+            if(check.equals(username)){
+                mPendingList.getValue().remove(i);
+                i--;
+            }
+        }
+    }
     /**
      * Handles the error code when the server has trouble connecting.
      *
@@ -184,6 +193,7 @@ public class ConnectionPendingViewModel extends AndroidViewModel {
             JSONArray jsTemp = response.getJSONArray("email");
             int size = jsTemp.length();
             for (int i = 0; i < size; i++) {
+                //Could be bugged due to incorrect process.
                 mUpdateList.getValue().add(new Pending.Builder(jsTemp.getJSONObject(i).get("email").toString()).build());
             }
         } catch (JSONException ex) {

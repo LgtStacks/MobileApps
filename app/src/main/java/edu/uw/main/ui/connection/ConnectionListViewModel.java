@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.IntFunction;
 
 import edu.uw.main.R;
@@ -61,10 +62,19 @@ public class ConnectionListViewModel extends AndroidViewModel {
      * @param error the server response error.
      */
     private void handleError(final VolleyError error) {
-        Log.e("CONNECTION ERROR", error.getLocalizedMessage());
+        Log.e("CONNECTION ERROR", Objects.requireNonNull(error.getLocalizedMessage()));
         throw new IllegalStateException(error.getMessage());
     }
+    public void addFriend( final String username) {
 
+        mUpdateList = new MutableLiveData<>();
+        mUpdateList.setValue(mConnectionList.getValue());
+        mUpdateList.getValue().add(new ConnectionPost.Builder(username).build());
+
+        mConnectionList.setValue(mUpdateList.getValue());
+        // Log.e("MODIFIED ADD LIST: ", mAddList.getValue().get(mAddList.getValue().size() -1 ).getUsername());
+
+    }
     /**
      * Handles the server response success code.
      * @param result the server response.

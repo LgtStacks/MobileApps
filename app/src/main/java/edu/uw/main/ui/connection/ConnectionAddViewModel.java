@@ -72,12 +72,16 @@ public class ConnectionAddViewModel extends AndroidViewModel {
         mAddList.observe(owner, observer);
     }
 
+
+
     /**
      * Handles the error code when the server has trouble connecting.
      *
      * @param error the server response error.
      */
     private void handleError(final VolleyError error) {
+        Log.e("Add Step", "3.1");
+
         Log.e("CONNECTION ERROR", error.getLocalizedMessage());
         throw new IllegalStateException(error.getMessage());
     }
@@ -118,6 +122,7 @@ public class ConnectionAddViewModel extends AndroidViewModel {
      * @param email - email the user is searching for.
      */
     public void connectAdd(final String email, final String jwt) {
+        Log.e("Add Step", "2");
 
         String url = "https://app-backend-server.herokuapp.com/connections/" + email;
         Request request = new JsonObjectRequest(
@@ -134,6 +139,7 @@ public class ConnectionAddViewModel extends AndroidViewModel {
                 return headers;
             }
         };
+
         request.setRetryPolicy(new DefaultRetryPolicy(
                 10_000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
@@ -141,6 +147,8 @@ public class ConnectionAddViewModel extends AndroidViewModel {
         //Instantiate the RequestQueue and add the request to the queue
         RequestQueueSingleton.getInstance(getApplication().getApplicationContext())
                 .addToRequestQueue(request);
+        Log.e("Add Step", "3");
+
     }
 
     /**
@@ -149,8 +157,11 @@ public class ConnectionAddViewModel extends AndroidViewModel {
      * @param response the server response.
      */
     private void handleResult(final JSONObject response) {
+        Log.e("Add Step", "3.2");
+
         mUpdateList = new MutableLiveData<>();
         mUpdateList.setValue(new ArrayList<>());
+        Log.e("SERVER RESPONSE", response.toString());
         try {
             JSONArray jsTemp = response.getJSONArray("email");
             int size = jsTemp.length();
