@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ public class ConnectionPending extends Fragment {
     private FragmentConnectionPendingBinding binding;
 
     private ConnectionPendingViewModel mPendingModel;
+
 
     public ConnectionPending() {
         // Required empty public constructor
@@ -55,12 +57,15 @@ public class ConnectionPending extends Fragment {
 
         mPendingModel.addPendingObserver(getViewLifecycleOwner(), connectionList -> {
             if (!connectionList.isEmpty()) {
+
                 binding.listRoot.setAdapter(
                         new ConnectionPendingRecyclerViewAdapter(connectionList, mPendingModel, getActivity())
                 );
                 //binding.layoutWait.setVisibility(View.GONE);
             }
+
         });
+
         getPendingRequests(model.getmJwt());
     }
 
@@ -72,7 +77,11 @@ public class ConnectionPending extends Fragment {
         }
         super.onResume();
     }
-
+    public void updatePendingRequest(){
+        String size = binding.listRoot.getAdapter().toString();
+        Log.e("PENDING REQUEST LIST COUNT: ", size);
+      //  binding.listRoot.getAdapter().notifyItemRemoved();
+    }
     private void getPendingRequests(final String jwt) {
         mPendingModel.connectGetPendingRequests(jwt);
     }

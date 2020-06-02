@@ -91,10 +91,16 @@ public class ConnectionPendingRecyclerViewAdapter extends
             binding.buttonAdd.setOnClickListener(button -> accept(user.getUsername(), jwt));
             binding.buttonDecline.setOnClickListener(button -> decline(user.getUsername(), jwt));
         }
+        void disableButtons(){
+            binding.buttonAdd.setEnabled(false);
+            binding.buttonDecline.setEnabled(false);
+        }
     }
 
     private void accept(final String email, final String jwt) {
         mPendingModel.connectAccept(email, jwt);
+
+
     }
 
     private void decline(final String email, final String jwt) {

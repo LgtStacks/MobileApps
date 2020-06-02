@@ -65,6 +65,7 @@ public class PushReceiver extends BroadcastReceiver {
         Pending request = null;
         Add accept = null;
         String decline = null;
+        String remove = null;
 
         //Moderate between different Push Receiver Channels.
         if(typeOfMessage.equals("msg")){
@@ -94,6 +95,8 @@ public class PushReceiver extends BroadcastReceiver {
             }
         }else if(typeOfMessage.equals("decline")){
             decline = intent.getStringExtra("message");
+        }else if(typeOfMessage.equals("remove")){
+            remove = intent.getStringExtra("message");
         }
 
 
@@ -108,8 +111,59 @@ public class PushReceiver extends BroadcastReceiver {
             handleAccept(context, intent, accept);
         } else if(typeOfMessage.equals("decline")) {
             handleDecline(context, intent, decline);
+        }else if(typeOfMessage.equals("remove")) {
+            handleRemove(context, intent, remove);
         }
 
+
+    }
+    private void handleRemove(Context context, Intent intent, String remove){
+        ActivityManager.RunningAppProcessInfo appProcessInfo = new ActivityManager.RunningAppProcessInfo();
+        ActivityManager.getMyMemoryState(appProcessInfo);
+        Log.e("REQUEST DATA", remove);
+
+        if (appProcessInfo.importance == IMPORTANCE_FOREGROUND || appProcessInfo.importance == IMPORTANCE_VISIBLE) {
+            //app is in the foreground so send the message to the active Activities
+            Log.d("PUSHY", "The following has declined your request: " + remove);
+
+            //create an Intent to broadcast a message to other parts of the app.
+            Intent i = new Intent(RECEIVED_NEW_REMOVE);
+            i.putExtra("remove", remove);
+
+            i.putExtras(intent.getExtras());
+            Log.e("INTENT SENT FROM PUSHY: ", "TRUE");
+            context.sendBroadcast(i);
+
+        } else {
+            //app is in the background so create and post a notification
+            Log.d("PUSHY", "The user has declined your request: " + remove);
+
+            Intent i = new Intent(context, AuthActivity.class);
+            i.putExtras(intent.getExtras());
+
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0,
+                    i, PendingIntent.FLAG_UPDATE_CURRENT);
+
+            //research more on notifications the how to display them
+            //https://developer.android.com/guide/topics/ui/notifiers/notifications
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
+                    .setAutoCancel(true)
+                    .setSmallIcon(R.drawable.ic_chat_notification)
+                    .setContentTitle(remove + "Has removed you from the friends list")
+                    .setContentText(remove + "Has been removed from the friends list")
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                    .setContentIntent(pendingIntent);
+
+            // Automatically configure a ChatMessageNotification Channel for devices running Android O+
+            Pushy.setNotificationChannel(builder, context);
+
+            // Get an instance of the NotificationManager service
+            NotificationManager notificationManager =
+                    (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
+
+            // Build the notification and display it
+            notificationManager.notify(1, builder.build());
+        }
 
     }
     private void handleDecline(Context context, Intent intent, String decline){

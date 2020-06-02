@@ -62,7 +62,7 @@ public class ConnectionListViewModel extends AndroidViewModel {
      */
     private void handleError(final VolleyError error) {
       //  Log.e("CONNECTION ERROR", Objects.requireNonNull(error.getLocalizedMessage()));
-        throw new IllegalStateException(error.getMessage());
+      //  throw new IllegalStateException(error.getMessage());
     }
     public void addFriend( final String username) {
 
@@ -73,6 +73,20 @@ public class ConnectionListViewModel extends AndroidViewModel {
         mConnectionList.setValue(mUpdateList.getValue());
         // Log.e("MODIFIED ADD LIST: ", mAddList.getValue().get(mAddList.getValue().size() -1 ).getUsername());
 
+    }
+    public void removeFriend(final String username){
+        int size = mConnectionList.getValue().size();
+        mUpdateList = new MutableLiveData<>();
+        mUpdateList.setValue(mConnectionList.getValue());
+        Log.e("PENDING LIST SIZE: ", String.valueOf(size));
+        Log.e("PENDING LIST FIRST CONTENT: ", mConnectionList.getValue().get(0).getConnection());
+        for(int i = 0; i < size; i++){
+            String check = mUpdateList.getValue().get(i).getConnection();
+            if(check.equals(username)){
+                mUpdateList.getValue().remove(i);
+            }
+        }
+        mConnectionList.setValue(mUpdateList.getValue());
     }
     /**
      * Handles the server response success code.

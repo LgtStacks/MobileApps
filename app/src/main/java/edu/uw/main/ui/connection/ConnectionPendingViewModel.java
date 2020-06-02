@@ -92,6 +92,7 @@ public class ConnectionPendingViewModel extends AndroidViewModel {
             }
         }
         mPendingList.setValue(mUpdateList.getValue());
+
     }
     /**
      * Handles the error code when the server has trouble connecting.
