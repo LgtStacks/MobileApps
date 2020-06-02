@@ -42,20 +42,19 @@
         android:id="@+id/button_create"
         android:layout_width="235dp"
         android:layout_height="41dp"
+        android:layout_marginBottom="21dp"
         android:layout_marginTop="20dp"
         android:text="@string/button_create_chatroom"
-        app:layout_constraintBottom_toTopOf="@+id/list_root"
+        app:layout_constraintBottom_toTopOf="@+id/text_group_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_title"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintTop_toBottomOf="@+id/text_title" />
 
     <EditText
         android:id="@+id/text_group_name"
         android:layout_width="235dp"
         android:layout_height="41dp"
-        android:layout_marginBottom="7dp"
         android:ems="10"
         android:hint="@string/create_hint"
         android:inputType="textPersonName"
@@ -63,6 +62,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_create"
-        app:layout_constraintVertical_bias="0.855" />
+        app:layout_constraintVertical_bias="0.465" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
