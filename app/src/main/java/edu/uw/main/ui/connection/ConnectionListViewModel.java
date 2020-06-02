@@ -80,13 +80,22 @@ public class ConnectionListViewModel extends AndroidViewModel {
         mUpdateList.setValue(mConnectionList.getValue());
         Log.e("PENDING LIST SIZE: ", String.valueOf(size));
         Log.e("PENDING LIST FIRST CONTENT: ", mConnectionList.getValue().get(0).getConnection());
+        boolean checkEmpty = false;
         for(int i = 0; i < size; i++){
             String check = mUpdateList.getValue().get(i).getConnection();
             if(check.equals(username)){
                 mUpdateList.getValue().remove(i);
+
+                break;
             }
         }
-        mConnectionList.setValue(mUpdateList.getValue());
+        size = mUpdateList.getValue().size();
+        if(size == 0){
+            mConnectionList = new MutableLiveData<>();
+            mConnectionList.setValue(new ArrayList<>());
+        } else {
+            mConnectionList.setValue(mUpdateList.getValue());
+        }
     }
     /**
      * Handles the server response success code.

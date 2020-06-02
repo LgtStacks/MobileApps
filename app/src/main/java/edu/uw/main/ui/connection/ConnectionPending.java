@@ -78,9 +78,7 @@ public class ConnectionPending extends Fragment {
         super.onResume();
     }
     public void updatePendingRequest(){
-        String size = binding.listRoot.getAdapter().toString();
-        Log.e("PENDING REQUEST LIST COUNT: ", size);
-      //  binding.listRoot.getAdapter().notifyItemRemoved();
+     //  binding
     }
     private void getPendingRequests(final String jwt) {
         mPendingModel.connectGetPendingRequests(jwt);

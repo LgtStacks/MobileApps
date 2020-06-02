@@ -1,14 +1,19 @@
 package edu.uw.main.ui.connection;
 
 import android.app.Activity;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.RecyclerView;
+
+
+import com.google.android.material.card.MaterialCardView;
 
 import java.util.List;
 
@@ -29,6 +34,8 @@ public class ConnectionPendingRecyclerViewAdapter extends
     private ConnectionPendingViewModel mPendingModel;
 
     private UserInfoViewModel mUserModel;
+
+
 
     private Activity act;
 
@@ -75,7 +82,6 @@ public class ConnectionPendingRecyclerViewAdapter extends
          */
         public ConnectionViewHolder(View view) {
             super(view);
-
             mView = view;
             //How I add listeners to the card layout view stuff
             binding = FragmentPendingCardBinding.bind(view);
@@ -89,17 +95,19 @@ public class ConnectionPendingRecyclerViewAdapter extends
         void setConnection(final Pending user, final String jwt) {
             binding.buttonName.setText(user.getUsername());
             binding.buttonAdd.setOnClickListener(button -> accept(user.getUsername(), jwt));
+          // binding.buttonAdd.setOnClickListener(button -> binding.notifyAll());
+
             binding.buttonDecline.setOnClickListener(button -> decline(user.getUsername(), jwt));
+           // binding.buttonDecline.setOnClickListener(button -> binding.notifyAll());
+
+
+
         }
-        void disableButtons(){
-            binding.buttonAdd.setEnabled(false);
-            binding.buttonDecline.setEnabled(false);
-        }
+
     }
 
     private void accept(final String email, final String jwt) {
         mPendingModel.connectAccept(email, jwt);
-
 
     }
 

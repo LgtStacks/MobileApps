@@ -85,13 +85,24 @@ public class ConnectionPendingViewModel extends AndroidViewModel {
         mUpdateList.setValue(mPendingList.getValue());
         Log.e("PENDING LIST SIZE: ", String.valueOf(size));
         Log.e("PENDING LIST FIRST CONTENT: ", mPendingList.getValue().get(0).getUsername());
+        boolean checkEmpty = false;
         for(int i = 0; i < size; i++){
             String check = mUpdateList.getValue().get(i).getUsername();
             if(check.equals(username)){
                 mUpdateList.getValue().remove(i);
+
+                break;
             }
         }
-        mPendingList.setValue(mUpdateList.getValue());
+        size = mUpdateList.getValue().size();
+        if(size == 0){
+            Log.e("PATH CHECK: ", "TRUE EMPTY");
+            mPendingList = new MutableLiveData<>();
+            mPendingList.setValue(new ArrayList<>());
+        } else{
+            mPendingList.setValue(mUpdateList.getValue());
+        }
+        Log.e("PENDING LIST OUTPUT: ", mPendingList.getValue().toString());
 
     }
     /**
@@ -100,8 +111,8 @@ public class ConnectionPendingViewModel extends AndroidViewModel {
      * @param error the server response error.
      */
     private void handleError(final VolleyError error) {
-        Log.e("CONNECTION ERROR", error.getLocalizedMessage());
-        throw new IllegalStateException(error.getMessage());
+       // Log.e("CONNECTION ERROR", error.getLocalizedMessage());
+     //   throw new IllegalStateException(error.getMessage());
     }
 
     /**

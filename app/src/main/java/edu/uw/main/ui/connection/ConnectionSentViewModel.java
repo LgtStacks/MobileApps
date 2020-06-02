@@ -153,15 +153,23 @@ public class ConnectionSentViewModel extends AndroidViewModel {
     int size = mSentList.getValue().size();
     mUpdateList = new MutableLiveData<>();
     mUpdateList.setValue(mSentList.getValue());
-    Log.e("PENDING LIST SIZE: ", String.valueOf(size));
-    Log.e("PENDING LIST FIRST CONTENT: ", mSentList.getValue().get(0).getUsername());
-    for(int i = 0; i < size; i++){
-        String check = mUpdateList.getValue().get(i).getUsername();
-        if(check.equals(username)){
-            mUpdateList.getValue().remove(i);
+
+        for(int i = 0; i < size; i++){
+            String check = mUpdateList.getValue().get(i).getUsername();
+            if(check.equals(username)){
+                mUpdateList.getValue().remove(i);
+
+                break;
+            }
         }
-    }
-        mSentList.setValue(mUpdateList.getValue());
+        size = mUpdateList.getValue().size();
+        if(size == 0){
+            Log.e("PATH CHECK: ", "TRUE EMPTY");
+            mSentList = new MutableLiveData<>();
+            mSentList.setValue(new ArrayList<>());
+        } else{
+            mSentList.setValue(mUpdateList.getValue());
+        }
 }
     /**
      * Handles the server response success code.

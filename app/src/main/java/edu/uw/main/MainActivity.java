@@ -41,7 +41,11 @@ import edu.uw.main.model.UserInfoViewModel;
 import edu.uw.main.services.PushReceiver;
 import edu.uw.main.ui.chat.ChatMessage;
 import edu.uw.main.ui.chat.ChatViewModel;
-import edu.uw.main.ui.chat.Contacts;
+import edu.uw.main.ui.connection.ConnectionAddViewModel;
+import edu.uw.main.ui.connection.ConnectionListViewModel;
+import edu.uw.main.ui.connection.ConnectionPending;
+import edu.uw.main.ui.connection.ConnectionPendingViewModel;
+import edu.uw.main.ui.connection.ConnectionSentViewModel;
 import edu.uw.main.ui.settings.SettingsActivity;
 
 import edu.uw.main.ui.weather.LocationFragment;
@@ -76,10 +80,6 @@ public class MainActivity extends AppCompatActivity {
 
     public static boolean changePassword = false;
 
-    public static List<Contacts> myContacts;
-
-    public static int id;
-
     private ActivityMainBinding binding;
 
     /**
@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
     // The ViewModel that will store the current location
     private WeatherViewModel mWeatherModel;
 
-
+    private WeatherFragment weatherFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,7 +122,9 @@ public class MainActivity extends AppCompatActivity {
         binding.tabLayout.setVisibility(View.GONE);
 
 
-        myContacts = new ArrayList<>();
+
+
+
 
 //
 //        binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -214,9 +216,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void setUpWithViewPager(ViewPager viewPager) {
         MainActivity.SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new WeatherFragment(), "Current");
-        adapter.addFragment(new LocationFragment(), "Location");
-        adapter.addFragment(new ZipCodeFragment(), "Zip");
+        adapter.addFragment(new WeatherFragment(), "Update");
+        adapter.addFragment(new LocationFragment(), "Map");
+        adapter.addFragment(new ZipCodeFragment(), "Zip Code");
         viewPager.setAdapter(adapter);
     }
 
@@ -250,10 +252,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-
-
-
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -273,7 +271,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
-
         switch(requestCode) {
             case MY_PERMISSIONS_LOCATIONS: {
                 // If request is cancelled, the result arrays are empty.
@@ -362,6 +359,15 @@ public class MainActivity extends AppCompatActivity {
         }
         IntentFilter iFilter = new IntentFilter(PushReceiver.RECEIVED_NEW_MESSAGE);
         registerReceiver(mPushMessageReceiver, iFilter);
+        IntentFilter acceptFilter = new IntentFilter(PushReceiver.RECEIVED_NEW_ACCEPTANCE);
+        registerReceiver(mPushMessageReceiver, acceptFilter);
+        IntentFilter pendingFilter = new IntentFilter(PushReceiver.RECEIVED_NEW_REQUEST);
+        registerReceiver(mPushMessageReceiver, pendingFilter);
+        IntentFilter declineFilter = new IntentFilter(PushReceiver.RECEIVED_NEW_DECLINE);
+        registerReceiver(mPushMessageReceiver, declineFilter);
+        IntentFilter removeFilter = new IntentFilter(PushReceiver.RECEIVED_NEW_REMOVE);
+        registerReceiver(mPushMessageReceiver, removeFilter);
+
         if(AuthActivity.changed) {
             AuthActivity.changed = false;
             finish();
@@ -376,6 +382,7 @@ public class MainActivity extends AppCompatActivity {
             unregisterReceiver(mPushMessageReceiver);
         }
     }
+
     /**
      * A BroadcastReceiver that listens for messages sent from PushReceiver
      */
@@ -383,12 +390,37 @@ public class MainActivity extends AppCompatActivity {
         private ChatViewModel mModel =
                 new ViewModelProvider(MainActivity.this)
                         .get(ChatViewModel.class);
+
+        private ConnectionListViewModel mFriendModel =
+                new ViewModelProvider(MainActivity.this)
+                        .get(ConnectionListViewModel.class);
+
+        private ConnectionPendingViewModel mPendingModel =
+                new ViewModelProvider(MainActivity.this)
+                .get(ConnectionPendingViewModel.class);
+
+        private ConnectionSentViewModel mSentModel =
+                new ViewModelProvider(MainActivity.this)
+                        .get(ConnectionSentViewModel.class);
+
+        private ConnectionPending update = new ConnectionPending();
+
         @Override
         public void onReceive(Context context, Intent intent) {
+            Log.e("BROADCAST SENT: ", "TRUE");
             NavController nc =
                     Navigation.findNavController(
                             MainActivity.this, R.id.nav_host_fragment);
             NavDestination nd = nc.getCurrentDestination();
+            String input = null;
+            String check = "INTENT FAILED";
+            if(intent.hasExtra("accept")){
+                Log.e("Intent Sent ", "TRUE");
+
+                check = intent.getStringExtra("accept");
+
+            }
+            Log.e("INENT INPUT MAIN ACT: ", check);
             if (intent.hasExtra("chatMessage")) {
                 ChatMessage cm = (ChatMessage) intent.getSerializableExtra("chatMessage");
                 //If the user is not on the chat screen, update the
@@ -399,6 +431,39 @@ public class MainActivity extends AppCompatActivity {
                 //Inform the view model holding chatroom messages of the new
                 //message.
                 mModel.addMessage(intent.getIntExtra("chatid", -1), cm);
+            }else if (intent.hasExtra("accept")){
+                input = intent.getStringExtra("accept");
+                Log.e("CHECK FOR ACCEPTANCE: ", input);
+
+                mFriendModel.addFriend(input);
+                mPendingModel.removePendingRequest(input);
+                mSentModel.removeSentItem(input);
+
+           //     update.updatePendingRequest();
+           //     binding.invalidateAll();
+
+
+            }else if (intent.hasExtra("decline")){
+                input = intent.getStringExtra("decline");
+                Log.e("CHECK FOR ACCEPTANCE: ", input);
+                mSentModel.removeSentItem(input);
+                mPendingModel.removePendingRequest(input);
+
+             //   update.updatePendingRequest();
+
+            }else if (intent.hasExtra("remove")){
+                input = intent.getStringExtra("remove");
+                Log.e("CHECK FOR REMOVE ACCEPTANCE: ", input);
+                mFriendModel.removeFriend(input);
+
+
+            }else if (intent.hasExtra("username")){
+                input = intent.getStringExtra("username");
+                Log.e("CHECK FOR ACCEPTANCE: ", input);
+                mSentModel.addSentItem(input);
+                mPendingModel.addPendingRequest(input);
+
+             //   mPendingModel.removePendingRequest(input);
             }
         }
     }
@@ -436,4 +501,3 @@ public class MainActivity extends AppCompatActivity {
         finishAndRemoveTask();
     }
 }
-
