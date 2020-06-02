@@ -88,16 +88,14 @@ public class ChatCreateRecyclerViewAdapter extends
          */
         void setConnection(final Contacts user, final String jwt) {
             binding.textContact.setText(user.getUsername());
-
-            binding.layoutInner.setOnClickListener(view -> checkTheBox(user, binding));
+            
+            binding.checkboxAdd.setOnClickListener(view -> checkTheBox(user, binding));
             //Use methods in the HTML class to format the HTML found in the text
 
         }
     }
 
     private void checkTheBox(final Contacts user, final FragmentChatCreateCardBinding binding) {
-        user.setChecked(!binding.checkboxAdd.isChecked());
-        binding.checkboxAdd.setChecked(!binding.checkboxAdd.isChecked());
         if (!binding.checkboxAdd.isChecked()) {
             for (int i = 0; i < MainActivity.myContacts.size(); i++) {
                 if (MainActivity.myContacts.get(i).getUsername().equals(user.getUsername())) {

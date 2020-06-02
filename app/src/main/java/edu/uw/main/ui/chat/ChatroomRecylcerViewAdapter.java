@@ -1,10 +1,13 @@
 package edu.uw.main.ui.chat;
 
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,14 +21,21 @@ public class ChatroomRecylcerViewAdapter extends
         RecyclerView.Adapter<ChatroomRecylcerViewAdapter.ChatroomViewHolder> {
 
     private final List<GroupPost> mChatRoom;
+
     private UserInfoViewModel mUserModel;
+
+    private ChatroomListViewModel mModel;
+
+    private String jwt;
 
     /**
      * The connection recycler view constructor.
      * @param items list of items posts.
      */
-    public ChatroomRecylcerViewAdapter(List<GroupPost> items) {
+    public ChatroomRecylcerViewAdapter(List<GroupPost> items, ChatroomListViewModel mModel, String jwt) {
         this.mChatRoom = items;
+        this.mModel = mModel;
+        this.jwt = jwt;
     }
 
     @Override
@@ -41,7 +51,7 @@ public class ChatroomRecylcerViewAdapter extends
     }
     @Override
     public void onBindViewHolder(@NonNull ChatroomViewHolder holder, int position) {
-        holder.setConnection(mChatRoom.get(position));
+        holder.setConnection(mChatRoom.get(position), mModel, jwt);
     }
 
     /**
@@ -67,12 +77,32 @@ public class ChatroomRecylcerViewAdapter extends
          * Updates each connection post.
          * @param chat each individual connection post.
          */
-        void setConnection(final GroupPost chat) {
+        void setConnection(final GroupPost chat, final ChatroomListViewModel mModel, final String jwt) {
             binding.buttonChatroom.setOnClickListener(view -> Navigation.findNavController(mView).navigate(
                     ChatFragmentDirections
                             .actionNavigationChatToGroupFragment(chat))
             );
+            binding.buttonChatroom.setOnLongClickListener(view -> {
+                AlertDialog.Builder alert = new AlertDialog.Builder(view.getContext());
+                alert.setTitle("Delete ChatRoom");
+                alert.setMessage("Are you sure you want to delete this ChatRoom?");
+                alert.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mModel.chatDelete(chat.getId(), jwt);
+                        dialog.dismiss();
 
+                    }
+                });
+                alert.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                alert.show();
+                return true;
+            });
             binding.buttonChatroom.setText(chat.getChat());
             //Use methods in the HTML class to format the HTML found in the text
 

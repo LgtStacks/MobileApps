@@ -27,6 +27,7 @@ public class ChatFragment extends Fragment {
     private FragmentChatBinding binding;
 
     private ChatroomListViewModel mModel;
+
     private UserInfoViewModel mUserModel;
 
     /**
@@ -67,7 +68,7 @@ public class ChatFragment extends Fragment {
         mModel.addChatListObserver(getViewLifecycleOwner(), chatList -> {
             if (!chatList.isEmpty()) {
                 binding.listRoot.setAdapter(
-                        new ChatroomRecylcerViewAdapter(chatList)
+                        new ChatroomRecylcerViewAdapter(chatList, mModel, mUserModel.getmJwt())
                 );
                 //binding.layoutWait.setVisibility(View.GONE);
             }

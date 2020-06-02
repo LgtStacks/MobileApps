@@ -117,6 +117,37 @@ public class ChatroomListViewModel extends AndroidViewModel {
                 .add(request);
     }
 
-
+    /**
+     * Sends a connection request to the web server.
+     * @param jwt The Generated Java Web Token.
+     */
+    public void chatDelete(final int id, final String jwt) {
+        JSONObject body = new JSONObject();
+        Log.e("BODY CHECK", body.toString());
+        String url =
+                "https://app-backend-server.herokuapp.com/chatRoom/"+id;
+        Request request = new JsonObjectRequest(
+                Request.Method.DELETE,
+                url,
+                body,
+                null,
+                this::handleError) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headers = new HashMap<>();
+                // add headers <key,value>
+                headers.put("Authorization", jwt);
+                return headers;
+            }
+        };
+        Log.e("REQUEST CHECK: ", request.toString());
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                10_000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        //Instantiate the RequestQueue and add the request to the queue
+        Volley.newRequestQueue(getApplication().getApplicationContext())
+                .add(request);
+    }
 
 }
