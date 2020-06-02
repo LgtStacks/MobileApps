@@ -9,7 +9,6 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
-
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.VolleyError;
@@ -62,7 +61,7 @@ public class ConnectionListViewModel extends AndroidViewModel {
      * @param error the server response error.
      */
     private void handleError(final VolleyError error) {
-        Log.e("CONNECTION ERROR", Objects.requireNonNull(error.getLocalizedMessage()));
+      //  Log.e("CONNECTION ERROR", Objects.requireNonNull(error.getLocalizedMessage()));
         throw new IllegalStateException(error.getMessage());
     }
     public void addFriend( final String username) {

@@ -69,15 +69,29 @@ public class ConnectionPendingViewModel extends AndroidViewModel {
                                          @NonNull Observer<? super List<Pending>> observer) {
         mPendingList.observe(owner, observer);
     }
+    public void addPendingRequest( final String username) {
+
+        mUpdateList = new MutableLiveData<>();
+        mUpdateList.setValue(mPendingList.getValue());
+        mUpdateList.getValue().add(new Pending.Builder(username).build());
+
+        mPendingList.setValue(mUpdateList.getValue());
+        // Log.e("MODIFIED ADD LIST: ", mAddList.getValue().get(mAddList.getValue().size() -1 ).getUsername());
+
+    }
     public void removePendingRequest(final String username){
         int size = mPendingList.getValue().size();
+        mUpdateList = new MutableLiveData<>();
+        mUpdateList.setValue(mPendingList.getValue());
+        Log.e("PENDING LIST SIZE: ", String.valueOf(size));
+        Log.e("PENDING LIST FIRST CONTENT: ", mPendingList.getValue().get(0).getUsername());
         for(int i = 0; i < size; i++){
-            String check = mPendingList.getValue().get(i).getUsername();
+            String check = mUpdateList.getValue().get(i).getUsername();
             if(check.equals(username)){
-                mPendingList.getValue().remove(i);
-                i--;
+                mUpdateList.getValue().remove(i);
             }
         }
+        mPendingList.setValue(mUpdateList.getValue());
     }
     /**
      * Handles the error code when the server has trouble connecting.

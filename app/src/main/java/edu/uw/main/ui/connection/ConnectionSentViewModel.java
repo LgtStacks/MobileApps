@@ -82,7 +82,6 @@ public class ConnectionSentViewModel extends AndroidViewModel {
     /**
      * Sends email and password to our webservice. Authenticates the credentials.
      *
-     * @param email - email the user is searching for.
      */
     public void connectGetSentRequests(final String jwt) {
 
@@ -140,7 +139,30 @@ public class ConnectionSentViewModel extends AndroidViewModel {
 //        RequestQueueSingleton.getInstance(getApplication().getApplicationContext())
 //                .addToRequestQueue(request);
 //    }
+    public void addSentItem( final String username) {
 
+    mUpdateList = new MutableLiveData<>();
+    mUpdateList.setValue(mSentList.getValue());
+    mUpdateList.getValue().add(new Sent.Builder(username).build());
+
+    mSentList.setValue(mUpdateList.getValue());
+    // Log.e("MODIFIED ADD LIST: ", mAddList.getValue().get(mAddList.getValue().size() -1 ).getUsername());
+
+}
+    public void removeSentItem(final String username){
+    int size = mSentList.getValue().size();
+    mUpdateList = new MutableLiveData<>();
+    mUpdateList.setValue(mSentList.getValue());
+    Log.e("PENDING LIST SIZE: ", String.valueOf(size));
+    Log.e("PENDING LIST FIRST CONTENT: ", mSentList.getValue().get(0).getUsername());
+    for(int i = 0; i < size; i++){
+        String check = mUpdateList.getValue().get(i).getUsername();
+        if(check.equals(username)){
+            mUpdateList.getValue().remove(i);
+        }
+    }
+        mSentList.setValue(mUpdateList.getValue());
+}
     /**
      * Handles the server response success code.
      *

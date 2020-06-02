@@ -44,6 +44,7 @@ import edu.uw.main.ui.chat.ChatViewModel;
 import edu.uw.main.ui.connection.ConnectionAddViewModel;
 import edu.uw.main.ui.connection.ConnectionListViewModel;
 import edu.uw.main.ui.connection.ConnectionPendingViewModel;
+import edu.uw.main.ui.connection.ConnectionSentViewModel;
 import edu.uw.main.ui.settings.SettingsActivity;
 
 import edu.uw.main.ui.weather.LocationFragment;
@@ -361,6 +362,8 @@ public class MainActivity extends AppCompatActivity {
         registerReceiver(mPushMessageReceiver, acceptFilter);
         IntentFilter pendingFilter = new IntentFilter(PushReceiver.RECEIVED_NEW_REQUEST);
         registerReceiver(mPushMessageReceiver, pendingFilter);
+        IntentFilter declineFilter = new IntentFilter(PushReceiver.RECEIVED_NEW_DECLINE);
+        registerReceiver(mPushMessageReceiver, declineFilter);
 
         if(AuthActivity.changed) {
             AuthActivity.changed = false;
@@ -393,6 +396,11 @@ public class MainActivity extends AppCompatActivity {
         private ConnectionPendingViewModel mPendingModel =
                 new ViewModelProvider(MainActivity.this)
                 .get(ConnectionPendingViewModel.class);
+
+        private ConnectionSentViewModel mSentModel =
+                new ViewModelProvider(MainActivity.this)
+                        .get(ConnectionSentViewModel.class);
+
         @Override
         public void onReceive(Context context, Intent intent) {
             Log.e("BROADCAST SENT: ", "TRUE");
@@ -424,11 +432,18 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("CHECK FOR ACCEPTANCE: ", input);
 
                 mFriendModel.addFriend(input);
-                //   mPendingModel.removePendingRequest(input);
+                mPendingModel.removePendingRequest(input);
+                mSentModel.removeSentItem(input);
+            }else if (intent.hasExtra("decline")){
+                input = intent.getStringExtra("decline");
+                Log.e("CHECK FOR ACCEPTANCE: ", input);
+                mSentModel.removeSentItem(input);
+                mPendingModel.removePendingRequest(input);
             }else if (intent.hasExtra("username")){
                 input = intent.getStringExtra("username");
                 Log.e("CHECK FOR ACCEPTANCE: ", input);
-
+                mSentModel.addSentItem(input);
+                mPendingModel.addPendingRequest(input);
                // mFriendModel.addFriend(input);
              //   mPendingModel.removePendingRequest(input);
             }
