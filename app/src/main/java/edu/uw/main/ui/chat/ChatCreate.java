@@ -93,7 +93,6 @@ public class ChatCreate extends Fragment {
     private void createChatRoom(final String jwt) throws JSONException {
         mCreateModel.connectCreateChatroom(binding.textGroupName.getText().toString(), jwt, mModel.getEmail());
         Navigation.findNavController(getView()).navigate(ChatCreateDirections.actionChatCreateToNavigationChat());
-
     }
 
 }

@@ -214,6 +214,4 @@ public class ChatCreateViewModel extends AndroidViewModel {
             ex.printStackTrace();
         }
     }
-
-
 }

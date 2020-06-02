@@ -75,10 +75,7 @@ public class ChatroomListViewModel extends AndroidViewModel {
             Log.e("Result CHECK", messages.toString());
             for(int i = 0; i < messages.length(); i++) {
                 JSONObject message = messages.getJSONObject(i);
-                mUpdateList.getValue().add(new GroupPost.Builder(
-                        message.getString(
-                                getString.apply(R.string.keys_json_chatroom_name)), i + 1)
-                        .build());
+                mUpdateList.getValue().add(new GroupPost.Builder(message.getString("name"), message.getInt("chatid")).build());
             }
         }catch (JSONException e) {
             Log.e("JSON PARSE ERROR", "Found in handle Success ConnectionViewModel");

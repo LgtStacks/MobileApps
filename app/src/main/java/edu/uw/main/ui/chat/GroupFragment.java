@@ -51,7 +51,6 @@ public class GroupFragment extends Fragment{
         mSendModel = provider.get(ChatSendViewModel.class);
         chatID = GroupFragmentArgs.fromBundle(getArguments()).getChatRoom().getId();
         chatName = GroupFragmentArgs.fromBundle(getArguments()).getChatRoom().getChat();
-        Log.e("Chat ID", String.valueOf(chatID));
         mChatModel.getFirstMessages(chatID, mUserModel.getmJwt());
     }
 

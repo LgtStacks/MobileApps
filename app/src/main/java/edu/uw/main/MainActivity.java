@@ -78,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
 
     public static List<Contacts> myContacts;
 
+    public static int id;
+
     private ActivityMainBinding binding;
 
     /**
