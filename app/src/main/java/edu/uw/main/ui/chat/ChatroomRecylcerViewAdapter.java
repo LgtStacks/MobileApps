@@ -2,6 +2,7 @@ package edu.uw.main.ui.chat;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import edu.uw.main.MainActivity;
 import edu.uw.main.R;
+import edu.uw.main.databinding.FragmentChatBinding;
 import edu.uw.main.databinding.FragmentChatroomCardBinding;
 import edu.uw.main.model.UserInfoViewModel;
 
@@ -51,7 +54,7 @@ public class ChatroomRecylcerViewAdapter extends
     }
     @Override
     public void onBindViewHolder(@NonNull ChatroomViewHolder holder, int position) {
-        holder.setConnection(mChatRoom.get(position), mModel, jwt);
+        holder.setConnection(mChatRoom.get(position), mModel, jwt, position, this);
     }
 
     /**
@@ -59,6 +62,7 @@ public class ChatroomRecylcerViewAdapter extends
      */
     public class ChatroomViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
+
         private FragmentChatroomCardBinding binding;
 
         /**
@@ -70,14 +74,14 @@ public class ChatroomRecylcerViewAdapter extends
 
             mView = view;
             binding = FragmentChatroomCardBinding.bind(view);
-
         }
 
         /**
          * Updates each connection post.
          * @param chat each individual connection post.
          */
-        void setConnection(final GroupPost chat, final ChatroomListViewModel mModel, final String jwt) {
+        void setConnection(final GroupPost chat, final ChatroomListViewModel mModel, final String jwt,
+                           final int position, ChatroomRecylcerViewAdapter adapter) {
             binding.buttonChatroom.setOnClickListener(view -> Navigation.findNavController(mView).navigate(
                     ChatFragmentDirections
                             .actionNavigationChatToGroupFragment(chat))
@@ -89,9 +93,12 @@ public class ChatroomRecylcerViewAdapter extends
                 alert.setPositiveButton("YES", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        mChatRoom.remove(position);
+                        adapter.notifyItemRemoved(position);
+                        adapter.notifyItemRangeChanged(position, mChatRoom.size());
+                        adapter.notifyDataSetChanged();
                         mModel.chatDelete(chat.getId(), jwt);
                         dialog.dismiss();
-
                     }
                 });
                 alert.setNegativeButton("NO", new DialogInterface.OnClickListener() {
