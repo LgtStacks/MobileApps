@@ -94,11 +94,12 @@ public class ChatCreateViewModel extends AndroidViewModel {
     public void connectCreateChatroom(final String nameOfChat, final String jwt, final String userEmail) throws JSONException {
         this.userEmail = userEmail;
         this.jwt = jwt;
-        String url = "https://app-backend-server.herokuapp.com/chats/" + nameOfChat;
+        JSONObject body = new JSONObject("name:" + nameOfChat);
+        String url = "https://app-backend-server.herokuapp.com/chats/";
         Request request = new JsonObjectRequest(
                 Request.Method.POST,
                 url,
-                null, //no body for this get request
+                body,
                 this::handleResultCreate,
                 this::handleError) {
             @Override
