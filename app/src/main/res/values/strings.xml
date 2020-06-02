@@ -47,7 +47,7 @@
     <string name="title_blogs">Blogs</string>
     <string name="title_connection">Connection</string>
     <string name="title_weather">Weather</string>
-    <string name="title_chat">Chat</string>
+    <string name="title_chat">Chatrooms</string>
 
     <string name="hint_email">Enter your email address</string>
     <string name="action_signin">Sign In</string>
@@ -128,4 +128,8 @@
     <string name="button_pending_hint">Pending Contacts</string>
     <string name="button_decline_hint">Decline</string>
     <string name="button_sent_hint">Sent Requests</string>
+    <string name="button_create_chatroom">Create Chatroom</string>
+    <string name="text_contact">Contacts</string>
+    <string name="text_create">Create Chatroom</string>
+    <string name="create_hint">Group Chat Name</string>
 </resources>

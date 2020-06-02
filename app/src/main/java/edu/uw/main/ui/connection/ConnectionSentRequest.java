@@ -34,7 +34,7 @@ public class ConnectionSentRequest extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ((MainActivity) getActivity())
-                .setActionBarTitle("Connection Pending");
+                .setActionBarTitle("Sent Requests");
         binding = FragmentConnectionSentRequestBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }

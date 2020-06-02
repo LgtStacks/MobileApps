@@ -25,7 +25,25 @@
         <action
             android:id="@+id/action_navigation_chat_to_change2"
             app:destination="@id/change" />
-    </fragment> 
+        <action
+            android:id="@+id/action_navigation_chat_to_chatCreate"
+            app:destination="@id/chatCreate" />
+    </fragment>
+    <fragment
+        android:id="@+id/WeatherActivity"
+        android:name="edu.uw.main.ui.weather.WeatherFragment"
+        android:label="fragment_weather"
+        tools:layout="@layout/fragment_weather" >
+        <action
+            android:id="@+id/action_WeatherActivity_to_change2"
+            app:destination="@id/change" />
+        <action
+            android:id="@+id/action_WeatherActivity_to_locationFragment"
+            app:destination="@id/locationFragment" />
+        <action
+            android:id="@+id/action_WeatherActivity_to_zipCodeFragment"
+            app:destination="@id/zipCodeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/groupFragment"
         android:name="edu.uw.main.ui.chat.GroupFragment"
@@ -83,6 +101,15 @@
             app:destination="@id/navigation_home" />
     </fragment>
     <fragment
+        android:id="@+id/locationFragment"
+        android:name="edu.uw.main.ui.weather.LocationFragment"
+        android:label="LocationFragment" />
+    <fragment
+        android:id="@+id/zipCodeFragment"
+        android:name="edu.uw.main.ui.weather.ZipCodeFragment"
+        android:label="fragment_zip_code"
+        tools:layout="@layout/fragment_zip_code" />
+    <fragment
         android:id="@+id/connectionAdd"
         android:name="edu.uw.main.ui.connection.ConnectionAdd"
         android:label="ConnectionAdd" >
@@ -90,11 +117,6 @@
             android:id="@+id/action_connectionAdd_to_change"
             app:destination="@id/change" />
     </fragment>
-    <fragment
-        android:id="@+id/weatherMain"
-        android:name="edu.uw.main.ui.weather.WeatherMain"
-        android:label="fragment_weather_main"
-        tools:layout="@layout/fragment_weather_main" />
     <fragment
         android:id="@+id/connectionPending"
         android:name="edu.uw.main.ui.connection.ConnectionPending"
@@ -111,6 +133,18 @@
         tools:layout="@layout/fragment_connection_sent_request" >
         <action
             android:id="@+id/action_connectionSentRequest_to_change"
+            app:destination="@id/change" />
+    </fragment>
+    <fragment
+        android:id="@+id/chatCreate"
+        android:name="edu.uw.main.ui.chat.ChatCreate"
+        android:label="fragment_chat_create"
+        tools:layout="@layout/fragment_chat_create" >
+        <action
+            android:id="@+id/action_chatCreate_to_navigation_chat"
+            app:destination="@id/navigation_chat" />
+        <action
+            android:id="@+id/action_chatCreate_to_change"
             app:destination="@id/change" />
     </fragment>
 </navigation>

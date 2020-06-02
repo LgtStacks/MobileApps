@@ -72,6 +72,7 @@ public class ChatFragment extends Fragment {
                 //binding.layoutWait.setVisibility(View.GONE);
             }
         });
+        binding.buttonCreate.setOnClickListener(button -> navigateToCreateChat());
     }
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -91,5 +92,9 @@ public class ChatFragment extends Fragment {
             Navigation.findNavController(getView()).navigate(ChatFragmentDirections.actionNavigationChatToChange2());
         }
         super.onResume();
+    }
+
+    private void navigateToCreateChat() {
+       Navigation.findNavController(getView()).navigate(ChatFragmentDirections.actionNavigationChatToChatCreate());
     }
 }
