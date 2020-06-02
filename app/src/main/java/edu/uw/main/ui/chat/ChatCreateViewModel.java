@@ -94,7 +94,8 @@ public class ChatCreateViewModel extends AndroidViewModel {
     public void connectCreateChatroom(final String nameOfChat, final String jwt, final String userEmail) throws JSONException {
         this.userEmail = userEmail;
         this.jwt = jwt;
-        JSONObject body = new JSONObject("name:" + nameOfChat);
+        JSONObject body = new JSONObject();
+        body.put("name", nameOfChat);
         String url = "https://app-backend-server.herokuapp.com/chats/";
         Request request = new JsonObjectRequest(
                 Request.Method.POST,
