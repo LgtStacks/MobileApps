@@ -36,12 +36,18 @@ import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import edu.uw.main.databinding.ActivityMainBinding;
+import edu.uw.main.model.NewConnectionCountViewModel;
 import edu.uw.main.model.NewMessageCountViewModel;
 import edu.uw.main.model.UserInfoViewModel;
 import edu.uw.main.services.PushReceiver;
 import edu.uw.main.ui.chat.ChatMessage;
 import edu.uw.main.ui.chat.ChatViewModel;
 import edu.uw.main.ui.connection.ConnectionAddViewModel;
+import edu.uw.main.ui.connection.ConnectionListViewModel;
+import edu.uw.main.ui.connection.ConnectionPending;
+import edu.uw.main.ui.connection.ConnectionPendingViewModel;
+import edu.uw.main.ui.connection.ConnectionSentViewModel;
+import edu.uw.main.ui.chat.Contacts;
 import edu.uw.main.ui.connection.ConnectionListViewModel;
 import edu.uw.main.ui.connection.ConnectionPending;
 import edu.uw.main.ui.connection.ConnectionPendingViewModel;
@@ -59,6 +65,7 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
 
     private MainPushMessageReceiver mPushMessageReceiver;
+
+    private NewConnectionCountViewModel mNewConnectionModel;
 
     private NewMessageCountViewModel mNewMessageModel;
 
@@ -122,9 +131,7 @@ public class MainActivity extends AppCompatActivity {
         binding.tabLayout.setVisibility(View.GONE);
 
 
-
-
-
+        myContacts = new ArrayList<>();
 
 //
 //        binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -151,6 +158,29 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
+        mNewConnectionModel = new ViewModelProvider(this).get(NewConnectionCountViewModel.class);
+
+        navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
+            if (destination.getId() == R.id.navigation_connection) {
+                //When the user navigates to the connection page, reset the new connection count.
+                mNewConnectionModel.reset();
+            }
+        });
+
+        mNewConnectionModel.addMessageCountObserver(this, count -> {
+            BadgeDrawable badge = binding.navView.getOrCreateBadge(R.id.navigation_connection);
+            badge.setMaxCharacterCount(2);
+
+            if (count > 0) {
+                //new messages! update and show the notification badge.
+                badge.setNumber(count);
+                badge.setVisible(true);
+            } else {
+                badge.clearNumber();
+                badge.setVisible(false);
+            }
+        });
 
         mNewMessageModel = new ViewModelProvider(this).get(NewMessageCountViewModel.class);
 
@@ -467,6 +497,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
 
     /**
      * Requests location updates from the FusedLocationApi.
