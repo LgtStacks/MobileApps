@@ -58,7 +58,7 @@ public class ConnectionAddRecyclerViewAdapter extends
     }
     @Override
     public void onBindViewHolder(@NonNull ConnectionViewHolder holder, int position) {
-        holder.setConnection(mConnection.get(position), mUserModel.getmJwt());
+        holder.setConnection(mConnection.get(position), mUserModel.getmJwt(), mAddModel, position, this);
     }
 
     /**
@@ -86,10 +86,22 @@ public class ConnectionAddRecyclerViewAdapter extends
          * Updates each connection post.
          * @param user each individual connection post.
          */
-        void setConnection(final Add user, final String jwt) {
+        void setConnection(final Add user, final String jwt, final ConnectionAddViewModel mModel,
+                           final int position, ConnectionAddRecyclerViewAdapter adapter) {
             binding.textName.setText(user.getUsername());
 
-            binding.buttonAdd.setOnClickListener(button -> getUsername(user, jwt));
+            //binding.buttonAdd.setOnClickListener(button -> getUsername(user, jwt));
+
+            binding.buttonAdd.setOnClickListener(view ->{
+                getUsername(user, jwt);
+                mConnection.remove(position);
+                adapter.notifyItemRemoved(position);
+                adapter.notifyItemRangeChanged(position, mConnection.size());
+                adapter.notifyDataSetChanged();
+
+                // button -> accept(user.getUsername(), jwt);
+            });
+
             //Use methods in the HTML class to format the HTML found in the text
 
         }
@@ -99,4 +111,6 @@ public class ConnectionAddRecyclerViewAdapter extends
 
         mAddModel.connectAdd(user.getUsername(), jwt);
     }
+
 }
+

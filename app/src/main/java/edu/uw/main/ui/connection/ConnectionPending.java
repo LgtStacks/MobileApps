@@ -77,9 +77,7 @@ public class ConnectionPending extends Fragment {
         }
         super.onResume();
     }
-    public void updatePendingRequest(){
-     //  binding
-    }
+
     private void getPendingRequests(final String jwt) {
         mPendingModel.connectGetPendingRequests(jwt);
     }

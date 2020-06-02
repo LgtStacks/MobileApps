@@ -475,8 +475,7 @@ public class MainActivity extends AppCompatActivity {
               //  mPendingModel.removePendingRequest(input);
               //  mSentModel.removeSentItem(input);
 
-           //     update.updatePendingRequest();
-           //     binding.invalidateAll();
+
 
 
             }else if (intent.hasExtra("decline")){
@@ -485,7 +484,6 @@ public class MainActivity extends AppCompatActivity {
              //   mSentModel.removeSentItem(input);
                // mPendingModel.removePendingRequest(input);
 
-             //   update.updatePendingRequest();
 
             }else if (intent.hasExtra("remove")){
                 input = intent.getStringExtra("remove");
@@ -496,7 +494,7 @@ public class MainActivity extends AppCompatActivity {
             }else if (intent.hasExtra("username")){
                 input = intent.getStringExtra("username");
                 Log.e("CHECK FOR ACCEPTANCE: ", input);
-                mSentModel.addSentItem(input);
+                //mSentModel.addSentItem(input);
                 mPendingModel.addPendingRequest(input);
 
              //   mPendingModel.removePendingRequest(input);
