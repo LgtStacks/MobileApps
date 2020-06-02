@@ -205,6 +205,7 @@ public class ChatCreateViewModel extends AndroidViewModel {
     private void handleResultCreate(final JSONObject response) {
         try {
             int id = response.getInt("chatID");
+            int check = MainActivity.myContacts.size();
             for (int i = 0; i < MainActivity.myContacts.size(); i++) {
                 connectCreateChatroom(jwt, id, MainActivity.myContacts.get(i).getUsername());
             }

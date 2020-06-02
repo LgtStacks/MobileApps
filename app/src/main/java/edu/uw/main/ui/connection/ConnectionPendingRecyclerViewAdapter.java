@@ -1,6 +1,7 @@
 package edu.uw.main.ui.connection;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,7 +65,7 @@ public class ConnectionPendingRecyclerViewAdapter extends
     }
     @Override
     public void onBindViewHolder(@NonNull ConnectionViewHolder holder, int position) {
-        holder.setConnection(mConnection.get(position), mUserModel.getmJwt());
+        holder.setConnection(mConnection.get(position), mUserModel.getmJwt(), mPendingModel, position, this);
     }
 
     /**
@@ -78,7 +79,7 @@ public class ConnectionPendingRecyclerViewAdapter extends
 
         /**
          * Inner connect view holder constructor.
-         * @param view the view.
+         * @param view the view
          */
         public ConnectionViewHolder(View view) {
             super(view);
@@ -92,14 +93,29 @@ public class ConnectionPendingRecyclerViewAdapter extends
          * Updates each connection post.
          * @param user each individual connection post.
          */
-        void setConnection(final Pending user, final String jwt) {
+        void setConnection(final Pending user, final String jwt, final ConnectionPendingViewModel mModel,
+                                final int position, ConnectionPendingRecyclerViewAdapter adapter) {
             binding.buttonName.setText(user.getUsername());
-            binding.buttonAdd.setOnClickListener(button -> accept(user.getUsername(), jwt));
-          // binding.buttonAdd.setOnClickListener(button -> binding.notifyAll());
+          //  binding.buttonAdd.setOnClickListener(button -> accept(user.getUsername(), jwt));
+         //   binding.buttonDecline.setOnClickListener(button -> decline(user.getUsername(), jwt));
 
-            binding.buttonDecline.setOnClickListener(button -> decline(user.getUsername(), jwt));
-           // binding.buttonDecline.setOnClickListener(button -> binding.notifyAll());
+            binding.buttonAdd.setOnClickListener(view ->{
+                accept(user.getUsername(), jwt);
+                mConnection.remove(position);
+                adapter.notifyItemRemoved(position);
+                adapter.notifyItemRangeChanged(position, mConnection.size());
+                adapter.notifyDataSetChanged();
 
+               // button -> accept(user.getUsername(), jwt);
+                    });
+            binding.buttonDecline.setOnClickListener(view ->{
+                decline(user.getUsername(), jwt);
+                mConnection.remove(position);
+                adapter.notifyItemRemoved(position);
+                adapter.notifyItemRangeChanged(position, mConnection.size());
+                adapter.notifyDataSetChanged();
+                // button -> accept(user.getUsername(), jwt);
+            });
 
 
         }

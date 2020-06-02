@@ -42,6 +42,7 @@ import edu.uw.main.model.UserInfoViewModel;
 import edu.uw.main.services.PushReceiver;
 import edu.uw.main.ui.chat.ChatMessage;
 import edu.uw.main.ui.chat.ChatViewModel;
+import edu.uw.main.ui.chat.Contacts;
 import edu.uw.main.ui.connection.ConnectionAddViewModel;
 import edu.uw.main.ui.connection.ConnectionListViewModel;
 import edu.uw.main.ui.connection.ConnectionPending;
@@ -89,6 +90,8 @@ public class MainActivity extends AppCompatActivity {
 
     public static boolean changePassword = false;
 
+    public static List<Contacts> myContacts;
+
     private ActivityMainBinding binding;
 
     /**
@@ -132,6 +135,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         myContacts = new ArrayList<>();
+
+
+
 
 //
 //        binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -466,8 +472,8 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("CHECK FOR ACCEPTANCE: ", input);
 
                 mFriendModel.addFriend(input);
-                mPendingModel.removePendingRequest(input);
-                mSentModel.removeSentItem(input);
+              //  mPendingModel.removePendingRequest(input);
+              //  mSentModel.removeSentItem(input);
 
            //     update.updatePendingRequest();
            //     binding.invalidateAll();
@@ -476,8 +482,8 @@ public class MainActivity extends AppCompatActivity {
             }else if (intent.hasExtra("decline")){
                 input = intent.getStringExtra("decline");
                 Log.e("CHECK FOR ACCEPTANCE: ", input);
-                mSentModel.removeSentItem(input);
-                mPendingModel.removePendingRequest(input);
+             //   mSentModel.removeSentItem(input);
+               // mPendingModel.removePendingRequest(input);
 
              //   update.updatePendingRequest();
 
