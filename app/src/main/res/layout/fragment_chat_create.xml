@@ -11,8 +11,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_root"
         android:name="edu.uw.main.ui.chat.ChatCreate"
-        android:layout_width="413dp"
-        android:layout_height="535dp"
+        android:layout_width="400dp"
+        android:layout_height="505dp"
         android:orientation="vertical"
         app:layoutManager="LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -28,26 +28,25 @@
         android:id="@+id/text_title"
         android:layout_width="234dp"
         android:layout_height="50dp"
+        android:layout_marginBottom="28dp"
         android:gravity="center"
         android:text="@string/text_contact"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/list_root"
+        app:layout_constraintBottom_toTopOf="@+id/button_create"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button_create"
         android:layout_width="235dp"
         android:layout_height="41dp"
         android:layout_marginBottom="21dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:text="@string/button_create_chatroom"
         app:layout_constraintBottom_toTopOf="@+id/text_group_name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_title" />
 
