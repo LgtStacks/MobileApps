@@ -74,9 +74,6 @@ public class LocationFragment extends Fragment implements GoogleMap.OnMapClickLi
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ((MainActivity) getActivity())
-                .setActionBarTitle("Weather");
-
         mModel.addResponseObserver(
                 getViewLifecycleOwner(),
                 this::observeWeatherResponse);
