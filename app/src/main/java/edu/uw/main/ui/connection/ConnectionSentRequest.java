@@ -17,7 +17,9 @@ import edu.uw.main.databinding.FragmentConnectionSentRequestBinding;
 import edu.uw.main.model.UserInfoViewModel;
 
 /**
- * A simple {@link Fragment} subclass.
+ * The class to handle Sent Request.
+ * @author Group 3
+ * @version 6/2
  */
 public class ConnectionSentRequest extends Fragment {
 
@@ -25,6 +27,9 @@ public class ConnectionSentRequest extends Fragment {
 
     private ConnectionSentViewModel mSentModel;
 
+    /**
+     * Default Constructor
+     */
     public ConnectionSentRequest() {
         // Required empty public constructor
     }
@@ -73,6 +78,10 @@ public class ConnectionSentRequest extends Fragment {
         super.onResume();
     }
 
+    /**
+     * Gets a new Sent Request
+     * @param jwt
+     */
     private void getSentRequests(final String jwt) {
         mSentModel.connectGetSentRequests(jwt);
     }

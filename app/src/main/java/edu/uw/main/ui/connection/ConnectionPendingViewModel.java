@@ -26,7 +26,11 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
 import edu.uw.main.io.RequestQueueSingleton;
-
+/**
+ * The class to handle the recycler view adapter.
+ * @author Group 3
+ * @version 6/2
+ */
 public class ConnectionPendingViewModel extends AndroidViewModel {
     private MutableLiveData<JSONObject> mResponse;
 
@@ -69,6 +73,11 @@ public class ConnectionPendingViewModel extends AndroidViewModel {
                                          @NonNull Observer<? super List<Pending>> observer) {
         mPendingList.observe(owner, observer);
     }
+
+    /**
+     * Adds a new Pending Request
+     * @param username the user
+     */
     public void addPendingRequest( final String username) {
 
         mUpdateList = new MutableLiveData<>();
@@ -79,6 +88,11 @@ public class ConnectionPendingViewModel extends AndroidViewModel {
         // Log.e("MODIFIED ADD LIST: ", mAddList.getValue().get(mAddList.getValue().size() -1 ).getUsername());
 
     }
+
+    /**
+     * Removes a pending request.
+     * @param username the user
+     */
     public void removePendingRequest(final String username){
         int size = mPendingList.getValue().size();
         mUpdateList = new MutableLiveData<>();

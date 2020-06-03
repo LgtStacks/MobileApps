@@ -4,12 +4,18 @@ import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
+/**
+ * The class to handle the Pending Cards.
+ * @author Group 3
+ * @version 6/2
+ */
 public class Pending {
 
     private final String mUsername;
 
-
+    /**
+     * Helper Build Class
+     */
     public static class Builder {
         private String mUsername = "";
 

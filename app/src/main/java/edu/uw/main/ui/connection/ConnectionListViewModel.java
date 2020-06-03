@@ -64,6 +64,11 @@ public class ConnectionListViewModel extends AndroidViewModel {
       //  Log.e("CONNECTION ERROR", Objects.requireNonNull(error.getLocalizedMessage()));
       //  throw new IllegalStateException(error.getMessage());
     }
+
+    /**
+     * Adds a new friend to the View Model
+     * @param username new Friend
+     */
     public void addFriend( final String username) {
 
         mUpdateList = new MutableLiveData<>();
@@ -74,6 +79,11 @@ public class ConnectionListViewModel extends AndroidViewModel {
         // Log.e("MODIFIED ADD LIST: ", mAddList.getValue().get(mAddList.getValue().size() -1 ).getUsername());
 
     }
+
+    /**
+     * Removes a friend from the User Model.
+     * @param username new Friend.
+     */
     public void removeFriend(final String username){
       //  int size = mConnectionList.getValue().size();
         mUpdateList = new MutableLiveData<>();

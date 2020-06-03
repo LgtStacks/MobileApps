@@ -18,7 +18,9 @@ import edu.uw.main.databinding.FragmentConnectionPendingBinding;
 import edu.uw.main.model.UserInfoViewModel;
 
 /**
- * A simple {@link Fragment} subclass.
+ * The Contact Pending Fragment.
+ * @author Group 3
+ * @version 6/2
  */
 public class ConnectionPending extends Fragment {
 
@@ -26,7 +28,9 @@ public class ConnectionPending extends Fragment {
 
     private ConnectionPendingViewModel mPendingModel;
 
-
+    /**
+     * Default Fragment.
+     */
     public ConnectionPending() {
         // Required empty public constructor
     }
@@ -78,6 +82,10 @@ public class ConnectionPending extends Fragment {
         super.onResume();
     }
 
+    /**
+     * Model sends request to Server for a new Request.
+     * @param jwt JAVA WEB TOKEN
+     */
     private void getPendingRequests(final String jwt) {
         mPendingModel.connectGetPendingRequests(jwt);
     }

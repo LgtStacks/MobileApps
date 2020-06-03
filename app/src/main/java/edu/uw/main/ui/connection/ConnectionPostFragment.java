@@ -60,6 +60,10 @@ public class ConnectionPostFragment extends Fragment {
 
     }
 
+    /**
+     * Model has user remove the contact.
+     * @param toDel
+     */
     private void removeClicked(String toDel) {
         mConnectionModel.connectDelete(mUserModel.getmJwt(), toDel);
         Navigation.findNavController(getView()).navigate(

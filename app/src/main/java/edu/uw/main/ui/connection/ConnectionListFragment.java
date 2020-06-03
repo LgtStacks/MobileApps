@@ -104,14 +104,24 @@ public class ConnectionListFragment extends Fragment {
         }
         super.onResume();
     }
+
+    /**
+     * Navigates to the Add Page
+     */
     private void navigateToConnectionAdd() {
         Navigation.findNavController(getView()).navigate(ConnectionListFragmentDirections.actionNavigationConnectionToConnectionAdd());
     }
 
+    /**
+     * Navigates to the Pending Page
+     */
     private void navigateToConnectionPending() {
         Navigation.findNavController(getView()).navigate(ConnectionListFragmentDirections.actionNavigationConnectionToConnectionPending());
     }
 
+    /**
+     * Navigates to the Sent Requests Page
+     */
     private void navigateToSentRequest() {
         Navigation.findNavController(getView()).navigate(ConnectionListFragmentDirections.actionNavigationConnectionToConnectionSentRequest());
     }

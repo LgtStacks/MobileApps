@@ -3,10 +3,16 @@ package edu.uw.main.ui.connection;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * Class to help build the sent users.
+ */
 public class Sent {
 
     private final String mUsername;
 
+    /**
+     * Helper Builder Class
+     */
     public static class Builder {
         private String mUsername = "";
 

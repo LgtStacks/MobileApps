@@ -19,7 +19,9 @@ import edu.uw.main.databinding.FragmentConnectionAddBinding;
 import edu.uw.main.model.UserInfoViewModel;
 
 /**
- * A simple {@link Fragment} subclass.
+ * The Fragment for Adding a Connection Page.
+ * @author Group 3
+ * @version 6/2
  */
 public class ConnectionAdd extends Fragment {
 
@@ -27,6 +29,9 @@ public class ConnectionAdd extends Fragment {
 
     private ConnectionAddViewModel mAddModel;
 
+    /**
+     * Default constructor.
+     */
     public ConnectionAdd() {
         // Required empty public constructor
     }
@@ -80,6 +85,10 @@ public class ConnectionAdd extends Fragment {
         super.onResume();
     }
 
+    /**
+     * Handles the searching step of the binding.
+     * @param jwt Java Web Token
+     */
     private void processSearch(final String jwt) {
         Log.e("Check Step: ", "3.3");
         Log.e("Check Addition", binding.textSearch.toString());

@@ -122,12 +122,22 @@ public class ConnectionPendingRecyclerViewAdapter extends
 
     }
 
+    /**
+     * Model Attempts to add the new user as a friend on the server.
+     * @param email user email.
+     * @param jwt JAVA WEB TOKEN
+     */
     private void accept(final String email, final String jwt) {
         mPendingModel.connectAccept(email, jwt);
 
 
     }
 
+    /**
+     * Model Declines the request and notifies the server.
+     * @param email user email.
+     * @param  jwt JAVA WEB TOKEN
+     */
     private void decline(final String email, final String jwt) {
         mPendingModel.connectDecline(email, jwt);
     }

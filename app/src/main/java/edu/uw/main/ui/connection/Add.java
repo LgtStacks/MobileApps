@@ -2,11 +2,18 @@ package edu.uw.main.ui.connection;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
+/**
+ * The Add Card Post.
+ * @author Group 3
+ * @version 6/2
+ */
 public class Add {
 
     private final String mUsername;
 
+    /**
+     * A useful helper method for building cards.
+     */
     public static class Builder {
         private String mUsername = "";
 

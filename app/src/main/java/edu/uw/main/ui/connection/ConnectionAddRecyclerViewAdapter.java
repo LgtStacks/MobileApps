@@ -20,7 +20,7 @@ import edu.uw.main.model.UserInfoViewModel;
 /**
  * The class to handle the recycler view adapter.
  * @author Group 3
- * @version 5/19
+ * @version 6/2
  */
 public class ConnectionAddRecyclerViewAdapter extends
         RecyclerView.Adapter<ConnectionAddRecyclerViewAdapter.ConnectionViewHolder> {
@@ -112,6 +112,11 @@ public class ConnectionAddRecyclerViewAdapter extends
         }
     }
 
+    /**
+     * Adds a new user to the Recycler view.
+     * @param user new user
+     * @param jwt Java Web Token
+     */
     private void getUsername(final Add user, final String jwt) {
 
         mAddModel.connectAdd(user.getUsername(), jwt);

@@ -27,7 +27,11 @@ import androidx.lifecycle.Observer;
 
 import androidx.lifecycle.ViewModelProvider;
 import edu.uw.main.io.RequestQueueSingleton;
-
+/**
+ * The Add Connection View Model
+ * @author Group 3
+ * @version 6/2
+ */
 public class ConnectionAddViewModel extends AndroidViewModel {
 
     private MutableLiveData<JSONObject> mResponse;

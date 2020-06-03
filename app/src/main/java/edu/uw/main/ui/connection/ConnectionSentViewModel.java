@@ -26,7 +26,11 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
 import edu.uw.main.io.RequestQueueSingleton;
-
+/**
+ * The class to handle the Connection Sent View Model
+ * @author Group 3
+ * @version 6/2
+ */
 public class ConnectionSentViewModel extends AndroidViewModel {
 
     private MutableLiveData<JSONObject> mResponse;
@@ -139,6 +143,11 @@ public class ConnectionSentViewModel extends AndroidViewModel {
 //        RequestQueueSingleton.getInstance(getApplication().getApplicationContext())
 //                .addToRequestQueue(request);
 //    }
+
+    /**
+     * Adds a new Sent Item to the list.
+     * @param username
+     */
     public void addSentItem( final String username) {
 
     mUpdateList = new MutableLiveData<>();
@@ -149,6 +158,11 @@ public class ConnectionSentViewModel extends AndroidViewModel {
     // Log.e("MODIFIED ADD LIST: ", mAddList.getValue().get(mAddList.getValue().size() -1 ).getUsername());
 
 }
+
+    /**
+     * Removes a sent item from the list.
+     * @param username the username.
+     */
     public void removeSentItem(final String username){
     int size = mSentList.getValue().size();
     mUpdateList = new MutableLiveData<>();
