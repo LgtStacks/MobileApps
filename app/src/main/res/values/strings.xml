@@ -37,6 +37,11 @@
     <string name="base_url">https://app-backend-server.herokuapp.com/</string>
 
 
+    <string name="text_chatroom_chatroom"><u>Your Chatrooms: </u>.</string>
+
+    <string name="text_connection_friend"><u>Friends List:  </u>.</string>
+
+
     <string name="keys_json_connection_response">response</string>
     <string name="keys_json_connection_data">data</string>
     <string name="keys_json_connection_email">email</string>
@@ -47,7 +52,7 @@
     <string name="title_blogs">Blogs</string>
     <string name="title_connection">Connection</string>
     <string name="title_weather">Weather</string>
-    <string name="title_chat">Chatrooms</string>
+    <string name="title_chat"><b>Chatrooms</b></string>
 
     <string name="hint_email">Enter your email address</string>
     <string name="action_signin">Sign In</string>
