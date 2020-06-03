@@ -466,7 +466,7 @@ public class MainActivity extends AppCompatActivity {
 
         private ConnectionPendingViewModel mPendingModel =
                 new ViewModelProvider(MainActivity.this)
-                .get(ConnectionPendingViewModel.class);
+                        .get(ConnectionPendingViewModel.class);
 
         private ConnectionSentViewModel mSentModel =
                 new ViewModelProvider(MainActivity.this)
@@ -505,8 +505,8 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("CHECK FOR ACCEPTANCE: ", input);
 
                 mFriendModel.addFriend(input);
-              //  mPendingModel.removePendingRequest(input);
-              //  mSentModel.removeSentItem(input);
+                //  mPendingModel.removePendingRequest(input);
+                //  mSentModel.removeSentItem(input);
 
 
 
@@ -514,8 +514,8 @@ public class MainActivity extends AppCompatActivity {
             }else if (intent.hasExtra("decline")){
                 input = intent.getStringExtra("decline");
                 Log.e("CHECK FOR ACCEPTANCE: ", input);
-             //   mSentModel.removeSentItem(input);
-               // mPendingModel.removePendingRequest(input);
+                //   mSentModel.removeSentItem(input);
+                // mPendingModel.removePendingRequest(input);
 
 
             }else if (intent.hasExtra("remove")){
@@ -527,10 +527,21 @@ public class MainActivity extends AppCompatActivity {
             }else if (intent.hasExtra("username")){
                 input = intent.getStringExtra("username");
                 Log.e("CHECK FOR ACCEPTANCE: ", input);
+                mNewConnectionModel.increment();
+
+                FloatingActionButton btn = findViewById(R.id.floatingActionButton);
+                if (btn != null) {
+                    btn.setVisibility(View.VISIBLE);
+                    btn.setImageResource(R.drawable.notification);
+                }
+                // Inform the view model of the new connection request
+                //mPendingModel.addPendingRequest(input);
+
+
                 //mSentModel.addSentItem(input);
                 mPendingModel.addPendingRequest(input);
 
-             //   mPendingModel.removePendingRequest(input);
+                //   mPendingModel.removePendingRequest(input);
             }
         }
     }
