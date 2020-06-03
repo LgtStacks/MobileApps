@@ -77,18 +77,21 @@ public class WeatherFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
 
+        View view2 = getActivity().findViewById(R.id.tab_layout);
+        View view3 = getActivity().findViewById(R.id.frameLayout5);
 
-        View view2 = getActivity().findViewById(R.id.frameLayout5);
-        view2.setVisibility(View.GONE);
+        if (view2.getVisibility() == View.GONE) {
+            view3.setVisibility(View.GONE);
+            ((MainActivity) getActivity())
+                    .setActionBarTitle("Main Project App");
 
-
+        } else {
+            view3.setVisibility(View.VISIBLE);
+        }
 
         mWeatherList = new MutableLiveData<>();
         mWeatherList.setValue(new ArrayList<>());
         binding = FragmentWeatherBinding.bind(getView());
-        ((MainActivity) getActivity())
-                .setActionBarTitle("Weather");
-
 
         mWeatherModel.addWeatherListViewModel(getViewLifecycleOwner(), weatherList -> {
             if (!weatherList.isEmpty()) {

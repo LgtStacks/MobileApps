@@ -63,13 +63,15 @@ public class ZipCodeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ((MainActivity) getActivity())
-                .setActionBarTitle("Weather");
+
         UserInfoViewModel model = new ViewModelProvider(getActivity()).get(UserInfoViewModel.class);
 
         mWeatherModel.addResponseObserver(
                 getViewLifecycleOwner(),
                 this::observeWeatherResponse);
+
+        View view2 = getActivity().findViewById(R.id.frameLayout5);
+        view2.setVisibility(View.VISIBLE);
 
         mWeatherModel = new ViewModelProvider(getActivity()).get(WeatherViewModel.class);
         binding.imageButton.setOnClickListener(button -> handleCurrent(model.getmJwt()));
