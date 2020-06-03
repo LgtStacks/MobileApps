@@ -30,13 +30,18 @@ import edu.uw.main.model.UserInfoViewModel;
 
 
 /**
- * A simple {@link Fragment} subclass.
+ * The class to handle the Zip Code Fragment.
+ * @author Group 3
+ * @version 6/2
  */
 public class ZipCodeFragment extends Fragment {
 
     private FragmentZipCodeBinding binding;
     private WeatherViewModel mWeatherModel;
 
+    /**
+     * Default Constructor.
+     */
     public ZipCodeFragment() {
         // Required empty public constructor
     }
@@ -84,7 +89,10 @@ public class ZipCodeFragment extends Fragment {
         }
     }
 
-
+    /**
+     * Observe the weather response.
+     * @param response the response
+     */
     private void observeWeatherResponse(final JSONObject response) {
         if (response.length() > 0) {
             if (response.has("code")) {

@@ -13,7 +13,11 @@ import java.util.List;
 import edu.uw.main.R;
 import edu.uw.main.databinding.FragmentWeatherCardBinding;
 import edu.uw.main.model.UserInfoViewModel;
-
+/**
+ * The class to handle the weather recycler view Adapter.
+ * @author Group 3
+ * @version 6/2
+ */
 public class WeatherRecyclerViewAdapter extends
         RecyclerView.Adapter<WeatherRecyclerViewAdapter.WeatherViewHolder> {
 

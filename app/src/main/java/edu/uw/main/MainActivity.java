@@ -76,7 +76,7 @@ import java.util.List;
  * The main activity to handle the chat, connections, weather and home
  * services.
  * @author Group 3
- * @version 5/5
+ * @version 6/2
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -248,6 +248,10 @@ public class MainActivity extends AppCompatActivity {
         createLocationRequest();
     }
 
+    /**
+     * Sets up weather tab pager.
+     * @param viewPager the view pager.
+     */
     private void setUpWithViewPager(ViewPager viewPager) {
         MainActivity.SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new WeatherFragment(), "Update");
@@ -256,11 +260,18 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
     }
 
+    /**
+     * Helper class for the view tabs.
+     */
     private static class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
 
+        /**
+         * Constructor.
+         * @param manager the manager.
+         */
         public SectionsPagerAdapter(FragmentManager manager) {
             super(manager);
         }
@@ -275,6 +286,11 @@ public class MainActivity extends AppCompatActivity {
             return mFragmentList.size();
         }
 
+        /**
+         * Adds a new fragment.
+         * @param fragment the fragment
+         * @param title the title of the fragment.
+         */
         public void addFragment(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
@@ -292,6 +308,11 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+    /**
+     * The Action Bar title setting to chagne a fragment name.
+     * @param title the new name change.
+     */
     public void setActionBarTitle(String title) {
         getSupportActionBar().setTitle(title);
     }
@@ -327,6 +348,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Gets the current location from the user.
+     */
     private void requestLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED

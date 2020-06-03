@@ -1,7 +1,11 @@
 package edu.uw.main.ui.weather;
 
 import java.io.Serializable;
-
+/**
+ * The class to handle the weather post cards.
+ * @author Group 3
+ * @version 6/2
+ */
 public class WeatherPost implements Serializable {
     private final String mTitle;
     private final String mWeather;

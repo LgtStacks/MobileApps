@@ -14,7 +14,11 @@ import androidx.preference.PreferenceScreen;
 import edu.uw.main.AuthActivity;
 import edu.uw.main.MainActivity;
 import edu.uw.main.R;
-
+/**
+ * The class to handle the Settings Activity.
+ * @author Group 3
+ * @version 6/2
+ */
 public class SettingsActivity extends AppCompatActivity {
 
 
@@ -44,6 +48,9 @@ public class SettingsActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Helper class to handle the different settings fragments.
+     */
     public static class SettingsFragment extends PreferenceFragmentCompat implements PreferenceManager.OnPreferenceTreeClickListener {
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {

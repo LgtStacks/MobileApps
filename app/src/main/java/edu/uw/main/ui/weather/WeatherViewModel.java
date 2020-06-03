@@ -28,7 +28,11 @@ import java.util.Map;
 import java.util.Objects;
 
 import edu.uw.main.io.RequestQueueSingleton;
-
+/**
+ * The class to handle the Weather View Model.
+ * @author Group 3
+ * @version 6/2
+ */
 public class WeatherViewModel extends AndroidViewModel {
 
    private MutableLiveData<List<WeatherPost>> mWeatherList;
@@ -69,13 +73,18 @@ public class WeatherViewModel extends AndroidViewModel {
         mResponse.observe(owner, observer);
     }
 
+    /**
+     * Adds a new location Observer.
+     * @param owner the owner
+     * @param observer the observer
+     */
     public void addLocationObserver(@NonNull LifecycleOwner owner,
                                     @NonNull Observer<? super Location> observer) {
         mLocation.observe(owner, observer);
     }
 
     /**
-     *
+     * Sets a new location
      * @param location
      */
     public void setLocation(final Location location) {
@@ -83,11 +92,22 @@ public class WeatherViewModel extends AndroidViewModel {
             mLocation.setValue(location);
         }
     }
+
+    /**
+     * Sets the new mutable data.
+     * @param mw updated mutable data.
+     */
     public void setMutableData(final MutableLiveData<List<WeatherPost>> mw) {
         // Log.e("DATA OUTPUT: ", mw.getValue());
         // if(mWeatherList.getValue().hashCode() == mw.getValue().)
         mWeatherList.setValue(mw.getValue());
     }
+
+    /**
+     * gets the current weather data.
+     * @param jwt
+     * @param zip zip code.
+     */
     public void connectCurrent(String jwt, String zip) {
         String url =
                 "https://app-backend-server.herokuapp.com/weather/current/?q=" + zip + ", US";
@@ -114,6 +134,11 @@ public class WeatherViewModel extends AndroidViewModel {
                 .addToRequestQueue(request);
         Log.d("observe!", "0");
     }
+
+    /**
+     * Forecast data connection.
+     * @param jwt
+     */
     public void connectForecast(String jwt) {
         String url =
                 "https://app-backend-server.herokuapp.com/weather/forecast/?q=98402";
@@ -166,7 +191,12 @@ public class WeatherViewModel extends AndroidViewModel {
 //                .addToRequestQueue(request);
 //    }
 
-
+    /**
+     * Gets the weather from the lat and longitude
+     * @param jwt
+     * @param lat the current latitude data
+     * @param lon the current longitude data
+     */
     public void connectLatLon(String jwt, double lat, double lon) {
         String url =
                 "https://app-backend-server.herokuapp.com/weather/hourly/?&lat=" + lat + "&lon=" + lon;
@@ -192,7 +222,12 @@ public class WeatherViewModel extends AndroidViewModel {
         RequestQueueSingleton.getInstance(getApplication().getApplicationContext())
                 .addToRequestQueue(request);
     }
-
+    /**
+     * Gets the forecast from the lat and longitude
+     * @param jwt
+     * @param lat the current latitude data
+     * @param lon the current longitude data
+     */
     public void connectLatLonForecast(String jwt, double lat, double lon) {
         String url =
                 "https://app-backend-server.herokuapp.com/weather/daily/?&lat=" + lat + "&lon=" + lon;

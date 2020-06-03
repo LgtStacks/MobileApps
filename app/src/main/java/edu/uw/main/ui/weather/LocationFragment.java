@@ -34,19 +34,28 @@ import edu.uw.main.R;
 import edu.uw.main.databinding.FragmentLocationBinding;
 import edu.uw.main.model.UserInfoViewModel;
 
-
+/**
+ * The class to handle the Location Fragment.
+ * @author Group 3
+ * @version 6/2
+ */
 public class LocationFragment extends Fragment implements GoogleMap.OnMapClickListener, OnMapReadyCallback {
     private FragmentLocationBinding binding;
     private WeatherViewModel mModel;
     private GoogleMap mMap;
 
 
-
-
+    /**
+     * Default Constructor
+     */
     public LocationFragment() {
         // Required empty public constructor
     }
 
+    /**
+     * Creates a new location fragment.
+     * @param savedInstanceState the bundle
+     */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mModel = new ViewModelProvider(getActivity())
@@ -114,6 +123,10 @@ public class LocationFragment extends Fragment implements GoogleMap.OnMapClickLi
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, mMap.getCameraPosition().zoom));
     }
 
+    /**
+     * The weather response update.
+     * @param response the response
+     */
     private void observeWeatherResponse(final JSONObject response) {
         if (response.length() > 0) {
             if (response.has("code")) {
@@ -136,6 +149,11 @@ public class LocationFragment extends Fragment implements GoogleMap.OnMapClickLi
             Log.d("JSON Response", "No Response");
         }
     }
+
+    /**
+     * The parse Hourly Response Update.
+     * @param response the response.
+     */
     private void parseHourly(final JSONObject response){
         Log.d("got here", "gotten");
         String date = "";
@@ -174,10 +192,21 @@ public class LocationFragment extends Fragment implements GoogleMap.OnMapClickLi
         }
     }
 
+    /**
+     * Computes the translation from celcius to fahrenheit.
+     * @param c floating celsius value.
+     * @return the fahrenheit temperature.
+     */
     private int celsiusToFahrenheit(float c){
         int temp = (int) ((c/5) * 9 + 32);
         return temp;
     }
+
+    /**
+     * Gets the date of the fragment
+     * @param time the current time
+     * @return the current date
+     */
     private String getDate(long time) {
         Calendar cal = Calendar.getInstance(Locale.ENGLISH);
         cal.setTimeInMillis(time * 1000);

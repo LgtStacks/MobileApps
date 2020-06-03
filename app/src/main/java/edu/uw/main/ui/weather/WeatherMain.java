@@ -15,10 +15,14 @@ import edu.uw.main.R;
 
 
 /**
- * A simple {@link Fragment} subclass.
+ * The class to handle the Weather Main.
+ * @author Group 3
+ * @version 6/2
  */
 public class WeatherMain extends Fragment {
-
+    /**
+     * Default Constructor
+     */
     public WeatherMain() {
         // Required empty public constructor
     }

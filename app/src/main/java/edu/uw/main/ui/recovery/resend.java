@@ -18,7 +18,9 @@ import edu.uw.main.databinding.FragmentVerificationBinding;
 import edu.uw.main.model.UserInfoViewModel;
 
 /**
- * A simple {@link Fragment} subclass.
+ * The fragment to handle the resend requests.
+ * @author Group 3
+ * @version 5/19
  */
 public class resend extends Fragment {
 
@@ -26,6 +28,9 @@ public class resend extends Fragment {
 
     private ResendViewModel mResendModel;
 
+    /**
+     * Default Constructor
+     */
     public resend() {
         // Required empty public constructor
     }

@@ -129,6 +129,10 @@ public class WeatherFragment extends Fragment {
 
     }
 
+    /**
+     * Observes a new weather response update.
+     * @param response the response.
+     */
     private void observeWeatherResponse(final JSONObject response) {
         Log.e("Step", "1");
         // mWeatherList.setValue(new ArrayList<>());
@@ -162,6 +166,10 @@ public class WeatherFragment extends Fragment {
 
 
     }
+
+    /**
+     * Helper Method to adjust the list.
+     */
     private void adjustList(){
         MutableLiveData<List<WeatherPost>> mUpdateList =  new MutableLiveData<>();
         mUpdateList.setValue(new ArrayList<>());
@@ -198,6 +206,11 @@ public class WeatherFragment extends Fragment {
             mWeatherModel.setMutableData(mWeatherList);
         }
     }
+
+    /**
+     * Helper method to parse the forecast
+     * @param response the response
+     */
     private void parseForecast(final JSONObject response){
 
         Log.d("Forecast!", "gotten");
@@ -237,6 +250,11 @@ public class WeatherFragment extends Fragment {
         }
 
     }
+
+    /**
+     * Private helper method to parse the hourly.
+     * @param response the response.
+     */
     private void parseHourly(final JSONObject response){
         Log.d("hourly!", "gotten");
         String date = "";
@@ -296,11 +314,22 @@ public class WeatherFragment extends Fragment {
             Log.e("JSON1 Parse Error", e.getMessage());
         }
     }
+
+    /**
+     *  converts celcius to fahrenheit
+     * @param c the temp in celcius
+     * @return the temp in fahrenheit
+     */
     private int celsiusToFahrenheit(float c){
         int temp = (int) ((c/5) * 9 + 32);
         return temp;
     }
 
+    /**
+     * Gets the date and hourly.
+     * @param date the date.
+     * @return new time
+     */
     private String getDateHourly(String date) {
         String newDate = date.substring(5,10);
         String testTime = date.substring(11, 13);
@@ -315,6 +344,11 @@ public class WeatherFragment extends Fragment {
         return newDT;
     }
 
+    /**
+     * Get the date forecast.
+     * @param date the future date
+     * @return the forecast for the date.
+     */
     private String getDateForecast(String date) {
         String newDate = date.substring(5,10);
         String newDT = newDate + " ";

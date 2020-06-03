@@ -26,7 +26,9 @@ import static edu.uw.main.PasswordValidator.checkPwdLength;
 import static edu.uw.main.PasswordValidator.checkPwdSpecialChar;
 
 /**
- * A simple {@link Fragment} subclass.
+ * The class to handle the Change Password Page.
+ * @author Group 3
+ * @version 6/2
  */
 public class change extends Fragment {
 
@@ -38,6 +40,9 @@ public class change extends Fragment {
 
     private UserInfoViewModel mUserViewModel;
 
+    /**
+     * Default Constructor.
+     */
     public change() {
         // Required empty public constructor
     }
