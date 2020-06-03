@@ -9,12 +9,11 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-
-import java.io.Serializable;
 
 import edu.uw.main.MainActivity;
 import edu.uw.main.R;
@@ -52,6 +51,7 @@ public class GroupFragment extends Fragment{
         chatID = GroupFragmentArgs.fromBundle(getArguments()).getChatRoom().getId();
         chatName = GroupFragmentArgs.fromBundle(getArguments()).getChatRoom().getChat();
         mChatModel.getFirstMessages(chatID, mUserModel.getmJwt());
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -115,6 +115,29 @@ public class GroupFragment extends Fragment{
             MainActivity.changePassword = false;
             Navigation.findNavController(getView()).navigate(GroupFragmentDirections.actionGroupFragmentToChange2());
         }
+        if (MainActivity.changeFragment) {
+            MainActivity.changeFragment = false;
+        }
         super.onResume();
+    }
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        menu.findItem(R.id.action_settings).setVisible(false);
+        menu.findItem(R.id.action_sign_out).setVisible(false);
+        menu.findItem(R.id.action_add_friend).setVisible(true);
+        menu.findItem(R.id.action_remove_friend).setVisible(true);
+        super.onPrepareOptionsMenu(menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_add_friend) {
+            Navigation.findNavController(getView()).navigate(GroupFragmentDirections
+                    .actionGroupFragmentToChatAddRemove(true, chatID, new GroupPost.Builder(chatName, chatID).build()));
+        } else if (id == R.id.action_remove_friend) {
+            Navigation.findNavController(getView()).navigate(GroupFragmentDirections
+                    .actionGroupFragmentToChatAddRemove(false, chatID, new GroupPost.Builder(chatName, chatID).build()));
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

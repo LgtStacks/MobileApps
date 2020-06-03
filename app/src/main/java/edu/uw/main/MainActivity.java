@@ -76,7 +76,7 @@ import java.util.List;
  * The main activity to handle the chat, connections, weather and home
  * services.
  * @author Group 3
- * @version 6/2
+ * @version 5/5
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -94,7 +94,11 @@ public class MainActivity extends AppCompatActivity {
 
     public static List<Contacts> myContacts;
 
+    public static List<Contacts> myAddRemoveSelection;
+
     private ActivityMainBinding binding;
+
+    public static boolean changeFragment = false;
 
     /**
      * The desired interval for location updates. Inexact. Updates may be more or less frequent.
@@ -137,6 +141,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         myContacts = new ArrayList<>();
+        myAddRemoveSelection = new ArrayList<>();
+
+
+
 //
 //        binding = ActivityMainBinding.inflate(getLayoutInflater());
 //        setContentView(binding.getRoot());
@@ -320,6 +328,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.settings, menu);
+        menu.findItem(R.id.action_add_friend).setVisible(false);
+        menu.findItem(R.id.action_remove_friend).setVisible(false);
         return true;
     }
 
@@ -409,6 +419,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     protected void onResume() {
         super.onResume();

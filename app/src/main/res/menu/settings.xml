@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group android:id="@+id/main_menu">
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
@@ -12,6 +14,20 @@
         android:orderInCategory="100"
         android:title="@string/action_sign_out"
         app:showAsAction="never" />
+    </group>
 
+    <group android:id="@+id/chat_menu">
+        <item
+            android:id="@+id/action_add_friend"
+            android:orderInCategory="100"
+            android:title="Add Friend"
+            app:showAsAction="never" />
+
+        <item
+            android:id="@+id/action_remove_friend"
+            android:orderInCategory="100"
+            android:title="Remove Friend"
+            app:showAsAction="never" />
+    </group>
 
 </menu>

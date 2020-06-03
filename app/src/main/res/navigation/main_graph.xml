@@ -40,6 +40,9 @@
         <argument
             android:name="chatRoom"
             app:argType="edu.uw.main.ui.chat.GroupPost" />
+        <action
+            android:id="@+id/action_groupFragment_to_chatAddRemove"
+            app:destination="@id/chatAddRemove" />
     </fragment>
     <fragment
         android:id="@+id/navigation_connection"
@@ -128,4 +131,22 @@
         android:name="edu.uw.main.ui.weather.WeatherMain"
         android:label="fragment_weather_main"
         tools:layout="@layout/fragment_weather_main" />
+    <fragment
+        android:id="@+id/chatAddRemove"
+        android:name="edu.uw.main.ui.chat.ChatAddRemove"
+        android:label="fragment_chat_add_remove"
+        tools:layout="@layout/fragment_chat_add_remove" >
+        <argument
+            android:name="isAdd"
+            app:argType="boolean" />
+        <argument
+            android:name="chatID"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_chatAddRemove_to_groupFragment"
+            app:destination="@id/groupFragment" />
+        <argument
+            android:name="grouppost"
+            app:argType="edu.uw.main.ui.chat.GroupPost" />
+    </fragment>
 </navigation>
