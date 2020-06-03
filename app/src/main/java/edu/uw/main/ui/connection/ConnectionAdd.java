@@ -68,7 +68,6 @@ public class ConnectionAdd extends Fragment {
             }
         });
 
-
         binding.buttonSearch.setOnClickListener(button -> processSearch(model.getmJwt()));
     }
 
@@ -82,7 +81,8 @@ public class ConnectionAdd extends Fragment {
     }
 
     private void processSearch(final String jwt) {
-        Log.e("Check Addition", binding.textSearch.getText().toString());
+        Log.e("Check Step: ", "3.3");
+        Log.e("Check Addition", binding.textSearch.toString());
 
         mAddModel.connectSearch(binding.textSearch.getText().toString(), jwt);
     }

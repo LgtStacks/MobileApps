@@ -80,10 +80,10 @@ public class ConnectionAddViewModel extends AndroidViewModel {
      * @param error the server response error.
      */
     private void handleError(final VolleyError error) {
-        Log.e("Add Step", "3.1");
+        Log.e("CONNECTION ERROR ADD", "CHECK FOR NULL VALUE IN INPUT");
 
-        Log.e("CONNECTION ERROR", error.getLocalizedMessage());
-        throw new IllegalStateException(error.getMessage());
+      //  Log.e("CONNECTION ERROR", error.getLocalizedMessage());
+      //  throw new IllegalStateException(error.getMessage());
     }
 
     /**
@@ -94,6 +94,7 @@ public class ConnectionAddViewModel extends AndroidViewModel {
     public void connectSearch(final String email, final String jwt) {
 
         String url = "https://app-backend-server.herokuapp.com/connections/" + email;
+        Log.e("URL ADD: ", email);
         Request request = new JsonObjectRequest(
                 Request.Method.GET,
                 url,

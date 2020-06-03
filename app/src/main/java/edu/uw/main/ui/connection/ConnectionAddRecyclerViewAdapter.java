@@ -93,11 +93,16 @@ public class ConnectionAddRecyclerViewAdapter extends
             //binding.buttonAdd.setOnClickListener(button -> getUsername(user, jwt));
 
             binding.buttonAdd.setOnClickListener(view ->{
-                getUsername(user, jwt);
-                mConnection.remove(position);
-                adapter.notifyItemRemoved(position);
-                adapter.notifyItemRangeChanged(position, mConnection.size());
-                adapter.notifyDataSetChanged();
+                String check = user.getUsername();
+                Log.e("INPUT NAME: ", check);
+                if(!user.equals(null)){
+                    getUsername(user, jwt);
+                    mConnection.remove(position);
+                    adapter.notifyItemRemoved(position);
+                    adapter.notifyItemRangeChanged(position, mConnection.size());
+                    adapter.notifyDataSetChanged();
+                }
+
 
                 // button -> accept(user.getUsername(), jwt);
             });

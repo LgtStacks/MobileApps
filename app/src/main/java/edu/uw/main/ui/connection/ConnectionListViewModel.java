@@ -75,13 +75,13 @@ public class ConnectionListViewModel extends AndroidViewModel {
 
     }
     public void removeFriend(final String username){
-        int size = mConnectionList.getValue().size();
+      //  int size = mConnectionList.getValue().size();
         mUpdateList = new MutableLiveData<>();
         mUpdateList.setValue(mConnectionList.getValue());
-        Log.e("PENDING LIST SIZE: ", String.valueOf(size));
+     //   Log.e("PENDING LIST SIZE: ", String.valueOf(size));
         Log.e("PENDING LIST FIRST CONTENT: ", mConnectionList.getValue().get(0).getConnection());
         boolean checkEmpty = false;
-        for(int i = 0; i < size; i++){
+        for(int i = 0; i < mUpdateList.getValue().size(); i++){
             String check = mUpdateList.getValue().get(i).getConnection();
             if(check.equals(username)){
                 mUpdateList.getValue().remove(i);
@@ -89,7 +89,7 @@ public class ConnectionListViewModel extends AndroidViewModel {
                 break;
             }
         }
-        size = mUpdateList.getValue().size();
+        int size = mUpdateList.getValue().size();
         if(size == 0){
             mConnectionList = new MutableLiveData<>();
             mConnectionList.setValue(new ArrayList<>());
