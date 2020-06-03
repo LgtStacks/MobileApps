@@ -43,7 +43,7 @@ public class ChatAddRemoveLiveViewModel extends AndroidViewModel {
 //    private edu.uw.main.ui.connection.ConnectionAddViewModel mCreateModel;
 
     /**
-     * Chile Connection list view model.
+     * Chat add remove live view model.
      *
      * @param application the application.
      */
@@ -87,8 +87,9 @@ public class ChatAddRemoveLiveViewModel extends AndroidViewModel {
     }
 
     /**
-     * Sends a connection request to the web server.
-     * @param jwt The Generated Java Web Token.
+     * Sends a request to get all the eligible users to remove.
+     * @param jwt - The Generated Java Web Token.
+     * @param chatID - The chatID where we grab the users from.
      */
     public void connectGetRemove(final String jwt, final int chatID) {
         JSONObject body = new JSONObject();
@@ -119,6 +120,11 @@ public class ChatAddRemoveLiveViewModel extends AndroidViewModel {
                 .add(request);
     }
 
+    /**
+     * Endpoint that grabs all the eligible users to add to the chat room.
+     * @param jwt - JSON token identifier.
+     * @param chatID - The chatID to pull from.
+     */
     public void connectGetAdd(final String jwt, final int chatID) {
         String url =
                 "https://app-backend-server.herokuapp.com/chatRoom/" + chatID;
@@ -145,9 +151,12 @@ public class ChatAddRemoveLiveViewModel extends AndroidViewModel {
         Volley.newRequestQueue(getApplication().getApplicationContext())
                 .add(request);
     }
+
     /**
-     * Sends a connection request to the web server.
-     * @param jwt The Generated Java Web Token.
+     * Adds a user to the chat room.
+     * @param jwt - The JSON Web Token
+     * @param chatID - The chat id to add the users to.
+     * @param email - The user to add.
      */
     public void connectRemoveFromRoom(final String jwt, final int chatID, final String email) {
         String url =
@@ -174,9 +183,12 @@ public class ChatAddRemoveLiveViewModel extends AndroidViewModel {
         Volley.newRequestQueue(getApplication().getApplicationContext())
                 .add(request);
     }
+
     /**
-     * Sends a connection request to the web server.
-     * @param jwt The Generated Java Web Token.
+     * Removes a user to the chat room.
+     * @param jwt - The JSON Web Token
+     * @param chatID - The chat id to add the users to.
+     * @param email - The user to remove.
      */
     public void connectAddToRoom(final String jwt, final int chatID, final String email) {
         String url =
@@ -203,9 +215,10 @@ public class ChatAddRemoveLiveViewModel extends AndroidViewModel {
         Volley.newRequestQueue(getApplication().getApplicationContext())
                 .add(request);
     }
+
     /**
      * Handles the server response success code.
-     *
+     * Updates the recycler view by adding the eligible users into the view.
      * @param response the server response.
      */
     private void handleResult(final JSONObject response) {
@@ -224,6 +237,11 @@ public class ChatAddRemoveLiveViewModel extends AndroidViewModel {
         mContactsList.setValue(mUpdateList.getValue());
     }
 
+    /**
+     * Handles the server response success code.
+     * Updates the recycler view by adding the eligible users into the view.
+     * @param response the server response.
+     */
     private void handleResultParse(final JSONObject response) {
         mUpdateList = new MutableLiveData<>();
         mUpdateList.setValue(new ArrayList<>());

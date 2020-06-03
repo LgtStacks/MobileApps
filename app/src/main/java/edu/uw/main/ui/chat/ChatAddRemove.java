@@ -86,6 +86,9 @@ public class ChatAddRemove extends Fragment {
         }
     }
 
+    /**
+     * This method adds a friend to the chat. Calls the backend endpoint.
+     */
     private void addFriend() {
         try {
             for (int i = 0; i < MainActivity.myAddRemoveSelection.size(); i++) {
@@ -100,6 +103,9 @@ public class ChatAddRemove extends Fragment {
         }
     }
 
+    /**
+     * This method removes a friend to the chat. Calls the backend endpoint.
+     */
     private void removeFriend() {
         try {
             for (int i = 0; i < MainActivity.myAddRemoveSelection.size(); i++) {

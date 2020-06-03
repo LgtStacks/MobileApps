@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import edu.uw.main.MainActivity;
 import edu.uw.main.R;
 import edu.uw.main.databinding.FragmentAddRemoveCardBinding;
-import edu.uw.main.databinding.FragmentChatCreateCardBinding;
 import edu.uw.main.model.UserInfoViewModel;
 
 public class ChatAddRemoveRecyclerViewAdapter extends
@@ -79,7 +78,8 @@ public class ChatAddRemoveRecyclerViewAdapter extends
 
         /**
          * Updates each connection post.
-         * @param user each individual connection post.
+         * @param user - each individual connection post.
+         * @param jwt - the JSON web token.
          */
         void setConnection(final Contacts user, final String jwt) {
             binding.textContact.setText(user.getUsername());
@@ -90,6 +90,11 @@ public class ChatAddRemoveRecyclerViewAdapter extends
         }
     }
 
+    /**
+     * Adds all the users that have checkboxes to a list.
+     * @param user - User to add.
+     * @param binding - Binding for our card.
+     */
     private void checkTheBox(final Contacts user, final FragmentAddRemoveCardBinding binding) {
         if (!binding.checkboxAdd.isChecked()) {
             for (int i = 0; i < MainActivity.myAddRemoveSelection.size(); i++) {
