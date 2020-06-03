@@ -31,7 +31,7 @@ import me.pushy.sdk.Pushy;
  *  This class will monitor pushy tokens for chatting.
  *  Extends the android view model.
  *  @author Group 3
- *  @version 5/19
+ * @version 6/2
  */
 public class PushyTokenViewModel extends AndroidViewModel {
 

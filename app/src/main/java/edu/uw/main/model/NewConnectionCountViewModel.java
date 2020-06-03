@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModel;
 /**
  *  This class will monitor the Connections added.
  *  @author Group 3
- *  @version 6/1
+ *  @version 6/2
  */
 public class NewConnectionCountViewModel extends ViewModel {
 

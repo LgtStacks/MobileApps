@@ -19,7 +19,11 @@ import edu.uw.main.R;
 import edu.uw.main.databinding.FragmentChatBinding;
 import edu.uw.main.databinding.FragmentChatroomCardBinding;
 import edu.uw.main.model.UserInfoViewModel;
-
+/**
+ * The Recycler view of the Existing Chat room Labels.
+ * @author Group 3
+ * @version 6/2
+ */
 public class ChatroomRecylcerViewAdapter extends
         RecyclerView.Adapter<ChatroomRecylcerViewAdapter.ChatroomViewHolder> {
 

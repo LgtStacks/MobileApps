@@ -26,7 +26,11 @@ import androidx.lifecycle.Observer;
 import edu.uw.main.MainActivity;
 import edu.uw.main.io.RequestQueueSingleton;
 import edu.uw.main.model.UserInfoViewModel;
-
+/**
+ * The View Model of the Create Chat Page.
+ * @author Group 3
+ * @version 5/19
+ */
 public class ChatCreateViewModel extends AndroidViewModel {
 
     private MutableLiveData<JSONObject> mResponse;

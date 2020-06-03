@@ -27,6 +27,11 @@ import java.util.function.IntFunction;
 
 import edu.uw.main.R;
 
+/**
+ * The Chatroom List View Model
+ * @author Group 3
+ * @version 6/2
+ */
 public class ChatroomListViewModel extends AndroidViewModel {
     private MutableLiveData<List<GroupPost>> mChatList;
     private MutableLiveData<List<GroupPost>> mUpdateList;

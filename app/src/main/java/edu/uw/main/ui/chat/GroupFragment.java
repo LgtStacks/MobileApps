@@ -24,7 +24,7 @@ import edu.uw.main.model.UserInfoViewModel;
 /**
  * A First group chat room.
  * @author Group 3
- * @version 5/19
+ * @version 6/2
  */
 public class GroupFragment extends Fragment{
     //The chat ID for "global" chat

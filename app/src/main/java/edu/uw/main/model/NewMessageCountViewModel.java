@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModel;
 /**
  *  This class will monitor the messages from chat.
  *  @author Group 3
- *  @version 5/19
+ * @version 6/2
  */
 public class NewMessageCountViewModel extends ViewModel {
     private MutableLiveData<Integer> mNewMessageCount;

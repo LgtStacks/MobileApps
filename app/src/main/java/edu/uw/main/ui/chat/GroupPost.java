@@ -1,7 +1,11 @@
 package edu.uw.main.ui.chat;
 
 import java.io.Serializable;
-
+/**
+ * The Group Post Card
+ * @author Group 3
+ * @version 6/2
+ */
 public class GroupPost implements Serializable {
 
     private String mChat = "";

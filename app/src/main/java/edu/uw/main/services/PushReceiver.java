@@ -28,7 +28,7 @@ import static android.app.ActivityManager.RunningAppProcessInfo.IMPORTANCE_VISIB
  *  This class will monitor push reciever for messages.
  *  Extends the Broadcast reciever.
  *  @author Group 3
- *  @version 5/19
+ * @version 6/2
  */
 public class PushReceiver extends BroadcastReceiver {
 
@@ -117,6 +117,13 @@ public class PushReceiver extends BroadcastReceiver {
 
 
     }
+
+    /**
+     * Helper method to handle when the app recieves a Remove Pushy signal.
+     * @param context the context
+     * @param intent the intent
+     * @param remove the username of the removed.
+     */
     private void handleRemove(Context context, Intent intent, String remove){
         ActivityManager.RunningAppProcessInfo appProcessInfo = new ActivityManager.RunningAppProcessInfo();
         ActivityManager.getMyMemoryState(appProcessInfo);
@@ -166,6 +173,12 @@ public class PushReceiver extends BroadcastReceiver {
         }
 
     }
+    /**
+     * Helper method to handle when the app recieves a decline Pushy signal.
+     * @param context the context
+     * @param intent the intent
+     * @param decline the username of the declined.
+     */
     private void handleDecline(Context context, Intent intent, String decline){
         ActivityManager.RunningAppProcessInfo appProcessInfo = new ActivityManager.RunningAppProcessInfo();
         ActivityManager.getMyMemoryState(appProcessInfo);
@@ -215,6 +228,12 @@ public class PushReceiver extends BroadcastReceiver {
         }
 
     }
+    /**
+     * Helper method to handle when the app recieves a request Pushy signal.
+     * @param context the context
+     * @param intent the intent
+     * @param request the username of the accepted.
+     */
     private void handleAccept(Context context, Intent intent, Add request){
         ActivityManager.RunningAppProcessInfo appProcessInfo = new ActivityManager.RunningAppProcessInfo();
         ActivityManager.getMyMemoryState(appProcessInfo);
@@ -264,6 +283,12 @@ public class PushReceiver extends BroadcastReceiver {
         }
 
     }
+    /**
+     * Helper method to handle when the app recieves a request Pushy signal.
+     * @param context the context
+     * @param intent the intent
+     * @param request the username of the request.
+     */
     private void handleRequest(Context context, Intent intent, Pending request){
         ActivityManager.RunningAppProcessInfo appProcessInfo = new ActivityManager.RunningAppProcessInfo();
         ActivityManager.getMyMemoryState(appProcessInfo);
@@ -312,7 +337,13 @@ public class PushReceiver extends BroadcastReceiver {
         }
 
     }
-
+    /**
+     * Helper method to handle when the app recieves a message Pushy signal.
+     * @param context the context
+     * @param intent the intent
+     * @param message the new chat message.
+     * @param chatId the id of the chat room
+     */
     private void handleChat(Context context, Intent intent, ChatMessage message, int chatId){
         ActivityManager.RunningAppProcessInfo appProcessInfo = new ActivityManager.RunningAppProcessInfo();
         ActivityManager.getMyMemoryState(appProcessInfo);

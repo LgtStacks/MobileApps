@@ -95,6 +95,9 @@ public class ChatFragment extends Fragment {
        super.onResume();
     }
 
+    /**
+     * Helper method to know when it should navigate to the create chat fragment.
+     */
     private void navigateToCreateChat() {
        Navigation.findNavController(getView()).navigate(ChatFragmentDirections.actionNavigationChatToChatCreate());
     }

@@ -20,7 +20,7 @@ import edu.uw.main.model.UserInfoViewModel;
 /**
  * The class to handle the recycler view adapter.
  * @author Group 3
- * @version 5/19
+ * @version 6/2
  */
 public class ChatCreateRecyclerViewAdapter extends
         RecyclerView.Adapter<ChatCreateRecyclerViewAdapter.ConnectionViewHolder> {
@@ -95,6 +95,11 @@ public class ChatCreateRecyclerViewAdapter extends
         }
     }
 
+    /**
+     * Refreshes the chatroom when a new user is added.
+     * @param user The new User.
+     * @param binding Card Binding
+     */
     private void checkTheBox(final Contacts user, final FragmentChatCreateCardBinding binding) {
         if (!binding.checkboxAdd.isChecked()) {
             for (int i = 0; i < MainActivity.myContacts.size(); i++) {

@@ -27,7 +27,9 @@ import edu.uw.main.ui.connection.ConnectionAddRecyclerViewAdapter;
 import edu.uw.main.ui.connection.ConnectionAddViewModel;
 
 /**
- * A simple {@link Fragment} subclass.
+ * The Fragment to create a new chat.
+ * @author Group 3
+ * @version 5/19
  */
 public class ChatCreate extends Fragment {
 
@@ -37,7 +39,9 @@ public class ChatCreate extends Fragment {
 
     private UserInfoViewModel mModel;
 
-
+    /**
+     * Default Constructor
+     */
     public ChatCreate() {
         // Required empty public constructor
     }
@@ -91,6 +95,11 @@ public class ChatCreate extends Fragment {
         super.onResume();
     }
 
+    /**
+     * Exit strategy from the create chatroom fragment.
+     * @param jwt Java Web Token
+     * @throws JSONException
+     */
     private void createChatRoom(final String jwt) throws JSONException {
         mCreateModel.connectCreateChatroom(binding.textGroupName.getText().toString(), jwt, mModel.getEmail());
         getActivity().finish();
