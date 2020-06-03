@@ -125,6 +125,7 @@ public class ConnectionPendingRecyclerViewAdapter extends
     private void accept(final String email, final String jwt) {
         mPendingModel.connectAccept(email, jwt);
 
+
     }
 
     private void decline(final String email, final String jwt) {

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,14 +86,13 @@ public class ChatFragment extends Fragment {
         mModel.chatGet(mUserModel.getmJwt());
     }
 
-
     @Override
     public void onResume() {
         if (MainActivity.changePassword) {
             MainActivity.changePassword = false;
             Navigation.findNavController(getView()).navigate(ChatFragmentDirections.actionNavigationChatToChange2());
         }
-        super.onResume();
+       super.onResume();
     }
 
     private void navigateToCreateChat() {

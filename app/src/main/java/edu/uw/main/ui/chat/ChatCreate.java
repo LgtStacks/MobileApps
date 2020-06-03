@@ -37,6 +37,7 @@ public class ChatCreate extends Fragment {
 
     private UserInfoViewModel mModel;
 
+
     public ChatCreate() {
         // Required empty public constructor
     }
@@ -92,7 +93,10 @@ public class ChatCreate extends Fragment {
 
     private void createChatRoom(final String jwt) throws JSONException {
         mCreateModel.connectCreateChatroom(binding.textGroupName.getText().toString(), jwt, mModel.getEmail());
+        getActivity().finish();
+        getActivity().startActivity(getActivity().getIntent());
         Navigation.findNavController(getView()).navigate(ChatCreateDirections.actionChatCreateToNavigationChat());
+        //getParentFragment()
     }
 
 }

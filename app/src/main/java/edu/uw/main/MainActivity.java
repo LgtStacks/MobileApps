@@ -90,6 +90,8 @@ public class MainActivity extends AppCompatActivity {
 
     public static boolean changePassword = false;
 
+    public static boolean resetChatRoomList = false;
+
     public static List<Contacts> myContacts;
 
     private ActivityMainBinding binding;
@@ -135,10 +137,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         myContacts = new ArrayList<>();
-
-
-
-
 //
 //        binding = ActivityMainBinding.inflate(getLayoutInflater());
 //        setContentView(binding.getRoot());
