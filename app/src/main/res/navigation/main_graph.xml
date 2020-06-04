@@ -49,9 +49,6 @@
         android:name="edu.uw.main.ui.connection.ConnectionListFragment"
         android:label="ConnectionListFragment" >
         <action
-            android:id="@+id/action_navigation_connection_to_connectionPostFragment"
-            app:destination="@id/connectionPostFragment" />
-        <action
             android:id="@+id/action_navigation_connection_to_change2"
             app:destination="@id/change" />
         <action
@@ -63,21 +60,6 @@
         <action
             android:id="@+id/action_navigation_connection_to_connectionSentRequest"
             app:destination="@id/connectionSentRequest" />
-    </fragment>
-    <fragment
-        android:id="@+id/connectionPostFragment"
-        android:name="edu.uw.main.ui.connection.ConnectionPostFragment"
-        android:label="fragment_connection_post"
-        tools:layout="@layout/fragment_connection_post" >
-        <argument
-            android:name="friend"
-            app:argType="edu.uw.main.ui.connection.ConnectionPost" />
-        <action
-            android:id="@+id/action_connectionPostFragment_to_change2"
-            app:destination="@id/change" />
-        <action
-            android:id="@+id/action_connectionPostFragment_to_navigation_connection"
-            app:destination="@id/navigation_connection" />
     </fragment>
     <fragment
         android:id="@+id/change"

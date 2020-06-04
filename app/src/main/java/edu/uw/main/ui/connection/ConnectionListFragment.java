@@ -59,7 +59,7 @@ public class ConnectionListFragment extends Fragment {
         mModel.addConnectionListObserver(getViewLifecycleOwner(), connectionList -> {
             if (!connectionList.isEmpty()) {
                 binding.listRoot.setAdapter(
-                        new ConnectionRecyclerViewAdapter(connectionList)
+                        new ConnectionRecyclerViewAdapter(connectionList, mModel, mUserModel.getmJwt())
                 );
                 //binding.layoutWait.setVisibility(View.GONE);
             }

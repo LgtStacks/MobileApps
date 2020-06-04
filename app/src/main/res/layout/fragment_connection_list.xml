@@ -8,8 +8,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_root"
         android:name="edu.uw.main.ui.connection.ConnectionFragment"
-        android:layout_width="466dp"
-        android:layout_height="wrap_content"
+        android:layout_width="400dp"
+        android:layout_height="330dp"
         android:layout_marginBottom="16dp"
 
         android:orientation="vertical"
@@ -23,9 +23,9 @@
 
     <Button
         android:id="@+id/button_add_contacts"
-        android:layout_width="380dp"
+        android:layout_width="370dp"
         android:layout_height="45dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="16dp"
         android:text="@string/button_text_hint_add_contacts"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,21 +33,21 @@
 
     <Button
         android:id="@+id/button_pending"
-        android:layout_width="380dp"
+        android:layout_width="370dp"
         android:layout_height="45dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
         android:text="@string/button_pending_hint"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.516"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_add_contacts" />
 
     <Button
         android:id="@+id/button_sent_requests"
-        android:layout_width="380dp"
+        android:layout_width="370dp"
         android:layout_height="45dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="11dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
         android:text="@string/button_sent_hint"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_pending" />

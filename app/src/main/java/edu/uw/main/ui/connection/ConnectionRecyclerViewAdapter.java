@@ -1,12 +1,16 @@
 package edu.uw.main.ui.connection;
 
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.graphics.drawable.Icon;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,15 +29,22 @@ public class ConnectionRecyclerViewAdapter extends
         RecyclerView.Adapter<ConnectionRecyclerViewAdapter.ConnectionViewHolder> {
 
     private final List<ConnectionPost> mConnection;
+
+    private ConnectionListViewModel mListModel;
     
-    private UserInfoViewModel mUserModel;
+    private String jwt;
+
+
 
     /**
      * The connection recycler view constructor.
      * @param items list of items posts.
      */
-    public ConnectionRecyclerViewAdapter(List<ConnectionPost> items) {
+    public ConnectionRecyclerViewAdapter(List<ConnectionPost> items, ConnectionListViewModel model, String jwt) {
+
         this.mConnection = items;
+        this.mListModel = model;
+        this.jwt = jwt;
     }
 
     @Override
@@ -49,7 +60,7 @@ public class ConnectionRecyclerViewAdapter extends
     }
     @Override
     public void onBindViewHolder(@NonNull ConnectionViewHolder holder, int position) {
-        holder.setConnection(mConnection.get(position));
+        holder.setConnection(mConnection.get(position),this.jwt, mListModel, position, this);
     }
 
     /**
@@ -75,14 +86,39 @@ public class ConnectionRecyclerViewAdapter extends
          * Updates each connection post.
          * @param connection each individual connection post.
          */
-        void setConnection(final ConnectionPost connection) {
-            binding.buttonName.setOnClickListener(view ->Navigation.findNavController(mView).navigate(
-                    ConnectionListFragmentDirections
-                            .actionNavigationConnectionToConnectionPostFragment(connection))
-            );
-            binding.buttonName.setText(connection.getConnection());
+        void setConnection(final ConnectionPost connection, final String jwt, final ConnectionListViewModel mModel,
+                           final int position, ConnectionRecyclerViewAdapter adapter) {
+
+            binding.textName.setText(connection.getConnection());
+
+            binding.buttonRemove.setOnClickListener(view -> {
+                AlertDialog.Builder alert = new AlertDialog.Builder(view.getContext());
+                alert.setTitle("Remove Contact");
+                alert.setMessage("Are you sure you want to remove this contact?");
+                alert.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mConnection.remove(position);
+                        adapter.notifyItemRemoved(position);
+                        adapter.notifyItemRangeChanged(position, mConnection.size());
+                        adapter.notifyDataSetChanged();
+                        mModel.connectDelete(jwt, connection.getConnection());
+                        dialog.dismiss();
+                    }
+                });
+                alert.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                alert.show();
+
+            });
             //Use methods in the HTML class to format the HTML found in the text
 
         }
     }
+
+
 }
