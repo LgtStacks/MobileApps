@@ -80,7 +80,6 @@ public class ConnectionRecyclerViewAdapter extends
                     ConnectionListFragmentDirections
                             .actionNavigationConnectionToConnectionPostFragment(connection))
             );
-
             binding.buttonName.setText(connection.getConnection());
             //Use methods in the HTML class to format the HTML found in the text
 
