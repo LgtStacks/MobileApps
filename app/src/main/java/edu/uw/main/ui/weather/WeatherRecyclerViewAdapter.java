@@ -13,6 +13,8 @@ import java.util.List;
 import edu.uw.main.R;
 import edu.uw.main.databinding.FragmentWeatherCardBinding;
 import edu.uw.main.model.UserInfoViewModel;
+
+
 /**
  * The class to handle the weather recycler view Adapter.
  * @author Group 3
@@ -34,7 +36,7 @@ public class WeatherRecyclerViewAdapter extends
 
     @Override
     public int getItemCount() {
-       // Log.e("SIZE", String.valueOf(mWeather.size()));
+        // Log.e("SIZE", String.valueOf(mWeather.size()));
         return mWeather.size();
     }
     @NonNull
@@ -73,9 +75,12 @@ public class WeatherRecyclerViewAdapter extends
          * @param weather each individual weather post.
          */
         void setConnection(final WeatherPost weather) {
-            Log.e("Check Data", weather.getWeather());
+           // Log.e("Check Data", weather.getWeather());
+
             binding.textCategory.setText(weather.getTitle());
+            binding.textCategory.setText(weather.setFont());
             binding.textWeatherCurrent2.setText(weather.getWeather());
+
 
             //Use methods in the HTML class to format the HTML found in the text
 
