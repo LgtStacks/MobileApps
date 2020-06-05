@@ -1,5 +1,6 @@
 package edu.uw.main.ui.weather;
 
+import android.graphics.fonts.Font;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -160,6 +161,8 @@ public class LocationFragment extends Fragment implements GoogleMap.OnMapClickLi
         String state = "";
         String country = "";
         String whole = "";
+
+
         try {
             for (int i =  0; i < 1; i++) {
                 JSONArray jsTemp = response.getJSONArray("data");
@@ -176,7 +179,7 @@ public class LocationFragment extends Fragment implements GoogleMap.OnMapClickLi
 
                 country = response.getString("country_code");
 
-                String theString = "Current temperature: " + celsiusToFahrenheit(temp) + "°F\n"
+                String theString = celsiusToFahrenheit(temp) + "°F\n"
                         + descrip + "\n" + city + ", " + state + " " + country + "\n";
                 whole += theString;
             }
