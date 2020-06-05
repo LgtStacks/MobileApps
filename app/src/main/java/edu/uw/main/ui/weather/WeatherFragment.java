@@ -5,10 +5,8 @@ import android.os.Bundle;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import androidx.annotation.NonNull;
@@ -16,9 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 
-import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +27,7 @@ import org.json.JSONObject;
 import edu.uw.main.MainActivity;
 import edu.uw.main.R;
 import edu.uw.main.databinding.FragmentWeatherBinding;
+import edu.uw.main.databinding.FragmentZipCodeBinding;
 import edu.uw.main.model.UserInfoViewModel;
 
 
@@ -44,9 +41,10 @@ public class WeatherFragment extends Fragment {
 
     private UserInfoViewModel mUserModel;
 
-
     private FragmentWeatherBinding binding;
+    private FragmentZipCodeBinding zipCodeBinding;
     private WeatherViewModel mWeatherModel;
+
     //private GoogleMap mMap;
 
 
@@ -71,6 +69,7 @@ public class WeatherFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         return inflater.inflate(R.layout.fragment_weather, container, false);
     }
     @Override
@@ -98,9 +97,13 @@ public class WeatherFragment extends Fragment {
                 binding.listRoot.setAdapter(
                         new WeatherRecyclerViewAdapter(weatherList)
                 );
+                binding.listRoot.setAdapter(new WeatherRecyclerViewAdapter(weatherList.subList(1, 2)));
+
+                binding.listRootHourly.setAdapter(new WeatherRecyclerViewAdapter(weatherList.subList(2, 3)));
                 //binding.layoutWait.setVisibility(View.GONE);
             }
         });
+
         Calendar cc = Calendar.getInstance();
         int mHour = cc.get(Calendar.HOUR_OF_DAY);
         int mHour2 = cc.get(Calendar.HOUR);
@@ -113,7 +116,6 @@ public class WeatherFragment extends Fragment {
         mWeatherModel.addResponseObserver(
                 getViewLifecycleOwner(),
                 this::observeWeatherResponse);
-
 
         // FragmentWeatherBinding binding = FragmentWeatherBinding.bind(getView());
 
@@ -128,6 +130,7 @@ public class WeatherFragment extends Fragment {
                 });
 
         Log.e("DATA INPUT: ", mWeatherList.getValue().toString());
+
 
 
     }
@@ -165,15 +168,14 @@ public class WeatherFragment extends Fragment {
             Log.d("JSON Response", "No Response");
         }
         Log.e("Step", "5");
-        adjustList();
-
+        adjustListHourly();
 
     }
 
     /**
      * Helper Method to adjust the list.
      */
-    private void adjustList(){
+    private void adjustListHourly() {
         MutableLiveData<List<WeatherPost>> mUpdateList =  new MutableLiveData<>();
         mUpdateList.setValue(new ArrayList<>());
         Map<String, Integer> correctPosition = new HashMap<String, Integer>();
@@ -244,6 +246,9 @@ public class WeatherFragment extends Fragment {
                 whole += theString + "\n";
             }
             Log.e("Step", "3.2");
+
+
+
             mWeatherList.getValue().add(new WeatherPost.Builder("Forecast", whole).build());
             //Log.e("TEST2", mWeatherList.getValue().toString());
 
@@ -264,6 +269,7 @@ public class WeatherFragment extends Fragment {
         float temp = 0;
         float highTemp = 0;
         float lowTemp = 0;
+        String code = "";
         String descrip = "";
         String city = "";
         String state = "";
@@ -273,6 +279,8 @@ public class WeatherFragment extends Fragment {
         try {
             for (int i =  0; i < 1; i++) {
                 JSONArray jsTemp = response.getJSONArray("data");
+
+                code = jsTemp.getJSONObject(i).getJSONObject("weather").get("code").toString();
 
                 temp = Float.parseFloat(jsTemp.getJSONObject(i).get("temp").toString());
 
@@ -284,15 +292,20 @@ public class WeatherFragment extends Fragment {
 
                 country = response.getString("country_code");
 
-                String theString = "Current temperature: " + celsiusToFahrenheit(temp) + "°F\n"
+                String theString = "Current temperature: \n" + celsiusToFahrenheit(temp) + "°F\n"
                         + descrip + "\n" + city + ", " + state + " " + country + "\n";
                 part += theString;
             }
             Log.e("Step", "4");
+
             mWeatherList.getValue().add(new WeatherPost.Builder("Current", part).build());
             //Log.e("CURRENT DATA", mWeatherList.getValue().get(1).getTitle()) ;
+            Log.d("WeatherLike", descrip.toString());
+            binding.textView.setText(part);
 
-            //binding.textWeatherCurrent.setText(part);
+            String timeStamp = new SimpleDateFormat("HHmmss").format(Calendar.getInstance().getTime());
+            boolean dayTime = Integer.parseInt(timeStamp) > 60000 && Integer.parseInt(timeStamp) < 190000;
+            getIcon(code, dayTime);
 
             for (int i =  1; i < 24; i++) {
                 JSONArray jsTemp = response.getJSONArray("data");
@@ -366,4 +379,56 @@ public class WeatherFragment extends Fragment {
 //        }
 //        super.onResume();
 //    }
+
+    /**
+     * Gets the icon representing the weather.
+     * @param code ID of weather conditions
+     * @param dayTime T/F day or night
+     */
+    private void getIcon(String code, boolean dayTime) {
+        if (code.equals("200") || code.equals("201") || code.equals("202")
+                || code.equals("230") || code.equals("231") || code.equals("232")
+                || code.equals("233"))  {
+            binding.imageView3.setImageResource(R.drawable.daynightthunderstorm);
+        } else if (code.equals("300") || code.equals("301") || code.equals("500")
+                || code.equals("501") || code.equals("511") || code.equals("520")
+                || code.equals("521")) {
+            if (dayTime) {
+                binding.imageView3.setImageResource(R.drawable.dayrain);
+            } else {
+                binding.imageView3.setImageResource(R.drawable.nightrain);
+            }
+        } else if (code.equals("302") || code.equals("502") || code.equals("522")) {
+            binding.imageView3.setImageResource(R.drawable.daynightshowerrain);
+        } else if (code.equals("600") || code.equals("601") || code.equals("602")
+                || code.equals("610") || code.equals("611") || code.equals("612")
+                || code.equals("621") || code.equals("622") || code.equals("623")) {
+            binding.imageView3.setImageResource(R.drawable.daynightsnow);
+        } else if (code.equals("700") || code.equals("711") || code.equals("721")
+                || code.equals("731") || code.equals("741") || code.equals("751")) {
+            binding.imageView3.setImageResource(R.drawable.daynightmist);
+        } else if (code.equals("800")) {
+            if (dayTime) {
+                binding.imageView3.setImageResource(R.drawable.dayclearsky);
+            } else {
+                binding.imageView3.setImageResource(R.drawable.nightclearsky);
+            }
+        } else if (code.equals("801")) {
+            if (dayTime) {
+                binding.imageView3.setImageResource(R.drawable.dayfewclouds);
+            } else {
+                binding.imageView3.setImageResource(R.drawable.nightfewclouds);
+            }
+        } else if (code.equals("802")) {
+            binding.imageView3.setImageResource(R.drawable.daynightscatteredclouds);
+        } else if (code.equals("803") || code.equals("804")) {
+            binding.imageView3.setImageResource(R.drawable.daynightbrokenclouds);
+        } else if (code.equals("900")) {
+            if (dayTime) {
+                binding.imageView3.setImageResource(R.drawable.dayrain);
+            } else {
+                binding.imageView3.setImageResource(R.drawable.nightrain);
+            }
+        }
+    }
 }
