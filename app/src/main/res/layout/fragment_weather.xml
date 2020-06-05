@@ -11,18 +11,82 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_root"
         android:name="edu.uw.main.ui.weather.WeatherFragment"
-        android:layout_width="358dp"
-        android:layout_height="536dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="386dp"
+        android:layout_height="154dp"
         android:orientation="vertical"
+        android:textAlignment="center"
         app:layoutManager="LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintHorizontal_bias="0.76"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
         tools:context="edu.uw.main.ui.weather.WeatherFragment"
         tools:layout="@layout/fragment_weather"
         tools:listitem="@layout/fragment_weather_card" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_root_hourly"
+        android:name="edu.uw.main.ui.weather.WeatherFragment"
+        android:layout_width="389dp"
+        android:layout_height="186dp"
+        android:orientation="vertical"
+        android:textAlignment="center"
+        app:layoutManager="LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.863"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        tools:context="edu.uw.main.ui.weather.WeatherFragment"
+        tools:layout="@layout/fragment_weather"
+        tools:listitem="@layout/fragment_weather_card_hourly" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="221dp"
+        android:layout_height="86dp"
+        android:layout_marginTop="28dp"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.142"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="163dp"
+        android:layout_height="148dp"
+        android:layout_marginEnd="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="98dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/ic_background"
+        android:text="@string/label_weatherfragment_hourly"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="98dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/ic_background"
+        android:text="@string/label_weatherfragment_forecast"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/list_root"
+        app:layout_constraintVertical_bias="0.055" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
