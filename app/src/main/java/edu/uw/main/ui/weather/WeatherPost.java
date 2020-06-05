@@ -1,5 +1,13 @@
 package edu.uw.main.ui.weather;
 
+import android.graphics.Color;
+import android.graphics.fonts.Font;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
+import android.view.View;
+import android.widget.ImageView;
+
 import java.io.Serializable;
 /**
  * The class to handle the weather post cards.
@@ -7,8 +15,9 @@ import java.io.Serializable;
  * @version 6/2
  */
 public class WeatherPost implements Serializable {
-    private final String mTitle;
+    private String mTitle;
     private final String mWeather;
+
 
 
     /**
@@ -25,6 +34,7 @@ public class WeatherPost implements Serializable {
         public Builder(String title, String weather) {
             this.mTitle = title;
             this.mWeather = weather;
+
         }
 
 
@@ -49,6 +59,19 @@ public class WeatherPost implements Serializable {
     public String getTitle() {
         return mTitle;
     }
+
+    /**
+     * Set a weather title color.
+     * @return newTitle the colored title for weather
+     */
+    public SpannableStringBuilder setFont () {
+        SpannableStringBuilder spanBuilder = new SpannableStringBuilder();
+        SpannableString redSpannable= new SpannableString(getTitle());
+        redSpannable.setSpan(new ForegroundColorSpan(Color.WHITE), 0, getTitle().length(), 0);
+        spanBuilder.append(redSpannable);
+        return spanBuilder;
+    }
+
     /**
      * Returns each weather data.
      * @return
