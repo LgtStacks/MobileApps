@@ -136,7 +136,7 @@
     <string name="button_pending_hint">Pending Contacts</string>
     <string name="button_decline_hint">Decline</string>
     <string name="button_sent_hint">Sent Requests</string>
-    <string name="button_create_chatroom">Create</string>
+    <string name="button_create_chatroom">Create A Chatroom</string>
     <string name="text_contact">Contacts</string>
     <string name="text_create">Create Chatroom</string>
     <string name="create_hint">Group Chat Name</string>
