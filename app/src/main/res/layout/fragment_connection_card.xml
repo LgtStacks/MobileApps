@@ -20,7 +20,7 @@
             android:layout_width="111dp"
             android:layout_height="43dp"
             android:layout_marginEnd="16dp"
-            android:text="@string/button_friend_Remove"
+            android:text="REMOVE"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

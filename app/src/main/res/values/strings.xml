@@ -41,6 +41,9 @@
 
     <string name="text_connection_friend"><u>Friends List:  </u></string>
 
+    <string name="text_status_contact">STATUS:   <font fgcolor='#FFA000'>Pending</font></string>
+
+
 
     <string name="keys_json_connection_response">response</string>
     <string name="keys_json_connection_data">data</string>

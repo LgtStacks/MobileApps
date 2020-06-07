@@ -168,7 +168,7 @@ public class ConnectionSentViewModel extends AndroidViewModel {
     mUpdateList = new MutableLiveData<>();
     mUpdateList.setValue(mSentList.getValue());
 
-        for(int i = 0; i < size; i++){
+        for(int i = 0; i <mUpdateList.getValue().size(); i++){
             String check = mUpdateList.getValue().get(i).getUsername();
             if(check.equals(username)){
                 mUpdateList.getValue().remove(i);

@@ -489,7 +489,7 @@ public class MainActivity extends AppCompatActivity {
                 check = intent.getStringExtra("accept");
 
             }
-            Log.e("INENT INPUT MAIN ACT: ", check);
+            Log.e("INTENT INPUT MAIN ACT: ", check);
             if (intent.hasExtra("chatMessage")) {
                 ChatMessage cm = (ChatMessage) intent.getSerializableExtra("chatMessage");
                 //If the user is not on the chat screen, update the
@@ -505,8 +505,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("CHECK FOR ACCEPTANCE: ", input);
 
                 mFriendModel.addFriend(input);
-                //  mPendingModel.removePendingRequest(input);
-                //  mSentModel.removeSentItem(input);
+                mSentModel.removeSentItem(input);
 
 
 
@@ -514,8 +513,7 @@ public class MainActivity extends AppCompatActivity {
             }else if (intent.hasExtra("decline")){
                 input = intent.getStringExtra("decline");
                 Log.e("CHECK FOR ACCEPTANCE: ", input);
-                //   mSentModel.removeSentItem(input);
-                // mPendingModel.removePendingRequest(input);
+                   mSentModel.removeSentItem(input);
 
 
             }else if (intent.hasExtra("remove")){

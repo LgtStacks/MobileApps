@@ -89,7 +89,7 @@ public class ConnectionSentRecyclerViewAdapter extends
          * @param user each individual connection post.
          */
         void setConnection(final Sent user, final String jwt) {
-            binding.buttonName.setText(user.getUsername());
+            binding.textName.setText(user.getUsername());
 
         }
     }
