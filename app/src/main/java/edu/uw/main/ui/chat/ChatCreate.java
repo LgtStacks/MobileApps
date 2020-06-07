@@ -79,6 +79,14 @@ public class ChatCreate extends Fragment {
                 //binding.layoutWait.setVisibility(View.GONE);
             }
         });
+
+        mCreateModel.addFinishedObserver(getViewLifecycleOwner(), aBoolean -> {
+            if (aBoolean) {
+                mCreateModel.setUsersAdded(false);
+                Navigation.findNavController(getView()).navigate(ChatCreateDirections.actionChatCreateToNavigationChat());
+            }
+        });
+
         binding.buttonCreate.setOnClickListener(button -> {
             try {
                 createChatRoom(mModel.getmJwt());
@@ -125,9 +133,6 @@ public class ChatCreate extends Fragment {
      */
     private void createChatRoom(final String jwt) throws JSONException {
         mCreateModel.connectCreateChatroom(binding.textGroupName.getText().toString(), jwt, mModel.getEmail());
-        getActivity().finish();
-        getActivity().startActivity(getActivity().getIntent());
-        Navigation.findNavController(getView()).navigate(ChatCreateDirections.actionChatCreateToNavigationChat());
 
     }
 

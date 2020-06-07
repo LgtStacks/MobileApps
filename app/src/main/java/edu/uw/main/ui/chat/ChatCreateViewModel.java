@@ -44,6 +44,12 @@ public class ChatCreateViewModel extends AndroidViewModel {
     private String jwt;
 
     private String userEmail;
+
+    private MutableLiveData<Boolean> usersAdded;
+
+    private int numUser = 0;
+
+    private int size = 0;
 //    private edu.uw.main.ui.connection.ConnectionAddViewModel mCreateModel;
 
     /**
@@ -57,6 +63,8 @@ public class ChatCreateViewModel extends AndroidViewModel {
         mResponse.setValue(new JSONObject());
         mContactsList = new MutableLiveData<>();
         mContactsList.setValue(new ArrayList<>());
+        usersAdded = new MutableLiveData<>();
+        usersAdded.setValue(false);
     }
     /**
      * This method will add a response observer for interacting with the server.
@@ -78,6 +86,11 @@ public class ChatCreateViewModel extends AndroidViewModel {
     public void addChatCreateObserver(@NonNull LifecycleOwner owner,
                                          @NonNull Observer<? super List<Contacts>> observer) {
         mContactsList.observe(owner, observer);
+    }
+
+    public void addFinishedObserver(@NonNull LifecycleOwner owner,
+                                    @NonNull Observer<? super Boolean> observer) {
+        usersAdded.observe(owner, observer);
     }
 
     /**
@@ -168,7 +181,7 @@ public class ChatCreateViewModel extends AndroidViewModel {
                 Request.Method.PUT,
                 url,
                 null,
-                null,
+                this::handleFinishedAdding,
                 this::handleError) {
             @Override
             public Map<String, String> getHeaders() {
@@ -207,6 +220,7 @@ public class ChatCreateViewModel extends AndroidViewModel {
     }
 
     private void handleResultCreate(final JSONObject response) {
+        size = MainActivity.myContacts.size() + 1;
         try {
             int id = response.getInt("chatID");
             int check = MainActivity.myContacts.size();
@@ -218,5 +232,17 @@ public class ChatCreateViewModel extends AndroidViewModel {
         } catch (JSONException ex) {
             ex.printStackTrace();
         }
+    }
+
+    private void handleFinishedAdding(final JSONObject response) {
+        numUser++;
+        if (numUser == size) {
+            numUser = 0;
+            usersAdded.setValue(true);
+        }
+    }
+
+    public void setUsersAdded(final boolean bool) {
+        usersAdded.setValue(bool);
     }
 }
