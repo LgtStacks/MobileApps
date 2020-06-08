@@ -14,11 +14,10 @@ import org.json.JSONException;
 
 import edu.uw.main.AuthActivity;
 import edu.uw.main.R;
-import edu.uw.main.ui.chat.ChatMessage;
+import edu.uw.main.ui.chat.chatMessage.ChatMessage;
 
-import edu.uw.main.ui.connection.Add;
-import edu.uw.main.ui.connection.Pending;
-import edu.uw.main.ui.connection.Sent;
+import edu.uw.main.ui.connection.connectionAdd.Add;
+import edu.uw.main.ui.connection.connectionPending.Pending;
 import me.pushy.sdk.Pushy;
 
 import static android.app.ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND;

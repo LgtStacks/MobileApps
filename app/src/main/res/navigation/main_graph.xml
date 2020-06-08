@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_chat"
-        android:name="edu.uw.main.ui.chat.ChatFragment"
+        android:name="edu.uw.main.ui.chat.chatMain.ChatFragment"
         android:label="@string/title_chat"
         tools:layout="@layout/fragment_chat">
         <action
@@ -46,7 +46,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_connection"
-        android:name="edu.uw.main.ui.connection.ConnectionListFragment"
+        android:name="edu.uw.main.ui.connection.connectionList.ConnectionListFragment"
         android:label="ConnectionListFragment" >
         <action
             android:id="@+id/action_navigation_connection_to_change2"
@@ -72,7 +72,7 @@
     </fragment>
     <fragment
         android:id="@+id/connectionAdd"
-        android:name="edu.uw.main.ui.connection.ConnectionAdd"
+        android:name="edu.uw.main.ui.connection.connectionAdd.ConnectionAdd"
         android:label="ConnectionAdd" >
         <action
             android:id="@+id/action_connectionAdd_to_change"
@@ -80,7 +80,7 @@
     </fragment>
     <fragment
         android:id="@+id/connectionPending"
-        android:name="edu.uw.main.ui.connection.ConnectionPending"
+        android:name="edu.uw.main.ui.connection.connectionPending.ConnectionPending"
         android:label="fragment_connection_pending"
         tools:layout="@layout/fragment_connection_pending" >
         <action
@@ -89,7 +89,7 @@
     </fragment>
     <fragment
         android:id="@+id/connectionSentRequest"
-        android:name="edu.uw.main.ui.connection.ConnectionSentRequest"
+        android:name="edu.uw.main.ui.connection.connectionSent.ConnectionSentRequest"
         android:label="fragment_connection_sent_request"
         tools:layout="@layout/fragment_connection_sent_request" >
         <action
@@ -98,7 +98,7 @@
     </fragment>
     <fragment
         android:id="@+id/chatCreate"
-        android:name="edu.uw.main.ui.chat.ChatCreate"
+        android:name="edu.uw.main.ui.chat.chatCreate.ChatCreate"
         android:label="fragment_chat_create"
         tools:layout="@layout/fragment_chat_create" >
         <action
@@ -115,7 +115,7 @@
         tools:layout="@layout/fragment_weather_main" />
     <fragment
         android:id="@+id/chatAddRemove"
-        android:name="edu.uw.main.ui.chat.ChatAddRemove"
+        android:name="edu.uw.main.ui.chat.chatAddRemove.ChatAddRemove"
         android:label="fragment_chat_add_remove"
         tools:layout="@layout/fragment_chat_add_remove" >
         <argument

@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout4"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.connection.ConnectionSentRequest">
+    tools:context=".ui.connection.connectionSent.ConnectionSentRequest">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_root"
@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_contact_status"
 
-        tools:context="edu.uw.main.ui.connection.ConnectionSentRequest"
+        tools:context="edu.uw.main.ui.connection.connectionSent.ConnectionSentRequest"
         tools:listitem="@layout/fragment_sent_cards" />
 
     <TextView

@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout4"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.connection.ConnectionPending">
+    tools:context=".ui.connection.connectionPending.ConnectionPending">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_root"
@@ -19,7 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5"
         app:layout_constraintVertical_bias="2.0"
-        tools:context="edu.uw.main.ui.connection.ConnectionPending"
+        tools:context="edu.uw.main.ui.connection.connectionPending.ConnectionPending"
         tools:listitem="@layout/fragment_pending_card" />
 
     <TextView

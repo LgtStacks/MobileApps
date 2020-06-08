@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout4"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.connection.ConnectionAdd">
+    tools:context=".ui.connection.connectionAdd.ConnectionAdd">
 
 
     <EditText
@@ -47,7 +47,7 @@
         app:layout_constraintStart_toStartOf="@+id/text_search"
         app:layout_constraintTop_toBottomOf="@+id/text_search"
         app:layout_constraintVertical_bias="1.0"
-        tools:context="edu.uw.main.ui.connection.ConnectionAdd"
+        tools:context="edu.uw.main.ui.connection.connectionAdd.ConnectionAdd"
         tools:listitem="@layout/fragment_search_card" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

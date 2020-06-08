@@ -19,6 +19,10 @@ import edu.uw.main.MainActivity;
 import edu.uw.main.R;
 import edu.uw.main.databinding.FragmentGroupBinding;
 import edu.uw.main.model.UserInfoViewModel;
+import edu.uw.main.ui.chat.chatMain.ChatroomListViewModel;
+import edu.uw.main.ui.chat.chatMessage.ChatRecyclerViewAdapter;
+import edu.uw.main.ui.chat.chatMessage.ChatSendViewModel;
+import edu.uw.main.ui.chat.chatMessage.ChatViewModel;
 
 /**
  * A First group chat room.

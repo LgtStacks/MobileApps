@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout4"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.chat.ChatCreate">
+    tools:context=".ui.chat.chatCreate.ChatCreate">
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -21,7 +21,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        tools:context="edu.uw.main.ui.chat.ChatCreate"
+        tools:context="edu.uw.main.ui.chat.chatCreate.ChatCreate"
         tools:listitem="@layout/fragment_chat_create_card" />
 
     <Button
