@@ -19,11 +19,13 @@
 
     <TextView
         android:id="@+id/text_category"
-        android:layout_width="158dp"
-        android:layout_height="30dp"
+        android:layout_width="154dp"
+        android:layout_height="5dp"
         android:layout_marginStart="4dp"
-        android:textSize="24sp"
         android:text="CATEGORY"
+        android:textAlignment="center"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
