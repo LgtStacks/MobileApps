@@ -468,20 +468,14 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onReceive(Context context, Intent intent) {
+           // View view =
             Log.e("BROADCAST SENT: ", "TRUE");
             NavController nc =
                     Navigation.findNavController(
                             MainActivity.this, R.id.nav_host_fragment);
             NavDestination nd = nc.getCurrentDestination();
             String input = null;
-            String check = "INTENT FAILED";
-            if(intent.hasExtra("accept")){
-                Log.e("Intent Sent ", "TRUE");
 
-                check = intent.getStringExtra("accept");
-
-            }
-            Log.e("INTENT INPUT MAIN ACT: ", check);
             if (intent.hasExtra("chatMessage")) {
                 ChatMessage cm = (ChatMessage) intent.getSerializableExtra("chatMessage");
                 //If the user is not on the chat screen, update the

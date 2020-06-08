@@ -56,7 +56,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="176dp"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="220dp"
         android:text="@string/text_first_login"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -126,6 +126,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_recover"
         app:layout_constraintVertical_bias="0.185" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="175dp"
+        android:layout_height="174dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/guildbanner" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
