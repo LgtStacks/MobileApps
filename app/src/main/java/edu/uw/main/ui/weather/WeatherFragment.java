@@ -82,7 +82,7 @@ public class WeatherFragment extends Fragment {
         if (view2.getVisibility() == View.GONE) {
             view3.setVisibility(View.GONE);
             ((MainActivity) getActivity())
-                    .setActionBarTitle("Main Project App");
+                    .setActionBarTitle("Guild Banner Home");
 
         } else {
             view3.setVisibility(View.VISIBLE);
