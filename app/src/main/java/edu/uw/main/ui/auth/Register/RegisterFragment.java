@@ -15,6 +15,7 @@ import androidx.navigation.Navigation;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import edu.uw.main.AuthActivity;
 import edu.uw.main.PasswordValidator;
 import edu.uw.main.databinding.FragmentRegisterBinding;
 import edu.uw.main.ui.auth.Register.RegisterFragmentDirections;
@@ -74,6 +75,8 @@ public class RegisterFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        ((AuthActivity) getActivity())
+                .setActionBarTitle("Register");
         binding = FragmentRegisterBinding.inflate(inflater);
         return binding.getRoot();
     }

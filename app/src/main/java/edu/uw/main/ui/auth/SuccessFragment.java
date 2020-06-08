@@ -37,6 +37,7 @@ public class SuccessFragment extends Fragment {
         // Required empty public constructor
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -55,6 +56,8 @@ public class SuccessFragment extends Fragment {
         if (view4 != null) {
             view4.setVisibility(View.GONE);
         }
+        ((MainActivity) getActivity())
+                .setActionBarTitle("Guild Banner Home");
         binding = FragmentSuccessBinding.inflate(inflater, container, false);
 
         // Inflate the layout for this fragment
@@ -81,5 +84,6 @@ public class SuccessFragment extends Fragment {
             Navigation.findNavController(getView()).navigate(SuccessFragmentDirections.actionNavigationHomeToChange2());
         }
         super.onResume();
+
     }
 }

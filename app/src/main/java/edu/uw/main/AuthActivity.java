@@ -61,6 +61,9 @@ public class AuthActivity extends AppCompatActivity {
             initiatePushyTokenRequest();
         }
     }
+    public void setActionBarTitle(String title) {
+        getSupportActionBar().setTitle(title);
+    }
 
     /**
      * Creates a new pushy token request.
